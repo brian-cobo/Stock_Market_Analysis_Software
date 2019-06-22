@@ -79,7 +79,9 @@ class Stock:
 
         return data
 
-    def convert_json_to_dataframe(self, json_data):
+    def convert_json_to_dataframe(self, json_data, df_head = False,
+                                  df_shape = False, df_columns = False,
+                                  df_info = False):
         if self.type_of_graph == 'TIME_SERIES_INTRADAY':
             stockInfo = pd.DataFrame(data[f'Time Series ({self.interval_in_minutes}min)'])
         elif self.type_of_graph == 'TIME_SERIES_DAILY':
@@ -106,21 +108,33 @@ class Stock:
         stockInfo.Volume = pd.to_numeric(stockInfo.Volume)
         stockInfo.Date = pd.to_datetime(stockInfo.Date)
 
-        print(stockInfo.info())
+        if df_head:
+            print('Data Head:')
+            print(stockInfo.head(), '\n\n')
+
+        if df_shape:
+            print('Data Shape: (Rows, Columns)')
+            print(stockInfo.shape, '\n\n')
+
+        if df_columns:
+            print('Data Columns:')
+            print(stockInfo.columns, '\n\n')
+
+        if df_info:
+            print('Data Info:')
+            print(stockInfo.info(), '\n\n')
+
+        return stockInfo
+
 
 levi = Stock(symbol='LEVI')
 data = levi.get_intraday_data()
 data = levi.convert_url_data_into_json(url_data=data, print_data=False)
-levi.convert_json_to_dataframe(json_data=data)
+data = levi.convert_json_to_dataframe(json_data=data, df_head=True,
+                                      df_shape=True, df_columns =True,
+                                      df_info=True)
 
-stockInfo.head()
-stockInfo.shape
-stockInfo.columns
-stockInfo.info()
 
- 
-#We can see that we have 100 rows with 5 columns each. I'm going to
-# rename the columns to make it a bit easier to call later on
 
 plt.figure(figsize = (12, 8))
 ax = plt.subplot()

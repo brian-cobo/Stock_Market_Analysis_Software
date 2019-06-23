@@ -16,7 +16,7 @@ from APIData import get_API_key
 
 
 class Stock:
-    def __init__(self, symbol,
+    def __init__(self, symbol, stockInfo=None,
                  api_key = get_API_key(),
                  type_of_graph = None,
                  output_data_type = 'csv',
@@ -24,6 +24,7 @@ class Stock:
                  output_size = 'full'):
         self.api_key = api_key
         self.symbol = symbol
+        self.stockInfo = stockInfo
         self.type_of_graph = type_of_graph
         self.output_data_type = output_data_type
         self.interval_in_minutes = interval_in_minutes
@@ -124,78 +125,124 @@ class Stock:
             print('Data Info:')
             print(stockInfo.info(), '\n\n')
 
+        self.stockInfo = stockInfo
         return stockInfo
 
+    def print_stockInfo_most_recent_10_days(self):
+        print(self.stockInfo[-10:])
 
-levi = Stock(symbol='LEVI')
-data = levi.get_intraday_data()
-data = levi.convert_url_data_into_json(url_data=data, print_data=False)
-data = levi.convert_json_to_dataframe(json_data=data, df_head=True,
-                                      df_shape=True, df_columns =True,
-                                      df_info=True)
+    def draw_graph(self, Close=True, Open=False,
+                   High=False, Low=False, graph_width=12,
+                   graph_height=8):
+        stockInfo = self.stockInfo
+
+        plt.figure(figsize=(graph_width, graph_height))
+        ax = plt.subplot()
+
+        if Close:
+            plt.plot(stockInfo.Date, stockInfo.Close, label='Close Price', color='blue')
+
+        if Open:
+            plt.plot(stockInfo.Date, stockInfo.Open, label = 'Open Price', color = 'green')
+        if High:
+            plt.plot(stockInfo.Date, stockInfo.High, label = 'High', color = 'red')
+        if Low:
+            plt.plot(stockInfo.Date, stockInfo.Low, label = 'Low', color = 'orange')
+
+        plt.title(self.symbol)
+        plt.xlabel("Date")
+        plt.ylabel("Price")
+        plt.locator_params(axis='x', numticks=3)
+        plt.legend()
+        plt.gcf().autofmt_xdate()
+        ax.xaxis.set_major_formatter(ates.DateFormatter('%b %d'))
+        plt.show()
+
+    def calculate_stochastic_oscillator(self):
+        # The equation to calculate the stochastic oscillator is:
+
+        # %K = 100(C – L14)/(H14 – L14)
+        # Where:
+        # C = the most recent closing price
+        # L14 = the low of the 14 previous trading sessions
+        # H14 = the highest price traded during the same 14-day period
+        # %K= the current market rate for the currency pair
+        # %D = 3-period moving average of %K
+
+        # Create the "L14" column in the DataFrame
+        self.stockInfo['L14'] = self.stockInfo['Low'].rolling(window=14).min()
+        # Create the "H14" column in the DataFrame
+        self.stockInfo['H14'] = self.stockInfo['High'].rolling(window=14).max()
+        # Create the "%K" column in the DataFrame
+        self.stockInfo['%K'] = 100 * ((self.stockInfo['Close'] - self.stockInfo['L14']) / (self.stockInfo['H14'] - self.stockInfo['L14']))
+        # Create the "%D" column in the DataFrame
+        self.stockInfo['%D'] = self.stockInfo['%K'].rolling(window=3).mean()
+
+    def draw_stochastic_oscillator(self):
+        fig, axes = plt.subplots(figsize=(20, 10))
+        # self.stockInfo['Close'].plot(ax=axes[0]);
+        # axes[0].set_title(self.symbol + ' Close Prices')
+        self.stockInfo[['%K', '%D']].plot(ax=axes)
+        axes.set_title(self.symbol + ' Stochastic Oscillator')
+        plt.hlines(80, 0, 100, linestyles='dashed', color='red', data=self.stockInfo.Date)
+        plt.hlines(20, 0, 100, linestyles='dashed', color='red', data=self.stockInfo.Date)
+        plt.hlines(50, 0, 100, linestyles='dashed', color='black', data=self.stockInfo.Date)
+        plt.show()
+
+    def calculate_long_or_short(self):
+        self.stockInfo['Sell Entry'] = ((self.stockInfo['%K'] < self.stockInfo['%D']) & (
+                self.stockInfo['%K'].shift(1) > self.stockInfo['%D'].shift(1))) & (self.stockInfo['%D'] > 80)
+        self.stockInfo['Sell Exit'] = (
+                (self.stockInfo['%K'] > self.stockInfo['%D']) & (
+                    self.stockInfo['%K'].shift(1) < self.stockInfo['%D'].shift(1)))
+        self.stockInfo['Short'] = np.nan
+        self.stockInfo.loc[self.stockInfo['Sell Entry'], 'Short'] = -1
+        self.stockInfo.loc[self.stockInfo['Sell Exit'], 'Short'] = 0
+        self.stockInfo['Short'][0] = 0
+        self.stockInfo['Short'] = self.stockInfo['Short'].fillna(method='pad')
+        self.stockInfo['Buy Entry'] = ((self.stockInfo['%K'] > self.stockInfo['%D']) & (
+                self.stockInfo['%K'].shift(1) < self.stockInfo['%D'].shift(1))) & (self.stockInfo['%D'] < 20)
+        self.stockInfo['Buy Exit'] = (
+                (self.stockInfo['%K'] < self.stockInfo['%D']) & (
+                    self.stockInfo['%K'].shift(1) > self.stockInfo['%D'].shift(1)))
+        self.stockInfo['Long'] = np.nan
+        self.stockInfo.loc[self.stockInfo['Buy Entry'], 'Long'] = 1
+        self.stockInfo.loc[self.stockInfo['Buy Exit'], 'Long'] = 0
+        self.stockInfo['Long'][0] = 0
+        self.stockInfo['Long'] = self.stockInfo['Long'].fillna(method='pad')
+
+        # Add Long and Short positions together to get final strategy position (1 for long, -1 for short and 0 for flat)
+        self.stockInfo['Position'] = self.stockInfo['Long'] + self.stockInfo['Short']
+
+        long_or_short = self.stockInfo.Position[-1]
+        print(long_or_short)
+        if long_or_short == -1:
+            print('SHORT', self.symbol)
+        if long_or_short == 0:
+            print('HOLD', self.symbol)
+        if long_or_short == 1:
+            print('LONG', self.symbol)
+
+        return long_or_short
+
+    def draw_long_or_short_graph(self):
+        self.stockInfo['Position'].plot(figsize=(20, 10))
+        plt.xlabel('Date')
+        plt.ylabel('-1 Short 1 Long')
+        plt.show()
+
+
+#if __name__ == "__main__":
+def main(stockSymbol):
+    stock = Stock(symbol=stockSymbol)
+    data = stock.get_three_month_data()
+    data = stock.convert_url_data_into_json(url_data=data)
+    data = stock.convert_json_to_dataframe(json_data=data)
+    stock.calculate_stochastic_oscillator()
+    response = stock.calculate_long_or_short()
 
 
 
-plt.figure(figsize = (12, 8))
-ax = plt.subplot()
-plt.plot(stockInfo.Date, stockInfo.Close, label = 'Close Price', color = 'blue')
-#plt.plot(stockInfo.Date, stockInfo.Open, label = 'Open Price', color = 'green')
-#plt.plot(stockInfo.Date, stockInfo.High, label = 'High', color = 'red')
-#plt.plot(stockInfo.Date, stockInfo.Low, label = 'Low', color = 'orange')
-plt.title(symbol)
-plt.xlabel("Date")
-plt.ylabel("Closing Price")
-plt.locator_params(axis='x', numticks=3)
-plt.legend()
-plt.gcf().autofmt_xdate()
-ax.xaxis.set_major_formatter(ates.DateFormatter('%b %d'))
-plt.show()
  
-#Now that we have a basic graph drawn, I want to draw out a stochastic oscillator for the stock.
-#A Stochastic Oscillator is a momentum indicator comparing a particular closing price of a security to a range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result.
-#The equation to calculate the stochastic oscillator is:
 
-#%K = 100(C – L14)/(H14 – L14)
-#Where:
-#C = the most recent closing price
-#L14 = the low of the 14 previous trading sessions
-#H14 = the highest price traded during the same 14-day period
-#%K= the current market rate for the currency pair
-#%D = 3-period moving average of %K
-
-
-#Create the "L14" column in the DataFrame
-stockInfo['L14'] = stockInfo['Low'].rolling(window=14).min()
-#Create the "H14" column in the DataFrame
-stockInfo['H14'] = stockInfo['High'].rolling(window=14).max()
-#Create the "%K" column in the DataFrame
-stockInfo['%K'] = 100*((stockInfo['Close'] - stockInfo['L14']) / (stockInfo['H14'] - stockInfo['L14']) )
-#Create the "%D" column in the DataFrame
-stockInfo['%D'] = stockInfo['%K'].rolling(window=3).mean()
-
-fig, axes = plt.subplots(nrows=2, ncols=1,figsize=(20,10))
-stockInfo['Close'].plot(ax=axes[0]); axes[0].set_title(symbol + ' Close Prices')
-stockInfo[['%K','%D']].plot(ax=axes[1]); axes[1].set_title(symbol + ' Stochastic Oscillator')
-plt.hlines(80, 0, 100, linestyles = 'dashed', color = 'red', data = stockInfo.Date)
-plt.hlines(20, 0, 100, linestyles = 'dashed', color = 'red', data = stockInfo.Date)
-plt.hlines(50, 0, 100, linestyles = 'dashed', color = 'black', data = stockInfo.Date)
-
-stockInfo['Sell Entry'] = ((stockInfo['%K'] < stockInfo['%D']) & (stockInfo['%K'].shift(1) > stockInfo['%D'].shift(1))) & (stockInfo['%D'] > 80) 
-stockInfo['Sell Exit'] = ((stockInfo['%K'] > stockInfo['%D']) & (stockInfo['%K'].shift(1) < stockInfo['%D'].shift(1))) 
-stockInfo['Short'] = np.nan 
-stockInfo.loc[stockInfo['Sell Entry'],'Short'] = -1 
-stockInfo.loc[stockInfo['Sell Exit'],'Short'] = 0 
-stockInfo['Short'][0] = 0 
-stockInfo['Short'] = stockInfo['Short'].fillna(method='pad') 
-stockInfo['Buy Entry'] = ((stockInfo['%K'] > stockInfo['%D']) & (stockInfo['%K'].shift(1) < stockInfo['%D'].shift(1))) & (stockInfo['%D'] < 20) 
-stockInfo['Buy Exit'] = ((stockInfo['%K'] < stockInfo['%D']) & (stockInfo['%K'].shift(1) > stockInfo['%D'].shift(1))) 
-stockInfo['Long'] = np.nan  
-stockInfo.loc[stockInfo['Buy Entry'],'Long'] = 1  
-stockInfo.loc[stockInfo['Buy Exit'],'Long'] = 0  
-stockInfo['Long'][0] = 0  
-stockInfo['Long'] = stockInfo['Long'].fillna(method='pad') 
-
-#Add Long and Short positions together to get final strategy position (1 for long, -1 for short and 0 for flat) 
-stockInfo['Position'] = stockInfo['Long'] + stockInfo['Short']
-stockInfo['Position'].plot(figsize=(20,10))
 

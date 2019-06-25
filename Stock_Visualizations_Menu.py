@@ -84,9 +84,9 @@ class Stock:
                                   df_shape = False, df_columns = False,
                                   df_info = False):
         if self.type_of_graph == 'TIME_SERIES_INTRADAY':
-            stockInfo = pd.DataFrame(data[f'Time Series ({self.interval_in_minutes}min)'])
+            stockInfo = pd.DataFrame(json_data[f'Time Series ({self.interval_in_minutes}min)'])
         elif self.type_of_graph == 'TIME_SERIES_DAILY':
-            stockInfo = pd.DataFrame(data['Time Series (Daily)'])
+            stockInfo = pd.DataFrame(json_data['Time Series (Daily)'])
         else:
             print(f'ERROR: {self.type_of_graph} NOT RECOGNIZED BY PROGRAM')
 
@@ -179,6 +179,7 @@ class Stock:
         self.stockInfo['%D'] = self.stockInfo['%K'].rolling(window=3).mean()
 
     def draw_stochastic_oscillator(self):
+        self.calculate_stochastic_oscillator()
         fig, axes = plt.subplots(figsize=(20, 10))
         # self.stockInfo['Close'].plot(ax=axes[0]);
         # axes[0].set_title(self.symbol + ' Close Prices')
@@ -226,6 +227,7 @@ class Stock:
         return long_or_short
 
     def draw_long_or_short_graph(self):
+        self.calculate_long_or_short()
         self.stockInfo['Position'].plot(figsize=(20, 10))
         plt.xlabel('Date')
         plt.ylabel('-1 Short 1 Long')
@@ -237,12 +239,11 @@ def main(stockSymbol):
     stock = Stock(symbol=stockSymbol)
     data = stock.get_three_month_data()
     data = stock.convert_url_data_into_json(url_data=data)
-    data = stock.convert_json_to_dataframe(json_data=data)
-    stock.calculate_stochastic_oscillator()
-    response = stock.calculate_long_or_short()
+    stock.convert_json_to_dataframe(json_data=data)
+    stock.draw_graph(Close=True,Open=True)
+    stock.draw_stochastic_oscillator()
+    stock.draw_long_or_short_graph()
 
 
 
- 
-
-
+main('GM')

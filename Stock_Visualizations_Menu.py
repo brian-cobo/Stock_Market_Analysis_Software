@@ -1,4 +1,5 @@
- 
+
+# Brian Cobo
 # Stock Visualization
 
 # Library Imports
@@ -69,6 +70,33 @@ class Stock:
                        f'outputsize={self.output_size}&' \
                        f'datatype={self.output_data_type}'
         print(intraday_CSV)
+
+    def get_daily_adjusted_data(self):
+        self.type_of_graph = 'TIME_SERIES_DAILY'
+        daily_adjusted_URL = 'https://www.alphavantage.co/query?' \
+                             f'function={self.type_of_graph}&' \
+                             f'symbol={self.symbol}&' \
+                             f'apikey={self.api_key}'
+                             #f'outputsize={self.output_size}&' \
+
+        print(daily_adjusted_URL)
+        return daily_adjusted_URL
+
+    def print_current_stock_data(self):
+        self.type_of_graph = 'GLOBAL_QUOTE'
+        current_stock_data_URL = 'https://www.alphavantage.co/query?' \
+                                 f'function={self.type_of_graph}&' \
+                                 f'symbol={self.symbol}&' \
+                                 f'apikey={self.api_key}'
+        print(current_stock_data_URL)
+
+        json_data = self.convert_url_data_into_json(current_stock_data_URL)['Global Quote']
+        stockInfo = pd.DataFrame.from_records(json_data)
+        print(stockInfo)
+
+
+
+        return current_stock_data_URL
 
     def convert_url_data_into_json(self, url_data, print_data = False):
         with urllib.request.urlopen(url_data) as response:
@@ -234,16 +262,30 @@ class Stock:
         plt.show()
 
 
-#if __name__ == "__main__":
-def main(stockSymbol):
-    stock = Stock(symbol=stockSymbol)
-    data = stock.get_three_month_data()
-    data = stock.convert_url_data_into_json(url_data=data)
-    stock.convert_json_to_dataframe(json_data=data)
-    stock.draw_graph(Close=True,Open=True)
-    stock.draw_stochastic_oscillator()
-    stock.draw_long_or_short_graph()
+if __name__ == "__main__":
+    choice = 0
 
+    while choice != -1:
+        choice = int(input('\n\nChoose Option:\n1: Get Historical Data\n2: Get Current Data\n-1: Quit\n'))
+        stockSymbol = input("Enter a Stock to look at: ")
+        stockSymbol = stockSymbol.upper()
 
+        if choice == 1:
+            stock = Stock(symbol=stockSymbol)
+            data = stock.get_daily_adjusted_data()
+            data = stock.convert_url_data_into_json(url_data=data)
+            stock.convert_json_to_dataframe(json_data=data)
+            stock.draw_graph(Close=True,Open=True)
+            stock.draw_stochastic_oscillator()
+            stock.draw_long_or_short_graph()
 
-main('GM')
+        elif choice == 2:
+            stock = Stock(symbol=stockSymbol)
+            data = stock.print_current_stock_data()
+
+        elif choice == -1:
+            print("Goodbye")
+            exit(0)
+
+        else:
+            print('Choice not recognized')

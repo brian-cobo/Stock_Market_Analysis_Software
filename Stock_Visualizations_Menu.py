@@ -90,8 +90,8 @@ class Stock:
                                  f'apikey={self.api_key}'
         print(current_stock_data_URL)
 
-        json_data = self.convert_url_data_into_json(current_stock_data_URL)['Global Quote']
-        stockInfo = pd.DataFrame.from_records(json_data)
+        json_data = self.convert_url_data_into_json(current_stock_data_URL)
+        stockInfo = pd.DataFrame(json_data)['Global Quote']
         print(stockInfo)
 
 

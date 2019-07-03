@@ -285,6 +285,58 @@ class Stock:
         plt.ylabel('-1 Short 1 Long')
         plt.show()
 
+def ask_for_stock_symbol():
+    stockSymbol = input("Enter a Stock to look at: ")
+    stockSymbol = stockSymbol.upper()
+    return stockSymbol
+
+
+def get_historical_data(stockSymbol):
+    data_range = int(input('Choose Data Option:\n'
+                           '1: Five Months Data\n'
+                           '2: Daily Adjusted Data\n'
+                           '3: Intraday Data\n'))
+    draw_graphs = int(input('Do you want to draw graphs?\n'
+                            '1: Yes\n'
+                            '2: No\n'))
+    stock = Stock(symbol=stockSymbol)
+
+    if choice == 2:
+        data = stock.get_daily_adjusted_data()
+    if choice == 3:
+        data = stock.get_intraday_data()
+    else:
+        data = stock.get_five_months_data()
+
+    data = stock.convert_url_data_into_json(url_data=data)
+    stock.convert_json_to_dataframe(json_data=data)
+
+    if draw_graphs == 1:
+        stock.draw_graph(Close=True, Open=True)
+        stock.draw_stochastic_oscillator()
+        stock.draw_long_or_short_graph()
+
+
+def get_current_data(stockSymbol):
+    stock = Stock(symbol=stockSymbol)
+    data = stock.get_current_stock_data()
+    print(data)
+
+
+def create_market_report():
+    nasdaq_data = pd.read_csv('Nasdaq_Company_List.csv')
+    marketData = pd.DataFrame(columns=['Symbol', 'Name', 'Price', 'Change',
+                                       'Change_Percent', 'Open', 'High', 'Low',
+                                       'Previous_Close', 'Volume', 'Latest_Trading_Day',
+                                       'Industry', 'Sector', 'Summary_Quote'])
+    marketData.Symbol = nasdaq_data['Symbol']
+    marketData.Name = nasdaq_data['Name']
+    marketData.Sector = nasdaq_data['Sector']
+    marketData.Industry = nasdaq_data['Industry']
+    marketData.Summary_Quote = nasdaq_data['Summary Quote']
+
+    print(marketData.iloc[0])
+
 
 if __name__ == "__main__":
     choice = 0
@@ -293,44 +345,22 @@ if __name__ == "__main__":
         choice = int(input('\n\nChoose Option:\n'
                            '1: Get Historical Data\n'
                            '2: Get Current Data\n'
+                           '3: Create Market Report\n'
                            '-1: Quit\n'))
         if choice == -1:
             print("\nGoodbye")
             exit(0)
 
-        stockSymbol = input("Enter a Stock to look at: ")
-        stockSymbol = stockSymbol.upper()
-
-
-        if choice == 1:
-            data_range = int(input('Choose Data Option:\n'
-                                   '1: Five Months Data\n'
-                                   '2: Daily Adjusted Data\n'
-                                   '3: Intraday Data\n'))
-            draw_graphs = int(input('Do you want to draw graphs?\n'
-                                    '1: Yes\n'
-                                    '2: No\n'))
-            stock = Stock(symbol=stockSymbol)
-
-            if choice == 2:
-                data = stock.get_daily_adjusted_data()
-            if choice == 3:
-                data = stock.get_intraday_data()
-            else:
-                data = stock.get_five_months_data()
-
-            data = stock.convert_url_data_into_json(url_data=data)
-            stock.convert_json_to_dataframe(json_data=data)
-
-            if draw_graphs == 1:
-                stock.draw_graph(Close=True,Open=True)
-                stock.draw_stochastic_oscillator()
-                stock.draw_long_or_short_graph()
+        elif choice == 1:
+            stockSymbol = ask_for_stock_symbol()
+            get_historical_data(stockSymbol)
 
         elif choice == 2:
-            stock = Stock(symbol=stockSymbol)
-            data = stock.get_current_stock_data()
-            print(data)
+            stockSymbol = ask_for_stock_symbol()
+            get_current_data(stockSymbol)
+
+        elif choice == 3:
+            create_market_report()
 
         else:
             print('Choice not recognized')

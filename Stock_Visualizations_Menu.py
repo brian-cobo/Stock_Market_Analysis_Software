@@ -31,7 +31,7 @@ class Stock:
         self.interval_in_minutes = interval_in_minutes
         self.output_size = output_size
 
-    def get_three_month_data(self):
+    def get_five_months_data(self):
         self.type_of_graph = 'TIME_SERIES_DAILY'
         three_month_URL = f'https://www.alphavantage.co/query?' \
               f'function={self.type_of_graph}&' \
@@ -40,7 +40,7 @@ class Stock:
         print(three_month_URL)
         return three_month_URL
 
-    def get_three_month_csv_data(self):
+    def get_five_months_csv_data(self):
         self.type_of_graph = 'TIME_SERIES_DAILY'
         three_month_csv = f'https://www.alphavantage.co/query?' \
                       f'function={self.type_of_graph}&' \
@@ -92,6 +92,31 @@ class Stock:
 
         json_data = self.convert_url_data_into_json(current_stock_data_URL)
         stockInfo = pd.DataFrame(json_data)['Global Quote']
+        stockInfo = stockInfo.transpose()
+
+        stockInfo = stockInfo.rename(index={'01. symbol':'Symbol',
+                                            '02. open':'Open',
+                                            '03. high':'High',
+                                            '04. low':'Low',
+                                            '05. price':'Price',
+                                            '06. volume':'Volume',
+                                            '07. latest trading day':'Latest Trading Day',
+                                            '08. previous close':'Previous Close',
+                                            '09. change':'Change',
+                                            '10. change percent':'Change Percent'
+                                             }
+                                    )
+
+        # Converting data columns to correct datatype
+        stockInfo.Open = pd.to_numeric(stockInfo.Open)
+        stockInfo.High = pd.to_numeric(stockInfo.High)
+        stockInfo.Low = pd.to_numeric(stockInfo.Low)
+        stockInfo.Price = pd.to_numeric(stockInfo.Price)
+        stockInfo.Volume = pd.to_numeric(stockInfo.Volume)
+        stockInfo.Change = pd.to_numeric(stockInfo.Change)
+        stockInfo['Latest Trading Day'] = pd.to_datetime(stockInfo['Latest Trading Day'])
+        stockInfo['Previous Close'] = pd.to_numeric(stockInfo['Previous Close'])
+
         print(stockInfo)
 
 

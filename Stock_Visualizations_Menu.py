@@ -320,7 +320,9 @@ def get_historical_data(stockSymbol):
 def get_current_data(stockSymbol):
     stock = Stock(symbol=stockSymbol)
     data = stock.get_current_stock_data()
-    print(data)
+
+    print('\n', data)
+    return stock
 
 
 def create_market_report():
@@ -335,7 +337,12 @@ def create_market_report():
     marketData.Industry = nasdaq_data['Industry']
     marketData.Summary_Quote = nasdaq_data['Summary Quote']
 
-    print(marketData.iloc[0])
+    for i in range(10):
+        try:
+            name = marketData.Symbol.iloc[i]
+            currentData = get_current_data(name)
+        except Exception as e:
+            print(e)
 
 
 if __name__ == "__main__":

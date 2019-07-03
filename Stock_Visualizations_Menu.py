@@ -15,6 +15,9 @@ warnings.filterwarnings('ignore')
 # File Imports
 from APIData import get_API_key
 
+# Code Sources
+#    - Stochastic Oscillation
+#       - https://pythonforfinance.net/2017/10/10/stochastic-oscillator-trading-strategy-backtest-in-python/
 
 class Stock:
     def __init__(self, symbol, stockInfo=None,
@@ -82,7 +85,7 @@ class Stock:
         print(daily_adjusted_URL)
         return daily_adjusted_URL
 
-    def print_current_stock_data(self):
+    def get_current_stock_data(self):
         self.type_of_graph = 'GLOBAL_QUOTE'
         current_stock_data_URL = 'https://www.alphavantage.co/query?' \
                                  f'function={self.type_of_graph}&' \
@@ -117,11 +120,7 @@ class Stock:
         stockInfo['Latest Trading Day'] = pd.to_datetime(stockInfo['Latest Trading Day'])
         stockInfo['Previous Close'] = pd.to_numeric(stockInfo['Previous Close'])
 
-        print(stockInfo)
-
-
-
-        return current_stock_data_URL
+        return stockInfo
 
     def convert_url_data_into_json(self, url_data, print_data = False):
         with urllib.request.urlopen(url_data) as response:
@@ -289,28 +288,49 @@ class Stock:
 
 if __name__ == "__main__":
     choice = 0
-
+    print('Welcome')
     while choice != -1:
-        choice = int(input('\n\nChoose Option:\n1: Get Historical Data\n2: Get Current Data\n-1: Quit\n'))
+        choice = int(input('\n\nChoose Option:\n'
+                           '1: Get Historical Data\n'
+                           '2: Get Current Data\n'
+                           '-1: Quit\n'))
+        if choice == -1:
+            print("\nGoodbye")
+            exit(0)
+
         stockSymbol = input("Enter a Stock to look at: ")
         stockSymbol = stockSymbol.upper()
 
+
         if choice == 1:
+            data_range = int(input('Choose Data Option:\n'
+                                   '1: Five Months Data\n'
+                                   '2: Daily Adjusted Data\n'
+                                   '3: Intraday Data\n'))
+            draw_graphs = int(input('Do you want to draw graphs?\n'
+                                    '1: Yes\n'
+                                    '2: No\n'))
             stock = Stock(symbol=stockSymbol)
-            data = stock.get_daily_adjusted_data()
+
+            if choice == 2:
+                data = stock.get_daily_adjusted_data()
+            if choice == 3:
+                data = stock.get_intraday_data()
+            else:
+                data = stock.get_five_months_data()
+
             data = stock.convert_url_data_into_json(url_data=data)
             stock.convert_json_to_dataframe(json_data=data)
-            stock.draw_graph(Close=True,Open=True)
-            stock.draw_stochastic_oscillator()
-            stock.draw_long_or_short_graph()
+
+            if draw_graphs == 1:
+                stock.draw_graph(Close=True,Open=True)
+                stock.draw_stochastic_oscillator()
+                stock.draw_long_or_short_graph()
 
         elif choice == 2:
             stock = Stock(symbol=stockSymbol)
-            data = stock.print_current_stock_data()
-
-        elif choice == -1:
-            print("Goodbye")
-            exit(0)
+            data = stock.get_current_stock_data()
+            print(data)
 
         else:
             print('Choice not recognized')

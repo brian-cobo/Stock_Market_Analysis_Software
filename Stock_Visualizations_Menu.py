@@ -10,7 +10,9 @@ import urllib.request
 import json
 import matplotlib.dates as ates
 import warnings
+from pandas.io.json import json_normalize
 warnings.filterwarnings('ignore')
+import time
 
 # File Imports
 from APIData import get_API_key
@@ -91,7 +93,7 @@ class Stock:
                                  f'function={self.type_of_graph}&' \
                                  f'symbol={self.symbol}&' \
                                  f'apikey={self.api_key}'
-        print(current_stock_data_URL)
+        #print(current_stock_data_URL)
 
         json_data = self.convert_url_data_into_json(current_stock_data_URL)
         stockInfo = pd.DataFrame(json_data)['Global Quote']
@@ -286,7 +288,7 @@ class Stock:
         plt.show()
 
 def ask_for_stock_symbol():
-    stockSymbol = input("Enter a Stock to look at: ")
+    stockSymbol = input("\nEnter a Stock to look at: ")
     stockSymbol = stockSymbol.upper()
     return stockSymbol
 
@@ -296,7 +298,7 @@ def get_historical_data(stockSymbol):
                            '1: Five Months Data\n'
                            '2: Daily Adjusted Data\n'
                            '3: Intraday Data\n'))
-    draw_graphs = int(input('Do you want to draw graphs?\n'
+    draw_graphs = int(input('\nDo you want to draw graphs?\n'
                             '1: Yes\n'
                             '2: No\n'))
     stock = Stock(symbol=stockSymbol)
@@ -317,12 +319,63 @@ def get_historical_data(stockSymbol):
         stock.draw_long_or_short_graph()
 
 
-def get_current_data(stockSymbol):
+def get_current_data(stockSymbol, print_results=False):
     stock = Stock(symbol=stockSymbol)
     data = stock.get_current_stock_data()
+    if print_results == True:
+        print('\nData:', data)
+    return data
 
-    print('\n', data)
-    return stock
+
+def get_sector_data():
+    sectorDataUrl = f'https://www.alphavantage.co/query?' \
+                    f'function=SECTOR&' \
+                    f'apikey={get_API_key()}'
+    with urllib.request.urlopen(sectorDataUrl) as response:
+        html = response.read()
+        data = json.loads(html)
+
+    sector = int(input('\nWhich Sector Data would you like to view?\n'
+                       '0: Real-Time Performance\n'
+                       '1: 1 Day Performance\n'
+                       '2: 5 Day Performance\n'
+                       '3: 1 Month Performance\n'
+                       '4: 3 Month Performance\n'
+                       '5: Year To Date Performance\n'
+                       '6: 1 Year Performance\n'
+                       '7: 3 Year Performance\n'
+                       '8: 5 Year Performance\n'
+                       '9: 10 Year Performance\n'))
+    if sector == 1:
+        data = json_normalize(data['Rank B: 1 Day Performance'], meta=['Sector', 'Change'])
+    elif sector == 2:
+        data = json_normalize(data['Rank C: 5 Day Performance'])
+    elif sector == 3:
+        data = json_normalize(data['Rank D: 1 Month Performance'])
+    elif sector == 4:
+        data = json_normalize(data['Rank E: 3 Month Performance'])
+    elif sector == 5:
+        data = json_normalize(data['Rank F: Year-to-Date (YTD) Performance'])
+    elif sector == 6:
+        data = json_normalize(data['Rank G: 1 Year Performance'])
+    elif sector == 7:
+        data = json_normalize(data['Rank H: 3 Year Performance'])
+    elif sector == 8:
+        data = json_normalize(data['Rank I: 5 Year Performance'])
+    elif sector == 9:
+        data = json_normalize(data['Rank J: 10 Year Performance'])
+    else:
+        data = json_normalize(data['Rank A: Real-Time Performance'])
+
+    data = data.transpose()
+
+    fixedData = {}
+    for i in range(len(data)):
+        percentChange = float(data[0][i].split('%')[0])
+        fixedData[data[0].index[i]] = percentChange
+
+    print(fixedData['Communication Services'])
+
 
 
 def create_market_report():
@@ -331,28 +384,50 @@ def create_market_report():
                                        'Change_Percent', 'Open', 'High', 'Low',
                                        'Previous_Close', 'Volume', 'Latest_Trading_Day',
                                        'Industry', 'Sector', 'Summary_Quote'])
-    marketData.Symbol = nasdaq_data['Symbol']
-    marketData.Name = nasdaq_data['Name']
-    marketData.Sector = nasdaq_data['Sector']
-    marketData.Industry = nasdaq_data['Industry']
-    marketData.Summary_Quote = nasdaq_data['Summary Quote']
 
-    for i in range(10):
+    for i in range(len(nasdaq_data)):
         try:
+            data = marketData
+            data.Symbol = nasdaq_data['Symbol']
+            data.Name = nasdaq_data['Name']
+            data.Sector = nasdaq_data['Sector']
+            data.Industry = nasdaq_data['Industry']
+            data.Summary_Quote = nasdaq_data['Summary Quote']
+
             name = marketData.Symbol.iloc[i]
             currentData = get_current_data(name)
-        except Exception as e:
-            print(e)
 
+            data.iloc[i].Price = currentData['Price']
+            data.iloc[i].Change = currentData['Change']
+            data.iloc[i].Change_Percent = currentData['Change Percent']
+            data.iloc[i].Open = currentData['Open']
+            data.iloc[i].High = currentData['High']
+            data.iloc[i].Low = currentData['Low']
+            data.iloc[i].Previous_Close = currentData['Previous Close']
+            data.iloc[i].Volume = currentData['Volume']
+            data.iloc[i].Latest_Trading_Day = currentData['Latest Trading Day']
+            marketData.append(data)
+
+            if i % 50 == 0:
+                print(f'{i} of {len(nasdaq_data)} Stocks')
+                marketData.to_excel('Market_Summary.xlsx')
+
+        except Exception as e:
+            print(f'ERROR Grabbing Data for {data.iloc[i].symbol}:', e)
+
+
+    marketData.to_excel('Market_Summary.xlsx')
+    print("Market_Summary.xlsx has been created.")
 
 if __name__ == "__main__":
     choice = 0
     print('Welcome')
     while choice != -1:
-        choice = int(input('\n\nChoose Option:\n'
+        choice = int(input('\nChoose Option:\n'
                            '1: Get Historical Data\n'
                            '2: Get Current Data\n'
                            '3: Create Market Report\n'
+                           '4: Get Sector Data\n'
                            '-1: Quit\n'))
         if choice == -1:
             print("\nGoodbye")
@@ -364,10 +439,13 @@ if __name__ == "__main__":
 
         elif choice == 2:
             stockSymbol = ask_for_stock_symbol()
-            get_current_data(stockSymbol)
+            get_current_data(stockSymbol, print_results=True)
 
         elif choice == 3:
             create_market_report()
+
+        elif choice == 4:
+            get_sector_data()
 
         else:
             print('Choice not recognized')

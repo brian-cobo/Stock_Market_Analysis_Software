@@ -413,7 +413,7 @@ def create_market_report():
                 marketData.to_excel('Market_Summary.xlsx')
 
         except Exception as e:
-            print(f'ERROR Grabbing Data for {data.iloc[i].symbol}:', e)
+            print(f'ERROR Grabbing Data for {name}:', e)
 
 
     marketData.to_excel('Market_Summary.xlsx')

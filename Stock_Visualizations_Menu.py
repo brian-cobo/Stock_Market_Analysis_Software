@@ -387,6 +387,7 @@ def create_market_report():
 
     for i in range(len(nasdaq_data)):
         try:
+            time.sleep(0.3)
             data = marketData
             data.Symbol = nasdaq_data['Symbol']
             data.Name = nasdaq_data['Name']
@@ -419,7 +420,28 @@ def create_market_report():
     marketData.to_excel('Market_Summary.xlsx')
     print("Market_Summary.xlsx has been created.")
 
+
+def split_percentage(change):
+    try:
+        change = float(change.split('%')[0])
+        return change
+
+    except Exception as e:
+        print(e)
+
+
+def analyze_market_data():
+    market_summary = pd.read_excel('Market_Summary.xlsx')
+    print(market_summary.info(),'\n\n\n\n')
+    market_summary.Change_Percent = market_summary.Change_Percent.apply(lambda x: split_percentage(x))
+
+    change = market_summary.Change_Percent[( type(market_summary.Change_Percent) !=float)]
+    print(change)
+
+
 if __name__ == "__main__":
+    #analyze_market_data()
+
     choice = 0
     print('Welcome')
     while choice != -1:

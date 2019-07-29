@@ -52,7 +52,7 @@ class Stock:
                       f'symbol={self.symbol}&' \
                       f'apikey={self.api_key}&' \
                       f'datatype={self.output_data_type}'
-        print(three_month_csv)
+        print('CSV DOWNLOAD LINK:', three_month_csv)
 
     def get_intraday_data(self):
         self.type_of_graph = 'TIME_SERIES_INTRADAY'
@@ -74,7 +74,7 @@ class Stock:
                        f'apikey={self.api_key}&' \
                        f'outputsize={self.output_size}&' \
                        f'datatype={self.output_data_type}'
-        print(intraday_CSV)
+        print('CSV DOWNLOAD LINK:', intraday_CSV)
 
     def get_daily_adjusted_data(self):
         self.type_of_graph = 'TIME_SERIES_DAILY'
@@ -86,6 +86,39 @@ class Stock:
 
         print(daily_adjusted_URL)
         return daily_adjusted_URL
+
+    def get_csv_daily_adjusted_data(self):
+        self.type_of_graph = 'TIME_SERIES_DAILY'
+        daily_adjusted_URL = 'https://www.alphavantage.co/query?' \
+                             f'function={self.type_of_graph}&' \
+                             f'symbol={self.symbol}&' \
+                             f'apikey={self.api_key}&' \
+                             f'datatype={self.output_data_type}'
+                             #f'outputsize={self.output_size}&' \
+
+        print('CSV DOWNLOAD LINK:', daily_adjusted_URL)
+
+    def get_all_available_data(self):
+        self.type_of_graph = 'TIME_SERIES_MONTHLY'
+        available_data_URL = f'https://www.alphavantage.co/query?' \
+            f'function={self.type_of_graph}&' \
+            f'symbol={self.symbol}&' \
+            f'apikey={self.api_key}&' \
+            f'outputsize={self.output_size}'
+
+        print(available_data_URL)
+        return available_data_URL
+
+    def get_csv_all_available_data(self):
+        self.type_of_graph = 'TIME_SERIES_DAILY'
+        available_data_URL = f'https://www.alphavantage.co/query?' \
+            f'function={self.type_of_graph}&' \
+            f'symbol={self.symbol}&' \
+            f'apikey={self.api_key}&' \
+            f'outputsize={self.output_size}&' \
+            f'datatype={self.output_data_type}'
+
+        print('CSV DOWNLOAD LINK:', available_data_URL)
 
     def get_current_stock_data(self):
         self.type_of_graph = 'GLOBAL_QUOTE'
@@ -141,6 +174,8 @@ class Stock:
             stockInfo = pd.DataFrame(json_data[f'Time Series ({self.interval_in_minutes}min)'])
         elif self.type_of_graph == 'TIME_SERIES_DAILY':
             stockInfo = pd.DataFrame(json_data['Time Series (Daily)'])
+        elif self.type_of_graph == 'TIME_SERIES_MONTHLY':
+            stockInfo = pd.DataFrame(json_data['Time Series (Monthly)'])
         else:
             print(f'ERROR: {self.type_of_graph} NOT RECOGNIZED BY PROGRAM')
 
@@ -198,8 +233,10 @@ class Stock:
 
         if Open:
             plt.plot(stockInfo.Date, stockInfo.Open, label = 'Open Price', color = 'green')
+
         if High:
             plt.plot(stockInfo.Date, stockInfo.High, label = 'High', color = 'red')
+
         if Low:
             plt.plot(stockInfo.Date, stockInfo.Low, label = 'Low', color = 'orange')
 
@@ -292,29 +329,64 @@ def ask_for_stock_symbol():
     stockSymbol = stockSymbol.upper()
     return stockSymbol
 
+def check_if_attribute_in_list(option, list):
+    if option in list:
+        return True
+    else:
+        return False
 
 def get_historical_data(stockSymbol):
     data_range = int(input('Choose Data Option:\n'
                            '1: Five Months Data\n'
                            '2: Daily Adjusted Data\n'
-                           '3: Intraday Data\n'))
+                           '3: Intraday Data\n'
+                           '4: All Available Data\n'))
+    print_csv_link = int(input('Do you want the link to download csv files?\n'
+                               '1: Yes\n'
+                               '2: No\n'))
     draw_graphs = int(input('\nDo you want to draw graphs?\n'
                             '1: Yes\n'
                             '2: No\n'))
+
     stock = Stock(symbol=stockSymbol)
 
     if choice == 2:
         data = stock.get_daily_adjusted_data()
+        if print_csv_link == 1:
+            stock.get_csv_daily_adjusted_data()
+
     if choice == 3:
         data = stock.get_intraday_data()
+        if print_csv_link == 1:
+            stock.get_intraday_csv_data()
+
+    if choice == 4:
+        data = stock.get_all_available_data()
+        if print_csv_link == 1:
+            stock.get_csv_all_available_data()
     else:
         data = stock.get_five_months_data()
+        if print_csv_link == 1:
+            stock.get_five_months_csv_data()
 
     data = stock.convert_url_data_into_json(url_data=data)
     stock.convert_json_to_dataframe(json_data=data)
 
+
     if draw_graphs == 1:
-        stock.draw_graph(Close=True, Open=True)
+        attributes = input("Which attributes would you like to draw?"
+                               "If multiple attributes, put a comma between them.\n"
+                               "1: Close\n"
+                               "2: Open\n"
+                               "3: High\n"
+                               "4: Low\n")
+        attributes = attributes.split(',')
+        attributes = (' ').join(attributes)
+
+        stock.draw_graph(Close=check_if_attribute_in_list('1', attributes),
+                         Open=check_if_attribute_in_list('2', attributes),
+                         High=check_if_attribute_in_list('3', attributes),
+                         Low=check_if_attribute_in_list('4', attributes))
         stock.draw_stochastic_oscillator()
         stock.draw_long_or_short_graph()
 

@@ -370,11 +370,14 @@ def get_historical_data(stockSymbol):
             stock.get_five_months_csv_data()
 
     data = stock.convert_url_data_into_json(url_data=data)
-    stock.convert_json_to_dataframe(json_data=data)
+    data = stock.convert_json_to_dataframe(json_data=data)
+    print('\nFirst 10 entries:\n', data.head(10))
+    print('\nLast 10 entries:\n', data.tail(10))
+
 
 
     if draw_graphs == 1:
-        attributes = input("Which attributes would you like to draw?"
+        attributes = input("\nWhich attributes would you like to draw?"
                                "If multiple attributes, put a comma between them.\n"
                                "1: Close\n"
                                "2: Open\n"
@@ -440,13 +443,7 @@ def get_sector_data():
         data = json_normalize(data['Rank A: Real-Time Performance'])
 
     data = data.transpose()
-
-    fixedData = {}
-    for i in range(len(data)):
-        percentChange = float(data[0][i].split('%')[0])
-        fixedData[data[0].index[i]] = percentChange
-
-    print(fixedData['Communication Services'])
+    print(data)
 
 
 
@@ -507,13 +504,11 @@ def analyze_market_data():
     print(market_summary.info(),'\n\n\n\n')
     market_summary.Change_Percent = market_summary.Change_Percent.apply(lambda x: split_percentage(x))
 
-    change = market_summary.Change_Percent[( type(market_summary.Change_Percent) !=float)]
+    change = market_summary.Change_Percent[(type(market_summary.Change_Percent) !=float)]
     print(change)
 
 
 if __name__ == "__main__":
-    #analyze_market_data()
-
     choice = 0
     print('Welcome')
     while choice != -1:

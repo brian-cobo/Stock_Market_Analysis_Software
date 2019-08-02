@@ -8,12 +8,28 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 # http://www.nltk.org/howto/sentiment.html
 
-def prepare_article():
+
+def filter_out_stop_words(tokenized_words):
     stop_words = set(stopwords.words("english"))
+    filtered_sentence= []
+    for word in tokenized_words:
+        if word not in stop_words \
+                and (word.isalnum() == True
+                     or word == '.'):
+            filtered_sentence.append(word)
+    filtered_sentence = (' ').join(filtered_sentence)
+    return filtered_sentence
+
+
+def prepare_article():
     with open('Apple-Article.txt') as file:
         file = file.read()
-    tokenized_sentence = sent_tokenize(file)
-    print(tokenized_sentence)
+
+    filtered_sentence = filter_out_stop_words(word_tokenize(file))
+
+    tokenized_sentence = sent_tokenize(filtered_sentence)
+    #tokenized_sentence = sent_tokenize(file)
+
     return tokenized_sentence
 
 def get_sentiment_analysis():
@@ -28,10 +44,10 @@ def get_sentiment_analysis():
     for sentence in article:
         print('\nSentence:', sentence)
         results = sid.polarity_scores(sentence)
-        print('\nOverall:', results['compound'],
-              ' Positive:', results['pos'],
-              ' Negative:', results['neg'],
-              ' Neutral:', results['neu'])
+        # print('Overall:', results['compound'],
+        #       ' Positive:', results['pos'],
+        #       ' Negative:', results['neg'],
+        #       ' Neutral:', results['neu'])
         total_sentiment_values['Compound'] += results ['compound']
         total_sentiment_values['Positive'] += results['pos']
         total_sentiment_values['Negative'] += results['neg']
@@ -42,7 +58,12 @@ def get_sentiment_analysis():
     average_sentiment_values['Negative'] = float(total_sentiment_values['Negative'] / number_of_sentences)
     average_sentiment_values['Neutral'] = float(total_sentiment_values['Neutral'] / number_of_sentences)
 
-    print('\n\n\nOverall for the article:\n', average_sentiment_values)
+    print('\nArticle Results:'
+          ' Overall:', average_sentiment_values['Compound'],
+          ' Positive:', average_sentiment_values['Positive'],
+          ' Negative:', average_sentiment_values['Negative'],
+          ' Neutral:', average_sentiment_values['Neutral'])
+
 
 
 

@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Apple-Article.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Explore Market Data.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMDB Review Analysis.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Market_Summary.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nasdaq_Company_List.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sentiment_Analysis_Classifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nltk_practice.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +22,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-957">
-              <caret line="444" column="27" selection-start-line="444" selection-start-column="27" selection-end-line="444" selection-end-column="27" />
+            <state relative-caret-position="333">
+              <caret line="480" column="27" lean-forward="true" selection-start-line="480" selection-start-column="27" selection-end-line="480" selection-end-column="27" />
               <folding>
                 <element signature="e#55#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-582">
+              <folding>
+                <element signature="e#0#59#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,6 +92,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -85,7 +104,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -173,17 +191,18 @@
       <workItem from="1563803888851" duration="21000" />
       <workItem from="1564018744567" duration="2642000" />
       <workItem from="1564432656785" duration="8900000" />
+      <workItem from="1564786225615" duration="291000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87154000" />
+    <option name="totallyTimeSpent" value="87445000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="723" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="727" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27705976" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28109854" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -240,10 +259,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Nasdaq_Company_List.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/APIData.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -256,10 +275,38 @@
     <entry file="file://$PROJECT_DIR$/Explore Market Data.ipynb">
       <provider selected="true" editor-type-id="jupyter-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/nltk_practice.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-432">
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sentiment_Analysis_Classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-582">
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-957">
-          <caret line="444" column="27" selection-start-line="444" selection-start-column="27" selection-end-line="444" selection-end-column="27" />
+        <state relative-caret-position="333">
+          <caret line="480" column="27" lean-forward="true" selection-start-line="480" selection-start-column="27" selection-end-line="480" selection-end-column="27" />
           <folding>
             <element signature="e#55#74#0" expanded="true" />
           </folding>

@@ -27,8 +27,8 @@ def prepare_article():
 
     filtered_sentence = filter_out_stop_words(word_tokenize(file))
 
-    tokenized_sentence = sent_tokenize(filtered_sentence)
-    #tokenized_sentence = sent_tokenize(file)
+    #tokenized_sentence = sent_tokenize(filtered_sentence)
+    tokenized_sentence = sent_tokenize(file)
 
     return tokenized_sentence
 

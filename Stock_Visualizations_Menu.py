@@ -510,7 +510,7 @@ def analyze_market_data():
     change = market_summary.Change_Percent[(type(market_summary.Change_Percent) !=float)]
     print(change)
 
-def search_for_company_symbol(keyword_to_search_for):
+def search_for_company_symbol(keyword_to_search_for, automated=False):
     url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword_to_search_for}&apikey={get_API_key()}'
     try:
         with urllib.request.urlopen(url) as response:
@@ -528,6 +528,8 @@ def search_for_company_symbol(keyword_to_search_for):
                                       '7. timezone' : 'Timezone',
                                       '8. currency' : 'Currency',
                                       '9. matchScore' : 'Match_Score'})
+        if automated == True:
+            return data
 
         index = 0
         answer = 0

@@ -5,11 +5,13 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfTransformer
+from Stock_Visualizations_Menu import search_for_company_symbol
 import os
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
-
+from collections import Counter
+import re
 # http://www.nltk.org/howto/sentiment.html
 # https://www.dataquest.io/blog/web-scraping-tutorial-python/
 
@@ -113,9 +115,12 @@ def scrape_article_from_web(article_URL):
 
     # Find Article Date and Time
     time = soup.find_all('time', itemprop='datePublished')
-    published = []
+    published_time = ''
     for i in time:
-        published.append(i.get_text())
+        published_time += i.get_text()
+    published_time = published_time.split()
+    date_published = published_time[0]
+    time_published = (' ').join(published_time[2:4])
 
     # Find Article Content
     tag = soup.find_all('p')
@@ -124,24 +129,41 @@ def scrape_article_from_web(article_URL):
         article += (i.get_text())
     article = [article]
 
-    # Find Comapny article talks about
-    potential_company_names = []
+    # Find the Company Symbol the article talks about
+    company_symbol = ''
     company = soup.find_all('meta')
     for i in company:
         if 'keywords' in str(i):
             i = str(i)
+            i = i.split('="')[1]
             i = i.split()
-            i = list(set(i))
-            for j in i:
-                if j.isalpha():
-                    potential_company_names.append(j)
+            for item in range(len(i)):
+                regex = re.compile('[^a-zA-Z]')
+                i[item] = regex.sub('', i[item])
+            count = Counter(i)
+            for key, value in count.items():
+                try:
+                    symbols = search_for_company_symbol(key, automated=True)
+                    if (key in title.lower() and
+                            key in article[0].lower() and
+                            key in symbols.Name.iloc[0].lower()):
+                        company_symbol = symbols.Symbol.iloc[0]
+                    break
+                except Exception as e:
+                    print("ERROR:", e)
             break
 
-    for i in potential_company_names:
-        if i in title.lower():
-            print(i)
-    #print(potential_company_names)
-
+    article_extracted_info = {'Title' : title,
+                              'Author': author,
+                              'Date_Published' : date_published,
+                              'Time_Published' : time_published,
+                              'Symbol' : company_symbol,
+                              'URL' : article_URL,
+                              'Article' : article}
+    print()
+    for key, value in article_extracted_info.items():
+        print(key, ':', value)
+    return(article_extracted_info)
 
 
 url = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'

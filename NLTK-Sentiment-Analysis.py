@@ -99,14 +99,24 @@ def get_sentiment_analysis():
 def scrape_article_from_web(article_URL):
     page = requests.get(article_URL)
     soup = BeautifulSoup(page.content, 'html.parser')
-    # print(soup.prettify())
-    # print([type(item) for item in list(soup.children)])
-    html = list(soup.children)[2]
-    #print(list(html.children))
-    body = list(html.children)[3]
-    #print(list(body.children))
-    p = list(body.children)[1]
-    p.get_text()
+    # # print(soup.prettify())
+    # # print([type(item) for item in list(soup.children)])
+    # html = list(soup.children)[2]
+    # #print(list(html.children))
+    # body = list(html.children)[3]
+    # #print(list(body.children))
+    # p = list(body.children)[1]
+    # #print(p)
+    # print(p.get_text())
+
+    tag = soup.find_all('p')
+    article = ''
+    for i in tag:
+        article += (i.get_text())
+    article = [article]
+    print(article)
+
+
 url = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'
 scrape_article_from_web(url)
 #get_sentiment_analysis()

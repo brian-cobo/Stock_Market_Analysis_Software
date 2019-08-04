@@ -5,9 +5,35 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfTransformer
+import os
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
 
 # http://www.nltk.org/howto/sentiment.html
+# https://www.dataquest.io/blog/web-scraping-tutorial-python/
 
+def check_for_existing_article_results(URL_to_check_for):
+    article_result_file_path = os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv'
+    if os.path.exists(article_result_file_path):
+        article = pd.read_csv(article_result_file_path)
+        data = article[(article.URL == URL_to_check_for)]
+        if len(data) > 0:
+            return data
+        else:
+            return None
+
+    else:
+        article = pd.DataFrame(columns=['URL',
+                                        'Title',
+                                        'Company',
+                                        'Datetime',
+                                        'Overall',
+                                        'Positive',
+                                        'Negative',
+                                        'Neutral'])
+        article.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+        return None
 
 def filter_out_stop_words(tokenized_words):
     stop_words = set(stopwords.words("english"))
@@ -22,7 +48,8 @@ def filter_out_stop_words(tokenized_words):
 
 
 def prepare_article():
-    with open('Apple-Article.txt') as file:
+    filePath = os.getcwd() + '/Articles/Apple-Article.txt'
+    with open(filePath) as file:
         file = file.read()
 
     filtered_sentence = filter_out_stop_words(word_tokenize(file))
@@ -33,7 +60,11 @@ def prepare_article():
     return tokenized_sentence
 
 def get_sentiment_analysis():
-    article = prepare_article()
+    if check_for_existing_article_results() == None:
+        print('Article Already Exists')
+        exit(0)
+    else:
+        article = os.getcwd() + '/Articles/Apple-Article.txt'
 
     print('\nScores are rated from -1 (Highly Negative) to 1 (Highly Positive)')
     sid = SentimentIntensityAnalyzer()
@@ -64,9 +95,19 @@ def get_sentiment_analysis():
           ' Negative:', average_sentiment_values['Negative'],
           ' Neutral:', average_sentiment_values['Neutral'])
 
-
-
-
-
-get_sentiment_analysis()
+# Currently only works for IBTimes.com articles
+def scrape_article_from_web(article_URL):
+    page = requests.get(article_URL)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    # print(soup.prettify())
+    # print([type(item) for item in list(soup.children)])
+    html = list(soup.children)[2]
+    #print(list(html.children))
+    body = list(html.children)[3]
+    #print(list(body.children))
+    p = list(body.children)[1]
+    p.get_text()
+url = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'
+scrape_article_from_web(url)
+#get_sentiment_analysis()
 

@@ -3,6 +3,7 @@
 # Stock Visualization
 
 # Library Imports
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -448,6 +449,7 @@ def get_sector_data():
 
 
 def create_market_report():
+    filePath = os.getcwd + '/Spreadsheets/Market_Summary.xlsx'
     nasdaq_data = pd.read_csv('Nasdaq_Company_List.csv')
     marketData = pd.DataFrame(columns=['Symbol', 'Name', 'Price', 'Change',
                                        'Change_Percent', 'Open', 'High', 'Low',
@@ -480,13 +482,13 @@ def create_market_report():
 
             if i % 50 == 0:
                 print(f'{i} of {len(nasdaq_data)} Stocks')
-                marketData.to_excel('Market_Summary.xlsx')
+                marketData.to_excel(filePath)
 
         except Exception as e:
             print(f'ERROR Grabbing Data for {name}:', e)
 
 
-    marketData.to_excel('Market_Summary.xlsx')
+    marketData.to_excel(filePath)
     print("Market_Summary.xlsx has been created.")
 
 
@@ -500,7 +502,8 @@ def split_percentage(change):
 
 
 def analyze_market_data():
-    market_summary = pd.read_excel('Market_Summary.xlsx')
+    filePath = os.getcwd + '/Spreadsheets/Market_Summary.xlsx'
+    market_summary = pd.read_excel(filePath)
     print(market_summary.info(),'\n\n\n\n')
     market_summary.Change_Percent = market_summary.Change_Percent.apply(lambda x: split_percentage(x))
 

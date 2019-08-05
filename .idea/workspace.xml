@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="544" column="17" selection-start-line="544" selection-start-column="17" selection-end-line="544" selection-end-column="17" />
+            <state relative-caret-position="-694">
+              <caret line="529" column="71" selection-start-line="529" selection-start-column="71" selection-end-line="529" selection-end-column="71" />
               <folding>
                 <element signature="e#55#64#0" expanded="true" />
               </folding>
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="138" selection-start-line="138" selection-end-line="138" />
+            <state relative-caret-position="113">
+              <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -73,6 +73,7 @@
       <find>company</find>
       <find>Apple</find>
       <find>auth</find>
+      <find>def get_sector</find>
     </findStrings>
     <replaceStrings>
       <replace>self.stockInfo</replace>
@@ -86,8 +87,8 @@
       <list>
         <option value="$PROJECT_DIR$/Send_Response_To_Text.py" />
         <option value="$PROJECT_DIR$/APIData.py" />
-        <option value="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" />
         <option value="$PROJECT_DIR$/Stock_Visualizations_Menu.py" />
+        <option value="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" />
       </list>
     </option>
   </component>
@@ -109,11 +110,6 @@
             <path>
               <item name="Stock_Visualization_Analysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="Stock_Visualization_Analysis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Stock_Visualization_Analysis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Stock_Visualization_Analysis" type="462c0819:PsiDirectoryNode" />
-              <item name="Article_Sentiment_Results" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Stock_Visualization_Analysis" type="b2602c69:ProjectViewProjectNode" />
@@ -161,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Stock_Visualizations_Menu">
+  <component name="RunManager" selected="Python.NLTK-Sentiment-Analysis">
     <configuration name="NLTK-Sentiment-Analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Stock_Visualization_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -255,12 +251,14 @@
       <workItem from="1564432656785" duration="8900000" />
       <workItem from="1564786225615" duration="427000" />
       <workItem from="1564845254540" duration="3282000" />
-      <workItem from="1564890113626" duration="9352000" />
+      <workItem from="1564890113626" duration="11817000" />
+      <workItem from="1564946004991" duration="1399000" />
+      <workItem from="1564978611681" duration="5749000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100215000" />
+    <option name="totallyTimeSpent" value="109828000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="727" extended-state="6" />
@@ -271,7 +269,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32598424" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4535433" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41102362" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39967898" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -296,7 +294,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1564900180568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1564898423731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1564984769422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
@@ -336,30 +334,33 @@
     <entry file="file://$PROJECT_DIR$/nltk_practice.py" />
     <entry file="file://$PROJECT_DIR$/Sentiment_Analysis_Classifier.py" />
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/calendar.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Articles/Apple-Article.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
+    <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
+        <state relative-caret-position="-694">
+          <caret line="529" column="71" selection-start-line="529" selection-start-column="71" selection-end-line="529" selection-end-column="71" />
           <folding>
-            <element signature="e#0#59#0" expanded="true" />
+            <element signature="e#55#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
+    <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="544" column="17" selection-start-line="544" selection-start-column="17" selection-end-line="544" selection-end-column="17" />
+        <state relative-caret-position="113">
+          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
           <folding>
-            <element signature="e#55#64#0" expanded="true" />
+            <element signature="e#0#59#0" expanded="true" />
           </folding>
         </state>
       </provider>

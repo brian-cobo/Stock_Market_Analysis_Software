@@ -17,23 +17,43 @@ import re
 
 
 def add_row_to_saved_article_results_dataframe(article_info):
+    print('Results:', check_for_existing_article_results(article_info['URL']))
     if check_for_existing_article_results(article_info['URL']) == False:
-        pass
+        article_results_dataframe = return_article_results_dataframe()
+
+        length = len(article_results_dataframe)
+        print('length:', length)
+
+
+        article_results_dataframe['URL'].iloc[length] = article_info['URL']
+        article_results_dataframe['Title'].iloc[length] = article_info['Title']
+        article_results_dataframe['Company_Symbol'].iloc[length] = article_info['Company_Symbol']
+        article_results_dataframe['Author'].iloc[length] = article_info['Author']
+        article_results_dataframe['Date_Published'].iloc[length] = article_info['Date_Published']
+        article_results_dataframe['Time_Published'].iloc[length] = article_info['Time_Published']
+        article_results_dataframe['Overall_SA'].iloc[length] = article_info['Overall_SA']
+        article_results_dataframe['Positive_SA'].iloc[length] = article_info['Positive_SA']
+        article_results_dataframe ['Negative_SA'].iloc[length] = article_info['Negative_SA']
+        article_results_dataframe['Neutral_SA'].iloc[length] = article_info['Neutral_SA']
+
+        article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+
+        print('head:', article_results_dataframe.head())
     else:
-        print('Article Info Already Saved')
+        print('\nArticle Info Already Saved')
 
 
 def create_saved_article_results_dataframe():
     article = pd.DataFrame(columns=['URL',
                                     'Title',
-                                    'Company',
+                                    'Company_Symbol',
                                     'Author',
-                                    'Date',
-                                    'Time',
-                                    'Overall',
-                                    'Positive',
-                                    'Negative',
-                                    'Neutral'])
+                                    'Date_Published',
+                                    'Time_Published',
+                                    'Overall_SA',
+                                    'Positive_SA',
+                                    'Negative_SA',
+                                    'Neutral_SA'])
     article.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
     return article
 
@@ -43,6 +63,8 @@ def return_article_results_dataframe():
         saved_article_results = pd.read_csv(article_result_file_path)
         if len(saved_article_results) > 0:
             return saved_article_results
+        else:
+            return create_saved_article_results_dataframe()
     return create_saved_article_results_dataframe()
 
 
@@ -178,20 +200,22 @@ def scrape_article_from_web(article_URL):
     article_content = find_article_content(soup)
     company_symbol = find_company_symbol_from_article(soup, title, article_content)
 
-    article_extracted_info = {'Title' : title,
+    article_extracted_info = {'URL' : article_URL,
+                              'Title' : title,
+                              'Company_Symbol': company_symbol,
                               'Author': author,
                               'Date_Published' : date_published,
                               'Time_Published' : time_published,
-                              'Symbol' : company_symbol,
-                              'URL' : article_URL,
                               'Article' : article_content}
+
 
     return(article_extracted_info)
 
 
-url = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'
+url1 = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'
 url2 = 'https://www.ibtimes.com/does-starbucks-want-become-tech-company-2810671'
 url3 = 'https://www.ibtimes.com/tesla-news-elon-musks-company-faces-lawsuit-over-fatal-florida-autopilot-crash-2810583'
+url4 = 'https://www.ibtimes.com/which-walmart-stores-are-closing-2019-full-list-locations-2796471'
 
 #Create a function to replace spaces with %20 and that will serve as automated searching for articles
 search_results_for_apple_url ='https://www.ibtimes.com/search/site/apple'
@@ -201,9 +225,13 @@ search_results_for_apple_url_2 = 'https://www.ibtimes.com/search/site/apple%20in
 def main(url):
     article = scrape_article_from_web(url)
     article_sentiment_analysis = get_sentiment_analysis(article)
+    print_dictionary(article_sentiment_analysis)
+    add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
 
-
-main(url)
+# main(url1)
+# main(url2)
+main(url3)
+# main(url4)
 
 
 

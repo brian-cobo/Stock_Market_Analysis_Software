@@ -17,31 +17,38 @@ import re
 
 
 def add_row_to_saved_article_results_dataframe(article_info):
-    print('Results:', check_for_existing_article_results(article_info['URL']))
     if check_for_existing_article_results(article_info['URL']) == False:
         article_results_dataframe = return_article_results_dataframe()
-
-        length = len(article_results_dataframe)
-        print('length:', length)
-
-
-        article_results_dataframe['URL'].iloc[length] = article_info['URL']
-        article_results_dataframe['Title'].iloc[length] = article_info['Title']
-        article_results_dataframe['Company_Symbol'].iloc[length] = article_info['Company_Symbol']
-        article_results_dataframe['Author'].iloc[length] = article_info['Author']
-        article_results_dataframe['Date_Published'].iloc[length] = article_info['Date_Published']
-        article_results_dataframe['Time_Published'].iloc[length] = article_info['Time_Published']
-        article_results_dataframe['Overall_SA'].iloc[length] = article_info['Overall_SA']
-        article_results_dataframe['Positive_SA'].iloc[length] = article_info['Positive_SA']
-        article_results_dataframe ['Negative_SA'].iloc[length] = article_info['Negative_SA']
-        article_results_dataframe['Neutral_SA'].iloc[length] = article_info['Neutral_SA']
-
-        article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
-
-        print('head:', article_results_dataframe.head())
+        article_results_dataframe = article_results_dataframe.append(
+                                         {'URL': article_info['URL'],
+                                          'Title': article_info['Title'],
+                                          'Company_Symbol': article_info['Company_Symbol'],
+                                          'Author': article_info['Author'],
+                                          'Date_Published': article_info['Date_Published'],
+                                          'Time_Published': article_info['Time_Published'],
+                                          'Overall_SA': article_info['Overall_SA'],
+                                          'Positive_SA': article_info['Positive_SA'],
+                                          'Negative_SA': article_info['Negative_SA'],
+                                          'Neutral_SA': article_info['Neutral_SA']
+                                         },
+                                         ignore_index=True)
+        clean_article_results_columns(article_results_dataframe)
     else:
         print('\nArticle Info Already Saved')
+        #article_results_dataframe = pd.read_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+        #clean_article_results_columns(article_results_dataframe)
 
+
+def clean_article_results_columns(article_results_dataframe):
+    columns = ['URL', 'Title', 'Company_Symbol', 'Author',
+               'Date_Published', 'Time_Published', 'Overall_SA',
+               'Positive_SA', 'Negative_SA', 'Neutral_SA']
+    for column in article_results_dataframe.columns:
+        if column not in columns:
+            article_results_dataframe = article_results_dataframe.drop(columns=[column], axis=1)
+            article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+    article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+    return article_results_dataframe
 
 def create_saved_article_results_dataframe():
     article = pd.DataFrame(columns=['URL',
@@ -188,6 +195,7 @@ def find_company_symbol_from_article(soup, title, article_content):
 def print_dictionary(dict):
     for key, value in dict.items():
         print(key, ':', value)
+    print()
 
 def scrape_article_from_web(article_URL):
     page = requests.get(article_URL)
@@ -228,10 +236,10 @@ def main(url):
     print_dictionary(article_sentiment_analysis)
     add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
 
-# main(url1)
-# main(url2)
+main(url1)
+main(url2)
 main(url3)
-# main(url4)
+main(url4)
 
 
 

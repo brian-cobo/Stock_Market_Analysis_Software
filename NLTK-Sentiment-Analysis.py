@@ -13,7 +13,8 @@ import re
 
 class Webscraper:
     def add_row_to_saved_article_results_dataframe(self, article_info):
-        if self.check_for_existing_article_results(article_info['URL']) == False:
+        if (self.check_for_existing_article_results(article_info['URL']) == False and
+                self.check_for_null_values(article_info) == True):
             article_results_dataframe = self.return_article_results_dataframe()
             article_results_dataframe = article_results_dataframe.append(
                                              {'URL': article_info['URL'],
@@ -30,8 +31,21 @@ class Webscraper:
                                              ignore_index=True)
             self.clean_article_results_columns(article_results_dataframe)
         else:
-            print('\nArticle Info Already Saved')
+            if self.check_for_null_values(article_info) == False:
+                print('\nNot all values were found correctly, not saving:', article_info['URL'])
+            else:
+                print('\nArticle Info Already Saved')
 
+    def check_for_null_values(self, article_info):
+        if (article_info['URL'] != None and
+                article_info['Title'] != None and
+                article_info['Company_Symbol'] != None and
+                article_info['Author'] != None and
+                article_info['Date_Published'] != None and
+                article_info['Time_Published'] != None):
+            return True
+        else:
+            return False
 
     def clean_article_results_columns(self, article_results_dataframe):
         columns = ['URL', 'Title', 'Company_Symbol', 'Author',
@@ -166,12 +180,15 @@ class Webscraper:
                 count = Counter(i)
                 for key, value in count.items():
                     try:
-                        symbols = search_for_company_symbol(key, automated=True)
-                        if (key in title.lower() and
-                                key in article_content[0].lower() and
-                                key in symbols.Name.iloc[0].lower()):
-                            company_symbol = symbols.Symbol.iloc[0]
-                            break
+                        if company_symbol == None:
+                            symbols = search_for_company_symbol(key, automated=True)
+                            if (key in title.lower() and
+                                    key in article_content[0].lower() and
+                                    key in symbols.Name.iloc[0].lower() and
+                                    symbols.Currency.iloc[0] == 'USD' and
+                                    article_content[0].count(symbols.Name.iloc[0].split()[0]) > 1):
+                                company_symbol = symbols.Symbol.iloc[0]
+
                     except Exception as e:
                         print("ERROR:", e)
                 break
@@ -278,7 +295,6 @@ def search_multiple_pages_business(search_URL, numOfPages):
     for i in range(1, numOfPages):
         try:
             URL = search_URL + f'?page={i}'
-            print('\n\n\n', URL)
             page = requests.get(URL)
             soup = BeautifulSoup(page.content, 'html.parser')
             links = soup.findAll('a')
@@ -295,17 +311,7 @@ def search_multiple_pages_business(search_URL, numOfPages):
             print(e)
 
 
-url1 = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'
-url2 = 'https://www.ibtimes.com/does-starbucks-want-become-tech-company-2810671'
-url3 = 'https://www.ibtimes.com/tesla-news-elon-musks-company-faces-lawsuit-over-fatal-florida-autopilot-crash-2810583'
-url4 = 'https://www.ibtimes.com/which-walmart-stores-are-closing-2019-full-list-locations-2796471'
-
-#Create a function to replace spaces with %20 and that will serve as automated searching for articles
-search_results_for_apple_url ='https://www.ibtimes.com/search/site/apple'
-search_results_for_apple_url_2 = 'https://www.ibtimes.com/search/site/apple%20inc'
-urls = [url1, url2, url3, url4]
-
 home_page_URL=f'https://www.ibtimes.com/business'
-find_articles_from_main_business_page(home_page_URL, 20)
+#find_articles_from_main_business_page(home_page_URL, 20)
 #find_articles_from_main_business_page(url2)
-# find_article_from_search_URL( find_search_URL('tesla'), 20)
+find_article_from_search_URL( find_search_URL('tesla'), 1)

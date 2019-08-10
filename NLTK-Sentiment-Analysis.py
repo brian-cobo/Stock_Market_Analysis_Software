@@ -183,42 +183,39 @@ class Webscraper:
         print()
 
     def scrape_article_from_web(self, article_URL):
-        page = requests.get(article_URL)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        #print(soup.prettify())
+        try:
+            page = requests.get(article_URL)
+            soup = BeautifulSoup(page.content, 'html.parser')
+            #print(soup.prettify())
 
-        title = self.find_title_from_article(soup)
-        author = self.find_author_from_article(soup)
-        date_published, time_published = self.find_publish_date_and_time_from_article(soup)
-        article_content = self.find_article_content(soup)
-        company_symbol = self.find_company_symbol_from_article(soup, title, article_content)
+            title = self.find_title_from_article(soup)
+            author = self.find_author_from_article(soup)
+            date_published, time_published = self.find_publish_date_and_time_from_article(soup)
+            article_content = self.find_article_content(soup)
+            company_symbol = self.find_company_symbol_from_article(soup, title, article_content)
 
-        article_extracted_info = {'URL' : article_URL,
-                                  'Title' : title,
-                                  'Company_Symbol': company_symbol,
-                                  'Author': author,
-                                  'Date_Published' : date_published,
-                                  'Time_Published' : time_published,
-                                  'Article' : article_content}
-        return(article_extracted_info)
+            article_extracted_info = {'URL' : article_URL,
+                                      'Title' : title,
+                                      'Company_Symbol': company_symbol,
+                                      'Author': author,
+                                      'Date_Published' : date_published,
+                                      'Time_Published' : time_published,
+                                      'Article' : article_content}
+            return(article_extracted_info)
+        except Exception as e:
+            print(e)
 
 
 def main(url):
-    web = Webscraper()
-    article = web.scrape_article_from_web(url)
-    article_sentiment_analysis = web.get_sentiment_analysis(article)
-    # web.print_dictionary(article_sentiment_analysis)
-    web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
+    try:
+        web = Webscraper()
+        article = web.scrape_article_from_web(url)
+        article_sentiment_analysis = web.get_sentiment_analysis(article)
+        web.print_dictionary(article_sentiment_analysis)
+        web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
+    except Exception as e:
+        print(e)
 
-url1 = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'
-url2 = 'https://www.ibtimes.com/does-starbucks-want-become-tech-company-2810671'
-url3 = 'https://www.ibtimes.com/tesla-news-elon-musks-company-faces-lawsuit-over-fatal-florida-autopilot-crash-2810583'
-url4 = 'https://www.ibtimes.com/which-walmart-stores-are-closing-2019-full-list-locations-2796471'
-
-#Create a function to replace spaces with %20 and that will serve as automated searching for articles
-search_results_for_apple_url ='https://www.ibtimes.com/search/site/apple'
-search_results_for_apple_url_2 = 'https://www.ibtimes.com/search/site/apple%20inc'
-urls = [url1, url2, url3, url4]
 
 def find_search_URL(string_to_search_for):
     search = string_to_search_for.replace(' ', '%20')
@@ -254,23 +251,61 @@ def search_multiple_pages(search_URL, num_of_pages):
                         'facebook.com' not in newLink and
                         'linkedin.com' not in newLink and
                         'ibtimes.tumblr.com' not in newLink):
-                    main(newLink)
+                    #main(newLink)
+                    print(newLink)
         except Exception as e:
             print(f'Error loading info from page {i}:', e)
 
 
 
-def find_articles_from_main_business_page(search_URL):
+def find_articles_from_main_business_page(search_URL, numOfPages):
     page = requests.get(search_URL)
     soup = BeautifulSoup(page.content, 'html.parser')
-    # print(soup.prettify())
     links = soup.findAll('a')
+    linksToSave = []
     for link in links:
         newLink = link.get('href')
-        if 'http' not in newLink:
-            print(newLink)
-        # main(newLink)
+        if newLink.count('/') == 1 and newLink.count('-') > 1:
+            linksToSave.append(newLink)
+    linksToSave = list(set(linksToSave))
+    for i in linksToSave:
+        url = 'https://www.ibtimes.com' + i
+        main(url)
+    search_multiple_pages_business(search_URL, numOfPages)
 
-home_page_URL=f'https://www.ibtimes.com/business?page=1'
-#find_articles_from_main_business_page(home_page_URL)
-find_article_from_search_URL( find_search_URL('tesla'), 20)
+
+def search_multiple_pages_business(search_URL, numOfPages):
+    for i in range(1, numOfPages):
+        try:
+            URL = search_URL + f'?page={i}'
+            print('\n\n\n', URL)
+            page = requests.get(URL)
+            soup = BeautifulSoup(page.content, 'html.parser')
+            links = soup.findAll('a')
+            linksToSave = []
+            for link in links:
+                newLink = link.get('href')
+                if newLink.count('/') == 1 and newLink.count('-') > 1:
+                    linksToSave.append(newLink)
+            linksToSave = list(set(linksToSave))
+            for i in linksToSave:
+                url = 'https://www.ibtimes.com' + i
+                main(url)
+        except Exception as e:
+            print(e)
+
+
+url1 = 'https://www.ibtimes.com/apple-stock-4-q3-earnings-beat-despite-low-iphone-sales-2809781?ft=2gh92&utm_source=Robinhood&utm_medium=Site&utm_campaign=Partnerships'
+url2 = 'https://www.ibtimes.com/does-starbucks-want-become-tech-company-2810671'
+url3 = 'https://www.ibtimes.com/tesla-news-elon-musks-company-faces-lawsuit-over-fatal-florida-autopilot-crash-2810583'
+url4 = 'https://www.ibtimes.com/which-walmart-stores-are-closing-2019-full-list-locations-2796471'
+
+#Create a function to replace spaces with %20 and that will serve as automated searching for articles
+search_results_for_apple_url ='https://www.ibtimes.com/search/site/apple'
+search_results_for_apple_url_2 = 'https://www.ibtimes.com/search/site/apple%20inc'
+urls = [url1, url2, url3, url4]
+
+home_page_URL=f'https://www.ibtimes.com/business'
+find_articles_from_main_business_page(home_page_URL, 20)
+#find_articles_from_main_business_page(url2)
+# find_article_from_search_URL( find_search_URL('tesla'), 20)

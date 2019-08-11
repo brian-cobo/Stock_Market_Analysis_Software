@@ -510,6 +510,48 @@ def analyze_market_data():
     change = market_summary.Change_Percent[(type(market_summary.Change_Percent) !=float)]
     print(change)
 
+def search_for_company_symbol(keyword_to_search_for, automated=False):
+    url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword_to_search_for}&apikey={get_API_key()}'
+    try:
+        with urllib.request.urlopen(url) as response:
+            html = response.read()
+            data = json.loads(html)
+
+        length_of_results = len(data['bestMatches'])
+        data = json_normalize(data['bestMatches'])
+        data = data.rename(columns = {'1. symbol' : 'Symbol',
+                                      '2. name' : 'Name',
+                                      '3. type' : 'Type',
+                                      '4. region' : 'Region',
+                                      '5. marketOpen' : 'Market_Open',
+                                      '6. marketClose' : 'Market_Close',
+                                      '7. timezone' : 'Timezone',
+                                      '8. currency' : 'Currency',
+                                      '9. matchScore' : 'Match_Score'})
+        if automated == True:
+            return data
+
+        index = 0
+        answer = 0
+        while index < length_of_results or answer != 1:
+            print('\nSymbol:', data.Symbol.iloc[index],
+                  '\nName:', data.Name.iloc[index],
+                  '\nMatch:', data.Match_Score.iloc[index])
+            answer = int(input('Is this what you are looking for?\n'
+                               '1: Yes\n'
+                               '2: No\n'))
+            if answer == 1:
+                return data.Symbol.iloc[index]
+            index += 1
+
+        print('\nNo Stocks Found')
+        return None
+
+    except:
+        print('\nNo Results found for', keyword_to_search_for)
+        return None
+
+
 
 if __name__ == "__main__":
     choice = 0
@@ -520,6 +562,7 @@ if __name__ == "__main__":
                            '2: Get Current Data\n'
                            '3: Create Market Report\n'
                            '4: Get Sector Data\n'
+                           '5: Search for Company Symbol\n'
                            '-1: Quit\n'))
         if choice == -1:
             print("\nGoodbye")
@@ -538,6 +581,10 @@ if __name__ == "__main__":
 
         elif choice == 4:
             get_sector_data()
+
+        elif choice == 5:
+            keyword_to_search_for = input('\nWhat keyword would you like to search for? ')
+            search_for_company_symbol(keyword_to_search_for)
 
         else:
             print('Choice not recognized')

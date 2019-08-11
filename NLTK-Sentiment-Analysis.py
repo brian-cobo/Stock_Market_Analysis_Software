@@ -268,8 +268,7 @@ def search_multiple_pages(search_URL, num_of_pages):
                         'facebook.com' not in newLink and
                         'linkedin.com' not in newLink and
                         'ibtimes.tumblr.com' not in newLink):
-                    #main(newLink)
-                    print(newLink)
+                    main(newLink)
         except Exception as e:
             print(f'Error loading info from page {i}:', e)
 
@@ -314,4 +313,4 @@ def search_multiple_pages_business(search_URL, numOfPages):
 home_page_URL=f'https://www.ibtimes.com/business'
 #find_articles_from_main_business_page(home_page_URL, 20)
 #find_articles_from_main_business_page(url2)
-find_article_from_search_URL( find_search_URL('tesla'), 1)
+find_article_from_search_URL( find_search_URL('tesla'), 50)

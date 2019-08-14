@@ -39,94 +39,119 @@ class Stock:
 
     def get_five_months_data(self):
         self.type_of_graph = 'TIME_SERIES_DAILY'
-        three_month_URL = f'https://www.alphavantage.co/query?' \
-              f'function={self.type_of_graph}&' \
-              f'symbol={self.symbol}&' \
-              f'apikey={self.api_key}'
+        three_month_URL = (f'https://www.alphavantage.co/query?'
+                          f'function={self.type_of_graph}&'
+                          f'symbol={self.symbol}&'
+                          f'apikey={self.api_key}')
         print(three_month_URL)
         return three_month_URL
 
     def get_five_months_csv_data(self):
         self.type_of_graph = 'TIME_SERIES_DAILY'
-        three_month_csv = f'https://www.alphavantage.co/query?' \
-                      f'function={self.type_of_graph}&' \
-                      f'symbol={self.symbol}&' \
-                      f'apikey={self.api_key}&' \
-                      f'datatype={self.output_data_type}'
+        three_month_csv = (f'https://www.alphavantage.co/query?'
+                          f'function={self.type_of_graph}&'
+                          f'symbol={self.symbol}&'
+                          f'apikey={self.api_key}&'
+                          f'datatype={self.output_data_type}')
+        print('CSV DOWNLOAD LINK:', three_month_csv)
+
+    def get_months_data(self):
+        print('Type:', self.type_of_graph)
+
+        self.type_of_graph = 'TIME_SERIES_MONTHLY'
+
+        print('Type:', self.type_of_graph)
+        three_month_URL = (f'https://www.alphavantage.co/query?'
+                          f'function=TIME_SERIES_MONTHLY&'
+                          f'symbol={self.symbol}&'
+                          f'outputsize={self.output_size}&'
+                          f'apikey={self.api_key}')
+        print("URL", three_month_URL)
+        return three_month_URL
+
+
+    def get_months_csv_data(self):
+        self.type_of_graph = 'TIME_SERIES_MONTHLY'
+        three_month_csv = (f'https://www.alphavantage.co/query?'
+                          f'function={self.type_of_graph}&'
+                          f'symbol={self.symbol}&'
+                          f'outputsize={self.output_size}&'
+                          f'apikey={self.api_key}&'
+                          f'datatype={self.output_data_type}')
         print('CSV DOWNLOAD LINK:', three_month_csv)
 
     def get_intraday_data(self):
         self.type_of_graph = 'TIME_SERIES_INTRADAY'
-        intraday_URL = f'https://www.alphavantage.co/query?' \
-                       f'function={self.type_of_graph}&' \
-                       f'symbol={self.symbol}&' \
-                       f'interval={self.interval_in_minutes}min&' \
-                       f'outputsize={self.output_size}&' \
-                       f'apikey={self.api_key}'
+        intraday_URL = (f'https://www.alphavantage.co/query?'
+                       f'function={self.type_of_graph}&'
+                       f'symbol={self.symbol}&'
+                       f'interval={self.interval_in_minutes}min&'
+                       f'outputsize={self.output_size}&'
+                       f'apikey={self.api_key}')
         print(intraday_URL)
         return intraday_URL
 
     def get_intraday_csv_data(self):
         self.type_of_graph = 'TIME_SERIES_INTRADAY'
-        intraday_CSV = f'https://www.alphavantage.co/query?' \
-                       f'function={self.type_of_graph}&' \
-                       f'symbol={self.symbol}&' \
-                       f'interval={self.interval_in_minutes}min&' \
-                       f'apikey={self.api_key}&' \
-                       f'outputsize={self.output_size}&' \
-                       f'datatype={self.output_data_type}'
+        intraday_CSV = (f'https://www.alphavantage.co/query?'
+                       f'function={self.type_of_graph}&'
+                       f'symbol={self.symbol}&'
+                       f'interval={self.interval_in_minutes}min&'
+                       f'apikey={self.api_key}&'
+                       f'outputsize={self.output_size}&'
+                       f'datatype={self.output_data_type}')
         print('CSV DOWNLOAD LINK:', intraday_CSV)
 
     def get_daily_adjusted_data(self):
         self.type_of_graph = 'TIME_SERIES_DAILY'
-        daily_adjusted_URL = 'https://www.alphavantage.co/query?' \
-                             f'function={self.type_of_graph}&' \
-                             f'symbol={self.symbol}&' \
-                             f'apikey={self.api_key}'
-                             #f'outputsize={self.output_size}&' \
+        daily_adjusted_URL = ('https://www.alphavantage.co/query?'
+                             f'function={self.type_of_graph}&'
+                             f'symbol={self.symbol}&'
+                             f'apikey={self.api_key}')
+                             # f'outputsize={self.output_size}&')
 
         print(daily_adjusted_URL)
         return daily_adjusted_URL
 
     def get_csv_daily_adjusted_data(self):
         self.type_of_graph = 'TIME_SERIES_DAILY'
-        daily_adjusted_URL = 'https://www.alphavantage.co/query?' \
-                             f'function={self.type_of_graph}&' \
-                             f'symbol={self.symbol}&' \
-                             f'apikey={self.api_key}&' \
-                             f'datatype={self.output_data_type}'
+        daily_adjusted_URL = ('https://www.alphavantage.co/query?'
+                             f'function={self.type_of_graph}&'
+                             f'symbol={self.symbol}&'
+                             f'apikey={self.api_key}&'
+                             f'datatype={self.output_data_type}')
                              #f'outputsize={self.output_size}&' \
 
         print('CSV DOWNLOAD LINK:', daily_adjusted_URL)
 
     def get_all_available_data(self):
         self.type_of_graph = 'TIME_SERIES_MONTHLY'
-        available_data_URL = f'https://www.alphavantage.co/query?' \
-            f'function={self.type_of_graph}&' \
-            f'symbol={self.symbol}&' \
-            f'apikey={self.api_key}&' \
-            f'outputsize={self.output_size}'
+        available_data_URL = (f'https://www.alphavantage.co/query?'
+                             f'function={self.type_of_graph}&'
+                             f'symbol={self.symbol}&'
+                             f'apikey={self.api_key}&'
+                             f'outputsize={self.output_size}')
 
         print(available_data_URL)
         return available_data_URL
 
     def get_csv_all_available_data(self):
-        self.type_of_graph = 'TIME_SERIES_DAILY'
-        available_data_URL = f'https://www.alphavantage.co/query?' \
-            f'function={self.type_of_graph}&' \
-            f'symbol={self.symbol}&' \
-            f'apikey={self.api_key}&' \
-            f'outputsize={self.output_size}&' \
-            f'datatype={self.output_data_type}'
+        self.type_of_graph = 'TIME_SERIES_MONTHLY'
+        available_data_URL = (f'https://www.alphavantage.co/query?'
+                              f'function={self.type_of_graph}&'
+                              f'symbol={self.symbol}&'
+                              f'apikey={self.api_key}&'
+                              f'outputsize={self.output_size}&'
+                              f'datatype={self.output_data_type}')
 
         print('CSV DOWNLOAD LINK:', available_data_URL)
 
     def get_current_stock_data(self):
         self.type_of_graph = 'GLOBAL_QUOTE'
-        current_stock_data_URL = 'https://www.alphavantage.co/query?' \
-                                 f'function={self.type_of_graph}&' \
-                                 f'symbol={self.symbol}&' \
-                                 f'apikey={self.api_key}'
+        current_stock_data_URL = ('https://www.alphavantage.co/query?'
+                                 f'function={self.type_of_graph}&'
+                                 f'symbol={self.symbol}&'
+                                 f'apikey={self.api_key}')
         #print(current_stock_data_URL)
 
         json_data = self.convert_url_data_into_json(current_stock_data_URL)
@@ -158,7 +183,7 @@ class Stock:
 
         return stockInfo
 
-    def convert_url_data_into_json(self, url_data, print_data = False):
+    def convert_url_data_into_json(self, url_data, print_data=False):
         with urllib.request.urlopen(url_data) as response:
             html = response.read()
             data = json.loads(html)
@@ -168,17 +193,19 @@ class Stock:
 
         return data
 
-    def convert_json_to_dataframe(self, json_data, df_head = False,
-                                  df_shape = False, df_columns = False,
-                                  df_info = False):
-        if self.type_of_graph == 'TIME_SERIES_INTRADAY':
-            stockInfo = pd.DataFrame(json_data[f'Time Series ({self.interval_in_minutes}min)'])
-        elif self.type_of_graph == 'TIME_SERIES_DAILY':
-            stockInfo = pd.DataFrame(json_data['Time Series (Daily)'])
-        elif self.type_of_graph == 'TIME_SERIES_MONTHLY':
-            stockInfo = pd.DataFrame(json_data['Time Series (Monthly)'])
-        else:
-            print(f'ERROR: {self.type_of_graph} NOT RECOGNIZED BY PROGRAM')
+    def convert_json_to_dataframe(self, json_data, df_head=False,
+                                  df_shape=False, df_columns=False,
+                                  df_info=False):
+
+        try:
+            if self.type_of_graph == 'TIME_SERIES_INTRADAY':
+                stockInfo = pd.DataFrame(json_data[f'Time Series ({self.interval_in_minutes}min)'])
+            if self.type_of_graph == 'TIME_SERIES_DAILY':
+                stockInfo = pd.DataFrame(json_data['Time Series (Daily)'])
+            if self.type_of_graph == 'TIME_SERIES_MONTHLY':
+                stockInfo = pd.DataFrame(json_data['Monthly Time Series'])
+        except:
+            raise Exception (f'ERROR: {self.type_of_graph} NOT RECOGNIZED BY PROGRAM')
 
         # Transposing data so that the rows and columns are flipped
         stockInfo = stockInfo.transpose()
@@ -371,6 +398,7 @@ def get_historical_data(stockSymbol):
             stock.get_five_months_csv_data()
 
     data = stock.convert_url_data_into_json(url_data=data)
+    print(data)
     data = stock.convert_json_to_dataframe(json_data=data)
     print('\nFirst 10 entries:\n', data.head(10))
     print('\nLast 10 entries:\n', data.tail(10))
@@ -566,7 +594,6 @@ if __name__ == "__main__":
                            '-1: Quit\n'))
         if choice == -1:
             print("\nGoodbye")
-            exit(0)
 
         elif choice == 1:
             stockSymbol = ask_for_stock_symbol()

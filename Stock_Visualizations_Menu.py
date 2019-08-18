@@ -38,7 +38,8 @@ class Stock:
         self.output_size = output_size
 
     def get_five_months_data(self):
-        self.type_of_graph = 'TIME_SERIES_DAILY'
+        self.type_of_graph = 'TIME_SERIES_MONTHLY'
+        print('Get Five Month:', self.type_of_graph)
         three_month_URL = (f'https://www.alphavantage.co/query?'
                           f'function={self.type_of_graph}&'
                           f'symbol={self.symbol}&'
@@ -62,7 +63,7 @@ class Stock:
 
         print('Type:', self.type_of_graph)
         three_month_URL = (f'https://www.alphavantage.co/query?'
-                          f'function=TIME_SERIES_MONTHLY&'
+                          f'function={self.type_of_graph}&'
                           f'symbol={self.symbol}&'
                           f'outputsize={self.output_size}&'
                           f'apikey={self.api_key}')
@@ -274,7 +275,7 @@ class Stock:
         plt.locator_params(axis='x', numticks=3)
         plt.legend()
         plt.gcf().autofmt_xdate()
-        ax.xaxis.set_major_formatter(ates.DateFormatter('%b %d'))
+        ax.xaxis.set_major_formatter(ates.DateFormatter('%b %d %y'))
         plt.show()
 
     def calculate_stochastic_oscillator(self):
@@ -383,12 +384,12 @@ def get_historical_data(stockSymbol):
         if print_csv_link == 1:
             stock.get_csv_daily_adjusted_data()
 
-    if choice == 3:
+    elif choice == 3:
         data = stock.get_intraday_data()
         if print_csv_link == 1:
             stock.get_intraday_csv_data()
 
-    if choice == 4:
+    elif choice == 4:
         data = stock.get_all_available_data()
         if print_csv_link == 1:
             stock.get_csv_all_available_data()

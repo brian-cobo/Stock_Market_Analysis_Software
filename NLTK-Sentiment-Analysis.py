@@ -229,94 +229,114 @@ class Webscraper:
             print(e)
 
 
-def main(url):
-    try:
-        web = Webscraper()
-        article = web.scrape_article_from_web(url)
-        article_sentiment_analysis = web.get_sentiment_analysis(article)
-        web.print_dictionary(article_sentiment_analysis)
-        web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
-    except Exception as e:
-        print(e)
+class Find_Articles:
+    def find_search_URL(self, string_to_search_for):
+        search = string_to_search_for.replace(' ', '%20')
+        search_URL = 'https://www.ibtimes.com/search/site/' + search
+        print(search_URL)
+        return search_URL
+
+    def find_article_from_search_URL(self, search_URL, numPages=1):
+        page = requests.get(search_URL)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        #print(soup.prettify())
+        links = soup.findAll('a', attrs={'href': re.compile("^https://")})
+        for link in links:
+            newLink = link.get('href')
+            if ('twitter.com' not in newLink and
+                'facebook.com' not in newLink and
+                'linkedin.com' not in newLink and
+                'ibtimes.tumblr.com' not in newLink):
+                self.scrape_analyze_store_article(newLink)
+
+        self.search_multiple_pages(search_URL, numPages)
+
+    def search_multiple_pages(self, search_URL, num_of_pages=1):
+        for i in range(1,num_of_pages):
+            try:
+                URL = search_URL + f'?page={i}'
+                page = requests.get(URL)
+                soup = BeautifulSoup(page.content, 'html.parser')
+                links = soup.findAll('a', attrs={'href': re.compile("^https://")})
+                for link in links:
+                    newLink = link.get('href')
+                    if ('twitter.com' not in newLink and
+                            'facebook.com' not in newLink and
+                            'linkedin.com' not in newLink and
+                            'ibtimes.tumblr.com' not in newLink):
+                        self.scrape_analyze_store_article(newLink)
+            except Exception as e:
+                print(f'Error loading info from page {i}:', e)
 
 
-def find_search_URL(string_to_search_for):
-    search = string_to_search_for.replace(' ', '%20')
-    search_URL = 'https://www.ibtimes.com/search/site/' + search
-    print(search_URL)
-    return search_URL
 
-def find_article_from_search_URL(search_URL, numPages):
-    page = requests.get(search_URL)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    #print(soup.prettify())
-    links = soup.findAll('a', attrs={'href': re.compile("^https://")})
-    for link in links:
-        newLink = link.get('href')
-        if ('twitter.com' not in newLink and
-            'facebook.com' not in newLink and
-            'linkedin.com' not in newLink and
-            'ibtimes.tumblr.com' not in newLink):
-            main(newLink)
+    def find_articles_from_main_business_page(self, search_URL, numOfPages=1):
+        page = requests.get(search_URL)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        links = soup.findAll('a')
+        linksToSave = []
+        for link in links:
+            newLink = link.get('href')
+            if newLink.count('/') == 1 and newLink.count('-') > 1:
+                linksToSave.append(newLink)
+        linksToSave = list(set(linksToSave))
+        for i in linksToSave:
+            url = 'https://www.ibtimes.com' + i
+            self.scrape_analyze_store_article(url)
+        self.search_multiple_pages_business(search_URL, numOfPages)
 
-    search_multiple_pages(search_URL, numPages)
 
-def search_multiple_pages(search_URL, num_of_pages):
-    for i in range(1,num_of_pages):
+    def search_multiple_pages_business(self, search_URL, numOfPages=1):
+        for i in range(1, numOfPages):
+            try:
+                URL = search_URL + f'?page={i}'
+                page = requests.get(URL)
+                soup = BeautifulSoup(page.content, 'html.parser')
+                links = soup.findAll('a')
+                linksToSave = []
+                for link in links:
+                    newLink = link.get('href')
+                    if newLink.count('/') == 1 and newLink.count('-') > 1:
+                        linksToSave.append(newLink)
+                linksToSave = list(set(linksToSave))
+                for i in linksToSave:
+                    url = 'https://www.ibtimes.com' + i
+                    self.scrape_analyze_store_article(url)
+            except Exception as e:
+                print(e)
+
+    def scrape_analyze_store_article(self, url):
         try:
-            URL = search_URL + f'?page={i}'
-            page = requests.get(URL)
-            soup = BeautifulSoup(page.content, 'html.parser')
-            links = soup.findAll('a', attrs={'href': re.compile("^https://")})
-            for link in links:
-                newLink = link.get('href')
-                if ('twitter.com' not in newLink and
-                        'facebook.com' not in newLink and
-                        'linkedin.com' not in newLink and
-                        'ibtimes.tumblr.com' not in newLink):
-                    main(newLink)
-        except Exception as e:
-            print(f'Error loading info from page {i}:', e)
-
-
-
-def find_articles_from_main_business_page(search_URL, numOfPages):
-    page = requests.get(search_URL)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    links = soup.findAll('a')
-    linksToSave = []
-    for link in links:
-        newLink = link.get('href')
-        if newLink.count('/') == 1 and newLink.count('-') > 1:
-            linksToSave.append(newLink)
-    linksToSave = list(set(linksToSave))
-    for i in linksToSave:
-        url = 'https://www.ibtimes.com' + i
-        main(url)
-    search_multiple_pages_business(search_URL, numOfPages)
-
-
-def search_multiple_pages_business(search_URL, numOfPages):
-    for i in range(1, numOfPages):
-        try:
-            URL = search_URL + f'?page={i}'
-            page = requests.get(URL)
-            soup = BeautifulSoup(page.content, 'html.parser')
-            links = soup.findAll('a')
-            linksToSave = []
-            for link in links:
-                newLink = link.get('href')
-                if newLink.count('/') == 1 and newLink.count('-') > 1:
-                    linksToSave.append(newLink)
-            linksToSave = list(set(linksToSave))
-            for i in linksToSave:
-                url = 'https://www.ibtimes.com' + i
-                main(url)
+            web = Webscraper()
+            article = web.scrape_article_from_web(url)
+            article_sentiment_analysis = web.get_sentiment_analysis(article)
+            web.print_dictionary(article_sentiment_analysis)
+            web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
         except Exception as e:
             print(e)
 
+if __name__ == "__main__":
+    choice = 0
+    print('Article Scraper/Sentiment Analysis')
+    scraper = Find_Articles()
+    while choice != -1:
+        choice = int(input('\nChoose Option:\n'
+                            '1: Retrieve Articles About Specific Company\n'
+                            '2: Retrieve Articles From Front Page\n'
+                            '-1: Quit\n'))
+        if choice == -1:
+            print('\nGoodbye\n')
 
-home_page_URL=f'https://www.ibtimes.com/business'
-#find_articles_from_main_business_page(home_page_URL, 20)
-#find_articles_from_main_business_page(url2)
-find_article_from_search_URL( find_search_URL('tesla'), 50)
+        elif choice == 1:
+            print('In choice 1')
+            company = input("\nWhat company would you like to search articles for?\n")
+            num_of_pages_to_search = int(input("\nHow many pages would you like to go through?\n"))
+            scraper.find_article_from_search_URL(scraper.find_search_URL(company), num_of_pages_to_search)
+        elif choice == 2:
+            print('in choice 2')
+            home_page_URL = f'https://www.ibtimes.com/business'
+            num_of_pages_to_search = int(input("\nHow many pages would you like to go through?\n"))
+            scraper.find_articles_from_main_business_page(home_page_URL,
+                                                  num_of_pages_to_search)
+        else:
+            print('Choice not recognized')

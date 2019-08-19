@@ -16,6 +16,9 @@ import re
 # Analyze company earnings reports
 #       Twitter
 #       https://www.nasdaq.com/aspx/stockmarketnewsstoryprint.aspx?storyid=twitter-announces-second-quarter-2019-results-20190726-00186
+# Update Print messages from scraper
+#   Should only print if article was successfully added to the csv file to avoid clutter of messages
+# Analyze accuracy of NLTK SA
 
 class Webscraper:
     def add_row_to_saved_article_results_dataframe(self, article_info):

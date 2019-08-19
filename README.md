@@ -30,6 +30,7 @@ Requires API Key from https://www.alphavantage.co
     
 ### TODO
 #### Main
+* Analyze and improve accuracy of Sentiment Analysis to be correct and recognize financial vocabulary
 * Gathering Dow Jones and other market information
 * Web Scrape and Analyze 
     * Financial reports

@@ -11,6 +11,12 @@ import re
 # http://www.nltk.org/howto/sentiment.html
 # https://www.dataquest.io/blog/web-scraping-tutorial-python/
 
+
+#TODO
+# Analyze company earnings reports
+#       Twitter
+#       https://www.nasdaq.com/aspx/stockmarketnewsstoryprint.aspx?storyid=twitter-announces-second-quarter-2019-results-20190726-00186
+
 class Webscraper:
     def add_row_to_saved_article_results_dataframe(self, article_info):
         if (self.check_for_existing_article_results(article_info['URL']) == False and

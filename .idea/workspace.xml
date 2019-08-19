@@ -3,8 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Explore Market Data-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/IMDB Review Analysis-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Article_Sentiment_Results/.ipynb_checkpoints/Sentiment_Results_Analysis-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/.ipynb_checkpoints/Untitled1-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/Analyze_Sentiment_Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/IMDB Review Analysis.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,12 +20,34 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/README.md">
+                <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                  <state split_layout="SPLIT">
+                    <first_editor relative-caret-position="307">
+                      <caret line="45" column="137" selection-start-line="45" selection-start-column="137" selection-end-line="45" selection-end-column="137" />
+                    </first_editor>
+                    <second_editor />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
+            <state relative-caret-position="4155">
               <caret line="277" column="19" selection-start-line="277" selection-start-column="19" selection-end-line="277" selection-end-column="19" />
               <folding>
                 <element signature="e#55#64#0" expanded="true" />
@@ -29,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3915">
-              <caret line="270" column="20" selection-start-line="270" selection-start-column="20" selection-end-line="270" selection-end-column="20" />
+            <state relative-caret-position="420">
+              <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -39,7 +69,29 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Analyze_Sentiment_Results.ipynb">
+        <entry file="file://$PROJECT_DIR$/NLTK Exploration/nltk_practice.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NLTK Exploration/Sentiment_Analysis_Classifier.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Explore Market Data.ipynb">
           <provider selected="true" editor-type-id="jupyter-editor" />
         </entry>
       </file>
@@ -49,6 +101,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -93,15 +146,18 @@
         <option value="$PROJECT_DIR$/Send_Response_To_Text.py" />
         <option value="$PROJECT_DIR$/APIData.py" />
         <option value="$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv" />
-        <option value="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" />
         <option value="$PROJECT_DIR$/Stock_Visualizations_Menu.py" />
+        <option value="$PROJECT_DIR$/Jupyter Notebooks/Stock Visualization.ipynb" />
+        <option value="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-2048" />
     <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="727" />
+    <option name="width" value="2048" />
+    <option name="height" value="1513" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -129,6 +185,11 @@
               <item name="Stock_Visualization_Analysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="Stock_Visualization_Analysis" type="462c0819:PsiDirectoryNode" />
               <item name="Jupyter Notebooks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Stock_Visualization_Analysis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Stock_Visualization_Analysis" type="462c0819:PsiDirectoryNode" />
+              <item name="NLTK Exploration" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Stock_Visualization_Analysis" type="b2602c69:ProjectViewProjectNode" />
@@ -266,17 +327,18 @@
       <workItem from="1565445699867" duration="5038000" />
       <workItem from="1565748307781" duration="1304000" />
       <workItem from="1565910005489" duration="1810000" />
+      <workItem from="1566173712443" duration="4840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148603000" />
+    <option name="totallyTimeSpent" value="153443000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="727" extended-state="0" />
+    <frame x="-1366" y="23" width="1366" height="947" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24878837" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29305136" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -292,7 +354,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50080776" side_tool="true" weight="0.44409448" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32913387" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32913387" />
-      <window_info anchor="bottom" id="Jupyter" order="13" sideWeight="0.49919224" visible="true" weight="0.32755905" />
+      <window_info anchor="bottom" id="Jupyter" order="13" sideWeight="0.49919224" visible="true" weight="0.10175438" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -358,9 +420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv">
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
@@ -371,9 +430,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Stock Visualization.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/IMDB Review Analysis.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Analyze_Sentiment_Results.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
+        <state relative-caret-position="4155">
           <caret line="277" column="19" selection-start-line="277" selection-start-column="19" selection-end-line="277" selection-end-column="19" />
           <folding>
             <element signature="e#55#64#0" expanded="true" />
@@ -381,18 +462,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
+    <entry file="file://$PROJECT_DIR$/NLTK Exploration/nltk_practice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3915">
-          <caret line="270" column="20" selection-start-line="270" selection-start-column="20" selection-end-line="270" selection-end-column="20" />
+        <state>
           <folding>
-            <element signature="e#0#59#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Analyze_Sentiment_Results.ipynb">
+    <entry file="file://$PROJECT_DIR$/NLTK Exploration/Sentiment_Analysis_Classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Explore Market Data.ipynb">
       <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="307">
+            <caret line="45" column="137" selection-start-line="45" selection-start-column="137" selection-end-line="45" selection-end-column="137" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

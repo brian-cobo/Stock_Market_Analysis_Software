@@ -10,6 +10,7 @@ from collections import Counter
 import re
 # http://www.nltk.org/howto/sentiment.html
 # https://www.dataquest.io/blog/web-scraping-tutorial-python/
+#https://sraf.nd.edu
 
 
 #TODO
@@ -41,9 +42,9 @@ class Webscraper:
             self.clean_article_results_columns(article_results_dataframe)
         else:
             if self.check_for_null_values(article_info) == False:
-                print('\nNot all values were found correctly, not saving:', article_info['URL'])
+                print('Not all values were found correctly, not saving:', article_info['URL'])
             else:
-                print('\nArticle Info Already Saved')
+                print('Article Info Already Saved')
 
     def check_for_null_values(self, article_info):
         if (article_info['URL'] != None and
@@ -125,6 +126,8 @@ class Webscraper:
 
     def get_sentiment_analysis(self, article_info):
         article = article_info['Article']
+        print(article)
+        exit(0)
         sid = SentimentIntensityAnalyzer()
         total_sentiment_values = {'Compound': 0, 'Positive': 0, 'Negative': 0, 'Neutral': 0}
         average_sentiment_values = {'Compound': 0, 'Positive': 0, 'Negative': 0, 'Neutral': 0}
@@ -199,20 +202,19 @@ class Webscraper:
                                 company_symbol = symbols.Symbol.iloc[0]
 
                     except Exception as e:
-                        print("ERROR:", e)
+                        pass
                 break
         return company_symbol
 
     def print_dictionary(self, dict):
+        print()
         for key, value in dict.items():
             print(key, ':', value)
-        print()
 
     def scrape_article_from_web(self, article_URL):
         try:
             page = requests.get(article_URL)
             soup = BeautifulSoup(page.content, 'html.parser')
-            #print(soup.prettify())
 
             title = self.find_title_from_article(soup)
             author = self.find_author_from_article(soup)
@@ -242,7 +244,7 @@ class Find_Articles:
     def find_article_from_search_URL(self, search_URL, numPages=1):
         page = requests.get(search_URL)
         soup = BeautifulSoup(page.content, 'html.parser')
-        #print(soup.prettify())
+
         links = soup.findAll('a', attrs={'href': re.compile("^https://")})
         for link in links:
             newLink = link.get('href')

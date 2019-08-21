@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results_1.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stock_Visualizations_Menu.py" afterDir="false" />
     </list>
@@ -17,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="432" column="16" selection-start-line="432" selection-start-column="16" selection-end-line="432" selection-end-column="16" />
+            <state relative-caret-position="137">
+              <caret line="588" column="8" selection-start-line="588" selection-start-column="8" selection-end-line="588" selection-end-column="8" />
               <folding>
                 <element signature="e#55#64#0" expanded="true" />
               </folding>
@@ -29,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4437">
-              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state relative-caret-position="126">
+              <caret line="11" column="1" selection-start-line="11" selection-end-line="11" selection-end-column="1" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -42,8 +43,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="480">
-                <caret line="32" column="101" selection-start-line="32" selection-start-column="101" selection-end-line="32" selection-end-column="101" />
+              <first_editor relative-caret-position="510">
+                <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
               </first_editor>
               <second_editor />
             </state>
@@ -73,7 +74,6 @@
       <find>get_current_data</find>
       <find>get_current_stock_data()</find>
       <find>error</find>
-      <find>get_historical</find>
       <find>.xlsx</find>
       <find>content</find>
       <find>date</find>
@@ -87,6 +87,11 @@
       <find>add</find>
       <find>print_di</find>
       <find>get_five_months</find>
+      <find>get_historical</find>
+      <find>print_dictionary</find>
+      <find>No results</find>
+      <find>#print</find>
+      <find>#</find>
     </findStrings>
     <replaceStrings>
       <replace>self.stockInfo</replace>
@@ -118,6 +123,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,7 +160,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,23 +287,23 @@
       <workItem from="1565748307781" duration="1304000" />
       <workItem from="1565910005489" duration="1810000" />
       <workItem from="1566173712443" duration="7898000" />
-      <workItem from="1566406521672" duration="369000" />
+      <workItem from="1566406521672" duration="1728000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156870000" />
+    <option name="totallyTimeSpent" value="158229000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="727" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.31340873" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31340873" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32440946" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" weight="0.44409448" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49919224" visible="true" weight="0.28661418" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -323,7 +328,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1565973432625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566184373743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566408066799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
@@ -375,16 +380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="6420">
-          <caret line="428" selection-start-line="428" selection-end-line="428" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Stock Visualization.ipynb" />
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" />
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/IMDB Review Analysis.ipynb" />
@@ -413,17 +408,27 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="480">
-            <caret line="32" column="101" selection-start-line="32" selection-start-column="101" selection-end-line="32" selection-end-column="101" />
+          <first_editor relative-caret-position="510">
+            <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results_1.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="-5340">
+          <caret line="428" selection-start-line="428" selection-end-line="428" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/NLTK-Sentiment-Analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4437">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        <state relative-caret-position="126">
+          <caret line="11" column="1" selection-start-line="11" selection-end-line="11" selection-end-column="1" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>
@@ -432,8 +437,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Stock_Visualizations_Menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="432" column="16" selection-start-line="432" selection-start-column="16" selection-end-line="432" selection-end-column="16" />
+        <state relative-caret-position="137">
+          <caret line="588" column="8" selection-start-line="588" selection-start-column="8" selection-end-line="588" selection-end-column="8" />
           <folding>
             <element signature="e#55#64#0" expanded="true" />
           </folding>

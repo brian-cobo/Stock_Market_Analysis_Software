@@ -586,7 +586,6 @@ def search_for_company_symbol(keyword_to_search_for, automated=False):
         return None
 
     except:
-        print('\nNo Results found for', keyword_to_search_for)
         return None
 
 

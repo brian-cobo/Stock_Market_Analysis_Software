@@ -14,7 +14,7 @@ import re
 
 #TODO
 # Analyze company earnings reports
-#       Twitter
+#       Twitter Example
 #       https://www.nasdaq.com/aspx/stockmarketnewsstoryprint.aspx?storyid=twitter-announces-second-quarter-2019-results-20190726-00186
 # Update Print messages from scraper
 #   Should only print if article was successfully added to the csv file to avoid clutter of messages

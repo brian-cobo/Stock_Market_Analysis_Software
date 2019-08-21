@@ -420,8 +420,17 @@ def get_historical_data(stockSymbol):
                          Open=check_if_attribute_in_list('2', attributes),
                          High=check_if_attribute_in_list('3', attributes),
                          Low=check_if_attribute_in_list('4', attributes))
-        stock.draw_stochastic_oscillator()
-        stock.draw_long_or_short_graph()
+        draw_stoch = int(input("\nWould you like to draw a stochastic oscillator?\n"
+                               "1: Yes\n"
+                               "2: No\n"))
+        if draw_stoch != 2:
+            stock.draw_stochastic_oscillator()
+
+            draw_long_short = int(input("\nWould you like to draw the long or short graph based on the oscillator?\n"
+                                        "1: Yes\n"
+                                        "2: No\n"))
+            if draw_long_short != 2:
+                stock.draw_long_or_short_graph()
 
 
 def get_current_data(stockSymbol, print_results=False):

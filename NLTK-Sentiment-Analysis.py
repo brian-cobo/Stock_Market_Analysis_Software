@@ -10,6 +10,7 @@ from collections import Counter
 import re
 # http://www.nltk.org/howto/sentiment.html
 # https://www.dataquest.io/blog/web-scraping-tutorial-python/
+#https://sraf.nd.edu
 
 
 #TODO
@@ -125,6 +126,8 @@ class Webscraper:
 
     def get_sentiment_analysis(self, article_info):
         article = article_info['Article']
+        print(article)
+        exit(0)
         sid = SentimentIntensityAnalyzer()
         total_sentiment_values = {'Compound': 0, 'Positive': 0, 'Negative': 0, 'Neutral': 0}
         average_sentiment_values = {'Compound': 0, 'Positive': 0, 'Negative': 0, 'Neutral': 0}

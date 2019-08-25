@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main_Program/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$Market_Summary.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,32 +15,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8700">
-              <caret line="588" column="8" selection-start-line="588" selection-start-column="8" selection-end-line="588" selection-end-column="8" />
+            <state relative-caret-position="323">
+              <caret line="143" column="68" selection-start-line="143" selection-start-column="68" selection-end-line="143" selection-end-column="68" />
               <folding>
-                <element signature="e#55#64#0" expanded="true" />
+                <element signature="e#52#96#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py">
+        <entry file="file://$PROJECT_DIR$/Main_Program/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="6" selection-start-column="6" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="165">
+              <caret line="11" lean-forward="true" selection-start-column="2" selection-end-line="59" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -56,7 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>stockData</find>
       <find>stockInfo</find>
       <find>.plot</find>
       <find>do you want</find>
@@ -86,6 +77,7 @@
       <find>#</find>
       <find>prepare_article</find>
       <find>get_sentiment_analysis</find>
+      <find>lm_dictionary</find>
     </findStrings>
     <replaceStrings>
       <replace>self.stockInfo</replace>
@@ -106,9 +98,14 @@
         <option value="$PROJECT_DIR$/Financial Lexicon/Generic_Parser.py" />
         <option value="$PROJECT_DIR$/APIData.py" />
         <option value="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" />
-        <option value="$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py" />
+        <option value="$PROJECT_DIR$/Main_Program/Web_Scraper.py" />
+        <option value="$PROJECT_DIR$/Main_Program/Sentiment_Analyzer.py" />
+        <option value="$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py" />
+        <option value="$PROJECT_DIR$/Main_Program/Main.py" />
+        <option value="$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py" />
       </list>
     </option>
   </component>
@@ -125,7 +122,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,10 +134,16 @@
               <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
               <item name="Article_Sentiment_Results" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
+              <item name="Main_Program" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,73 +174,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.NLTK-Sentiment-Analysis">
-    <configuration name="Generic_Parser" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Stock_Visualization_Analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Financial Lexicon" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Financial Lexicon/Generic_Parser.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Load_MasterDictionary" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Stock_Visualization_Analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Financial Lexicon" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Financial Lexicon/Load_MasterDictionary.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="NLTK-Sentiment-Analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Stock_Visualization_Analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.Web_Scraper">
     <configuration name="Stock_Visualizations_Menu" type="PythonConfigurationType" factoryName="Python">
       <module name="Stock_Visualization_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -261,11 +197,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Web_Scraper" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Stock_Visualization_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Main_Program" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main_Program/Web_Scraper.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Stock_Visualizations_Menu" />
+      <item itemvalue="Python.Web_Scraper" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.NLTK-Sentiment-Analysis" />
-        <item itemvalue="Python.Generic_Parser" />
-        <item itemvalue="Python.Load_MasterDictionary" />
+        <item itemvalue="Python.Web_Scraper" />
       </list>
     </recent_temporary>
   </component>
@@ -326,22 +286,24 @@
       <workItem from="1566406521672" duration="4212000" />
       <workItem from="1566694410480" duration="8799000" />
       <workItem from="1566741545729" duration="493000" />
+      <workItem from="1566752392227" duration="1103000" />
+      <workItem from="1566755523376" duration="4463000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170005000" />
+    <option name="totallyTimeSpent" value="177350000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1987076" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30452344" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3227848" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" weight="0.31012657" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" weight="0.34306568" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -368,8 +330,10 @@
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Generic_Parser.coverage" NAME="Generic_Parser Coverage Results" MODIFIED="1566413708622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Financial Lexicon" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1565973432625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Load_MasterDictionary.coverage" NAME="Load_MasterDictionary Coverage Results" MODIFIED="1566413416456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Financial Lexicon" />
-    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566700565545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566751909942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1566752275830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566413574671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Web_Scraper.coverage" NAME="Web_Scraper Coverage Results" MODIFIED="1566752884228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
@@ -429,22 +393,15 @@
     <entry file="file://$PROJECT_DIR$/Main_Program/LoughranMcDonald_MasterDictionary_2018.csv">
       <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Load_MasterDictionary.py" />
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="240">
           <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Generic_Parser.py" />
@@ -458,27 +415,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8700">
-          <caret line="588" column="8" selection-start-line="588" selection-start-column="8" selection-end-line="588" selection-end-column="8" />
-          <folding>
-            <element signature="e#55#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://Python/#/Users/brian/Desktop/Programming/Python Workspace/Stock_Market_Analysis_Software/Main_Program/Sentiment_Analyzer.py">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Python</ID>
+          <OriginalElement>#/Users/brian/Desktop/Programming/Python Workspace/Stock_Market_Analysis_Software/Main_Program/Sentiment_Analyzer.py</OriginalElement>
+          <nodes>
+            <node x="" y="">Main_Program.Web_Scraper.Find_Articles</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="512.0" y="333.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1094">
+          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-column="2" selection-end-line="59" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="e#15#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Web_Scraper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5370">
+          <caret line="358" column="69" selection-start-line="358" selection-start-column="69" selection-end-line="358" selection-end-column="69" />
+          <folding>
+            <element signature="e#15#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="143" column="68" selection-start-line="143" selection-start-column="68" selection-end-line="143" selection-end-column="68" />
+          <folding>
+            <element signature="e#52#96#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

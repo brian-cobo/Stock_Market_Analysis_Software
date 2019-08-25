@@ -1,4 +1,4 @@
-# Stock_Analysis
+# Stock_Market_Analysis_Software
 
 Can you create mathematical and financial intuition based on current event articles, and past movement to predict short term stock movement?
 

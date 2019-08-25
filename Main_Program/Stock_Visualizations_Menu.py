@@ -1,6 +1,6 @@
 
-# Brian Cobo
-# Stock Visualization
+# File Imports
+from Main_Program.APIData import get_API_key
 
 # Library Imports
 import os
@@ -15,11 +15,9 @@ from pandas.io.json import json_normalize
 warnings.filterwarnings('ignore')
 import time
 
-# File Imports
-from Main_Program.APIData import get_API_key
-
 
 class Stock:
+    """This class deals with grabbing and visualizing stock information"""
     def __init__(self, symbol, stockInfo=None,
                  api_key = get_API_key(),
                  type_of_graph = None,
@@ -35,6 +33,7 @@ class Stock:
         self.output_size = output_size
 
     def get_five_months_data(self):
+        """Returns URL to five months of data"""
         self.type_of_graph = 'TIME_SERIES_MONTHLY'
         print('Get Five Month:', self.type_of_graph)
         three_month_URL = (f'https://www.alphavantage.co/query?'
@@ -45,6 +44,7 @@ class Stock:
         return three_month_URL
 
     def get_five_months_csv_data(self):
+        """Returns the URL to download five months of data as a CSV"""
         self.type_of_graph = 'TIME_SERIES_DAILY'
         three_month_csv = (f'https://www.alphavantage.co/query?'
                           f'function={self.type_of_graph}&'
@@ -54,6 +54,7 @@ class Stock:
         print('CSV DOWNLOAD LINK:', three_month_csv)
 
     def get_months_data(self):
+        """Returns the URL of monthly data"""
         print('Type:', self.type_of_graph)
 
         self.type_of_graph = 'TIME_SERIES_MONTHLY'
@@ -69,6 +70,7 @@ class Stock:
 
 
     def get_months_csv_data(self):
+        """Returns the URL to download monthly data as a CSV"""
         self.type_of_graph = 'TIME_SERIES_MONTHLY'
         three_month_csv = (f'https://www.alphavantage.co/query?'
                           f'function={self.type_of_graph}&'
@@ -79,6 +81,7 @@ class Stock:
         print('CSV DOWNLOAD LINK:', three_month_csv)
 
     def get_intraday_data(self):
+        """Returns the URL of Intraday data"""
         self.type_of_graph = 'TIME_SERIES_INTRADAY'
         intraday_URL = (f'https://www.alphavantage.co/query?'
                        f'function={self.type_of_graph}&'
@@ -90,6 +93,7 @@ class Stock:
         return intraday_URL
 
     def get_intraday_csv_data(self):
+        """Returns URL of Intraday data as a CSV"""
         self.type_of_graph = 'TIME_SERIES_INTRADAY'
         intraday_CSV = (f'https://www.alphavantage.co/query?'
                        f'function={self.type_of_graph}&'
@@ -101,6 +105,7 @@ class Stock:
         print('CSV DOWNLOAD LINK:', intraday_CSV)
 
     def get_daily_adjusted_data(self):
+        """Returns URL to daily adjusted data"""
         self.type_of_graph = 'TIME_SERIES_DAILY'
         daily_adjusted_URL = ('https://www.alphavantage.co/query?'
                              f'function={self.type_of_graph}&'
@@ -112,6 +117,7 @@ class Stock:
         return daily_adjusted_URL
 
     def get_csv_daily_adjusted_data(self):
+        """Returns URL to daily adjusted data as CSV"""
         self.type_of_graph = 'TIME_SERIES_DAILY'
         daily_adjusted_URL = ('https://www.alphavantage.co/query?'
                              f'function={self.type_of_graph}&'
@@ -123,6 +129,7 @@ class Stock:
         print('CSV DOWNLOAD LINK:', daily_adjusted_URL)
 
     def get_all_available_data(self):
+        """Returns URL of all available monthly data"""
         self.type_of_graph = 'TIME_SERIES_MONTHLY'
         available_data_URL = (f'https://www.alphavantage.co/query?'
                              f'function={self.type_of_graph}&'
@@ -134,6 +141,7 @@ class Stock:
         return available_data_URL
 
     def get_csv_all_available_data(self):
+        """Returns URL to csv download of all available monthly data"""
         self.type_of_graph = 'TIME_SERIES_MONTHLY'
         available_data_URL = (f'https://www.alphavantage.co/query?'
                               f'function={self.type_of_graph}&'
@@ -145,6 +153,7 @@ class Stock:
         print('CSV DOWNLOAD LINK:', available_data_URL)
 
     def get_current_stock_data(self):
+        """Returns current or latest data about a company"""
         self.type_of_graph = 'GLOBAL_QUOTE'
         current_stock_data_URL = ('https://www.alphavantage.co/query?'
                                  f'function={self.type_of_graph}&'
@@ -182,6 +191,7 @@ class Stock:
         return stockInfo
 
     def convert_url_data_into_json(self, url_data, print_data=False):
+        """ Converts URL into json"""
         with urllib.request.urlopen(url_data) as response:
             html = response.read()
             data = json.loads(html)
@@ -194,7 +204,7 @@ class Stock:
     def convert_json_to_dataframe(self, json_data, df_head=False,
                                   df_shape=False, df_columns=False,
                                   df_info=False):
-
+        """Converts JSON data into Pandas dataframe"""
         try:
             if self.type_of_graph == 'TIME_SERIES_INTRADAY':
                 stockInfo = pd.DataFrame(json_data[f'Time Series ({self.interval_in_minutes}min)'])
@@ -243,12 +253,10 @@ class Stock:
         self.stockInfo = stockInfo
         return stockInfo
 
-    def print_stockInfo_most_recent_10_days(self):
-        print(self.stockInfo[-10:])
-
     def draw_graph(self, Close=True, Open=False,
                    High=False, Low=False, graph_width=12,
                    graph_height=8):
+        """Draws graph based on dataframe returned above"""
         stockInfo = self.stockInfo
 
         plt.figure(figsize=(graph_width, graph_height))
@@ -276,6 +284,7 @@ class Stock:
         plt.show()
 
     def calculate_stochastic_oscillator(self):
+        """Calculates stochastic oscillator based on data from dataframe"""
         # The equation to calculate the stochastic oscillator is:
 
         # %K = 100(C – L14)/(H14 – L14)
@@ -296,6 +305,7 @@ class Stock:
         self.stockInfo['%D'] = self.stockInfo['%K'].rolling(window=3).mean()
 
     def draw_stochastic_oscillator(self):
+        """Draws oscillator calculated above"""
         self.calculate_stochastic_oscillator()
         fig, axes = plt.subplots(figsize=(20, 10))
         # self.stockInfo['Close'].plot(ax=axes[0]);
@@ -308,6 +318,7 @@ class Stock:
         plt.show()
 
     def calculate_long_or_short(self):
+        """Given the data from the oscillator, it calculates whether its a good time to long or short stock"""
         self.stockInfo['Sell Entry'] = ((self.stockInfo['%K'] < self.stockInfo['%D']) & (
                 self.stockInfo['%K'].shift(1) > self.stockInfo['%D'].shift(1))) & (self.stockInfo['%D'] > 80)
         self.stockInfo['Sell Exit'] = (
@@ -344,6 +355,7 @@ class Stock:
         return long_or_short
 
     def draw_long_or_short_graph(self):
+        """Visualizes data calculated above"""
         self.calculate_long_or_short()
         self.stockInfo['Position'].plot(figsize=(20, 10))
         plt.xlabel('Date')
@@ -351,17 +363,20 @@ class Stock:
         plt.show()
 
 def ask_for_stock_symbol():
+    """Asks for stock to look at and capitalizes it so that the symbols are uniform"""
     stockSymbol = input("\nEnter a Stock to look at: ")
     stockSymbol = stockSymbol.upper()
     return stockSymbol
 
 def check_if_attribute_in_list(option, list):
+    """Takes attributes that user wants to draw on graph and returns true so that it can draw it"""
     if option in list:
         return True
     else:
         return False
 
 def get_historical_data(stockSymbol):
+    """Menu to navigate through file"""
     data_range = int(input('Choose Data Option:\n'
                            '1: Five Months Data\n'
                            '2: Daily Adjusted Data\n'
@@ -428,6 +443,7 @@ def get_historical_data(stockSymbol):
 
 
 def get_current_data(stockSymbol, print_results=False):
+    """Grabs current data"""
     stock = Stock(symbol=stockSymbol)
     data = stock.get_current_stock_data()
     if print_results == True:
@@ -436,6 +452,7 @@ def get_current_data(stockSymbol, print_results=False):
 
 
 def get_sector_data():
+    """Prints Sector data"""
     sectorDataUrl = f'https://www.alphavantage.co/query?' \
                     f'function=SECTOR&' \
                     f'apikey={get_API_key()}'
@@ -481,6 +498,7 @@ def get_sector_data():
 
 
 def create_market_report():
+    """Uses companies listed in nasdaq file and retrieves data on all of them"""
     filePath = os.getcwd + '/Spreadsheets/Market_Summary.xlsx'
     nasdaq_data = pd.read_csv('Nasdaq_Company_List.csv')
     marketData = pd.DataFrame(columns=['Symbol', 'Name', 'Price', 'Change',
@@ -525,6 +543,7 @@ def create_market_report():
 
 
 def split_percentage(change):
+    """Splits percentage string and returns float"""
     try:
         change = float(change.split('%')[0])
         return change
@@ -532,17 +551,8 @@ def split_percentage(change):
     except Exception as e:
         print(e)
 
-
-def analyze_market_data():
-    filePath = os.getcwd + '/Spreadsheets/Market_Summary.xlsx'
-    market_summary = pd.read_excel(filePath)
-    print(market_summary.info(),'\n\n\n\n')
-    market_summary.Change_Percent = market_summary.Change_Percent.apply(lambda x: split_percentage(x))
-
-    change = market_summary.Change_Percent[(type(market_summary.Change_Percent) !=float)]
-    print(change)
-
 def search_for_company_symbol(keyword_to_search_for, automated=False):
+    """Searches for company symbol based on string"""
     url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword_to_search_for}&apikey={get_API_key()}'
     try:
         with urllib.request.urlopen(url) as response:
@@ -584,37 +594,4 @@ def search_for_company_symbol(keyword_to_search_for, automated=False):
 
 
 
-if __name__ == "__main__":
-    choice = 0
-    print('Welcome')
-    while choice != -1:
-        choice = int(input('\nChoose Option:\n'
-                           '1: Get Historical Data\n'
-                           '2: Get Current Data\n'
-                           '3: Create Market Report\n'
-                           '4: Get Sector Data\n'
-                           '5: Search for Company Symbol\n'
-                           '-1: Quit\n'))
-        if choice == -1:
-            print("\nGoodbye")
 
-        elif choice == 1:
-            stockSymbol = ask_for_stock_symbol()
-            get_historical_data(stockSymbol)
-
-        elif choice == 2:
-            stockSymbol = ask_for_stock_symbol()
-            get_current_data(stockSymbol, print_results=True)
-
-        elif choice == 3:
-            create_market_report()
-
-        elif choice == 4:
-            get_sector_data()
-
-        elif choice == 5:
-            keyword_to_search_for = input('\nWhat keyword would you like to search for? ')
-            search_for_company_symbol(keyword_to_search_for)
-
-        else:
-            print('Choice not recognized')

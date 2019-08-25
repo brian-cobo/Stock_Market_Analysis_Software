@@ -1,2 +1,0 @@
-"file name,","file size,","number of words,","% positive,","% negative,","% uncertainty,","% litigious,","% modal-weak,","% modal moderate,","% modal strong,","% constraining,","# of alphabetic,","# of digits,","# of numbers,","avg # of syllables per word,","average word length,",vocabulary
-Apple-Article.txt,2825,380,3.684210526315789,1.0526315789473684,0.5263157894736842,0.0,0.5263157894736842,0.0,0.5263157894736842,0.0,2161,100,34,1.694736842105263,5.265789473684211,181

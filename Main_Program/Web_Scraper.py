@@ -1,5 +1,5 @@
 # File Imports
-from Main_Program.Stock_Visualizations_Menu import search_for_company_symbol
+from Main_Program.Stock_Info import Stock
 from Main_Program.Sentiment_Analyzer import parser
 
 # Library Imports
@@ -163,6 +163,7 @@ class Webscraper:
 
     def find_title_from_article(self, soup):
         """Finds Title tag from HTML"""
+        print('In Title')
         return soup.find_all('title')[0].get_text()
 
     def find_author_from_article(self, soup):
@@ -229,7 +230,7 @@ class Webscraper:
                 for key, value in count.items():
                     try:
                         if company_symbol == None:
-                            symbols = search_for_company_symbol(key, automated=True)
+                            symbols = Stock.search_for_company_symbol(key, automated=True)
                             if (key in title.lower() and
                                     key in article_content[0].lower() and
                                     key in symbols.Name.iloc[0].lower() and
@@ -252,15 +253,25 @@ class Webscraper:
         """Given a url, it calls out to other functions to extract article info
            and returns the info """
         try:
+            print('Article_URL', article_URL)
+
             page = requests.get(article_URL)-1
             soup = BeautifulSoup(page.content, 'html.parser')
 
             title = self.find_title_from_article(soup)
-            author = self.find_author_from_article(soup)
-            date_published, time_published = self.find_publish_date_and_time_from_article(soup)
-            article_content = self.find_article_content(soup)
-            company_symbol = self.find_company_symbol_from_article(soup, title, article_content)
+            print('Title:', title)
 
+            author = self.find_author_from_article(soup)
+            print('Author:', author)
+
+            date_published, time_published = self.find_publish_date_and_time_from_article(soup)
+            print('Date Published:', date_published)
+
+            article_content = self.find_article_content(soup)
+            print('Article Content:', article_content)
+
+            company_symbol = self.find_company_symbol_from_article(soup, title, article_content)
+            print('Company Symbol:', company_symbol)
             article_extracted_info = {'URL' : article_URL,
                                       'Title' : title,
                                       'Company_Symbol': company_symbol,
@@ -268,9 +279,14 @@ class Webscraper:
                                       'Date_Published' : date_published,
                                       'Time_Published' : time_published,
                                       'Article' : article_content}
+
+            print(article_extracted_info)
+            exit(0)
+
             return(article_extracted_info)
         except Exception as e:
-            print(e)
+            print(3)
+            exit(0)
 
 
 class Find_Articles:
@@ -353,7 +369,7 @@ class Find_Articles:
                     url = 'https://www.ibtimes.com' + i
                     self.scrape_analyze_store_article(url)
             except Exception as e:
-                print(e)
+                print(2)
 
     def scrape_analyze_store_article(self, url):
         """Takes in a URL and sends it off to get extracted and saved"""
@@ -364,4 +380,4 @@ class Find_Articles:
             web.print_dictionary(article_sentiment_analysis)
             web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
         except Exception as e:
-            print(e)
+            print(1)

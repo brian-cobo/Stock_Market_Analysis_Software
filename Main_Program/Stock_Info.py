@@ -1,19 +1,18 @@
-
 # File Imports
 from Main_Program.APIData import get_API_key
 
 # Library Imports
-import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.dates as ates
 import urllib.request
 import json
-import matplotlib.dates as ates
+import os
+import time
 import warnings
 from pandas.io.json import json_normalize
 warnings.filterwarnings('ignore')
-import time
 
 
 class Stock:
@@ -362,236 +361,234 @@ class Stock:
         plt.ylabel('-1 Short 1 Long')
         plt.show()
 
-def ask_for_stock_symbol():
-    """Asks for stock to look at and capitalizes it so that the symbols are uniform"""
-    stockSymbol = input("\nEnter a Stock to look at: ")
-    stockSymbol = stockSymbol.upper()
-    return stockSymbol
 
-def check_if_attribute_in_list(option, list):
-    """Takes attributes that user wants to draw on graph and returns true so that it can draw it"""
-    if option in list:
-        return True
-    else:
-        return False
+class Gather_Stock_Info_Menu():
+    def ask_for_stock_symbol(self):
+        """Asks for stock to look at and capitalizes it so that the symbols are uniform"""
+        stockSymbol = input("\nEnter a Stock to look at: ")
+        stockSymbol = stockSymbol.upper()
+        return stockSymbol
 
-def get_historical_data(stockSymbol):
-    """Menu to navigate through file"""
-    data_range = int(input('Choose Data Option:\n'
-                           '1: Five Months Data\n'
-                           '2: Daily Adjusted Data\n'
-                           '3: Intraday Data\n'
-                           '4: All Available Data\n'))
-    print_csv_link = int(input('Do you want the link to download csv files?\n'
-                               '1: Yes\n'
-                               '2: No\n'))
-    draw_graphs = int(input('\nDo you want to draw graphs?\n'
-                            '1: Yes\n'
-                            '2: No\n'))
+    def check_if_attribute_in_list(self, option, list):
+        """Takes attributes that user wants to draw on graph and returns true so that it can draw it"""
+        if option in list:
+            return True
+        else:
+            return False
 
-    stock = Stock(symbol=stockSymbol)
+    def get_historical_data(self, stockSymbol):
+        """Menu to navigate through file"""
+        data_range = int(input('Choose Data Option:\n'
+                               '1: Five Months Data\n'
+                               '2: Daily Adjusted Data\n'
+                               '3: Intraday Data\n'
+                               '4: All Available Data\n'))
+        print_csv_link = int(input('Do you want the link to download csv files?\n'
+                                   '1: Yes\n'
+                                   '2: No\n'))
+        draw_graphs = int(input('\nDo you want to draw graphs?\n'
+                                '1: Yes\n'
+                                '2: No\n'))
 
-    if data_range == 2:
-        data = stock.get_daily_adjusted_data()
-        if print_csv_link == 1:
-            stock.get_csv_daily_adjusted_data()
+        stock = Stock(symbol=stockSymbol)
 
-    elif data_range == 3:
-        data = stock.get_intraday_data()
-        if print_csv_link == 1:
-            stock.get_intraday_csv_data()
+        if data_range == 2:
+            data = stock.get_daily_adjusted_data()
+            if print_csv_link == 1:
+                stock.get_csv_daily_adjusted_data()
 
-    elif data_range == 4:
-        data = stock.get_all_available_data()
-        if print_csv_link == 1:
-            stock.get_csv_all_available_data()
-    else:
-        data = stock.get_five_months_data()
-        if print_csv_link == 1:
-            stock.get_five_months_csv_data()
+        elif data_range == 3:
+            data = stock.get_intraday_data()
+            if print_csv_link == 1:
+                stock.get_intraday_csv_data()
 
-    data = stock.convert_url_data_into_json(url_data=data)
-    data = stock.convert_json_to_dataframe(json_data=data)
-    print('\nFirst 10 entries:\n', data.head(10))
-    print('\nLast 10 entries:\n', data.tail(10))
+        elif data_range == 4:
+            data = stock.get_all_available_data()
+            if print_csv_link == 1:
+                stock.get_csv_all_available_data()
+        else:
+            data = stock.get_five_months_data()
+            if print_csv_link == 1:
+                stock.get_five_months_csv_data()
 
-    if draw_graphs == 1:
-        attributes = input("\nWhich attributes would you like to draw?"
-                               "If multiple attributes, put a comma between them.\n"
-                               "1: Close\n"
-                               "2: Open\n"
-                               "3: High\n"
-                               "4: Low\n")
-        attributes = attributes.split(',')
-        attributes = (' ').join(attributes)
+        data = stock.convert_url_data_into_json(url_data=data)
+        data = stock.convert_json_to_dataframe(json_data=data)
+        print('\nFirst 10 entries:\n', data.head(10))
+        print('\nLast 10 entries:\n', data.tail(10))
 
-        stock.draw_graph(Close=check_if_attribute_in_list('1', attributes),
-                         Open=check_if_attribute_in_list('2', attributes),
-                         High=check_if_attribute_in_list('3', attributes),
-                         Low=check_if_attribute_in_list('4', attributes))
-        draw_stoch = int(input("\nWould you like to draw a stochastic oscillator?\n"
-                               "1: Yes\n"
-                               "2: No\n"))
-        if draw_stoch != 2:
-            stock.draw_stochastic_oscillator()
+        if draw_graphs == 1:
+            attributes = input("\nWhich attributes would you like to draw?"
+                                   "If multiple attributes, put a comma between them.\n"
+                                   "1: Close\n"
+                                   "2: Open\n"
+                                   "3: High\n"
+                                   "4: Low\n")
+            attributes = attributes.split(',')
+            attributes = (' ').join(attributes)
 
-            draw_long_short = int(input("\nWould you like to draw the long or short graph based on the oscillator?\n"
-                                        "1: Yes\n"
-                                        "2: No\n"))
-            if draw_long_short != 2:
-                stock.draw_long_or_short_graph()
+            stock.draw_graph(Close=self.check_if_attribute_in_list('1', attributes),
+                             Open=self.check_if_attribute_in_list('2', attributes),
+                             High=self.check_if_attribute_in_list('3', attributes),
+                             Low=self.check_if_attribute_in_list('4', attributes))
+            draw_stoch = int(input("\nWould you like to draw a stochastic oscillator?\n"
+                                   "1: Yes\n"
+                                   "2: No\n"))
+            if draw_stoch != 2:
+                stock.draw_stochastic_oscillator()
 
-
-def get_current_data(stockSymbol, print_results=False):
-    """Grabs current data"""
-    stock = Stock(symbol=stockSymbol)
-    data = stock.get_current_stock_data()
-    if print_results == True:
-        print('\nData:', data)
-    return data
+                draw_long_short = int(input("\nWould you like to draw the long or short graph based on the oscillator?\n"
+                                            "1: Yes\n"
+                                            "2: No\n"))
+                if draw_long_short != 2:
+                    stock.draw_long_or_short_graph()
 
 
-def get_sector_data():
-    """Prints Sector data"""
-    sectorDataUrl = f'https://www.alphavantage.co/query?' \
-                    f'function=SECTOR&' \
-                    f'apikey={get_API_key()}'
-    with urllib.request.urlopen(sectorDataUrl) as response:
-        html = response.read()
-        data = json.loads(html)
-
-    sector = int(input('\nWhich Sector Data would you like to view?\n'
-                       '0: Real-Time Performance\n'
-                       '1: 1 Day Performance\n'
-                       '2: 5 Day Performance\n'
-                       '3: 1 Month Performance\n'
-                       '4: 3 Month Performance\n'
-                       '5: Year To Date Performance\n'
-                       '6: 1 Year Performance\n'
-                       '7: 3 Year Performance\n'
-                       '8: 5 Year Performance\n'
-                       '9: 10 Year Performance\n'))
-    if sector == 1:
-        data = json_normalize(data['Rank B: 1 Day Performance'], meta=['Sector', 'Change'])
-    elif sector == 2:
-        data = json_normalize(data['Rank C: 5 Day Performance'])
-    elif sector == 3:
-        data = json_normalize(data['Rank D: 1 Month Performance'])
-    elif sector == 4:
-        data = json_normalize(data['Rank E: 3 Month Performance'])
-    elif sector == 5:
-        data = json_normalize(data['Rank F: Year-to-Date (YTD) Performance'])
-    elif sector == 6:
-        data = json_normalize(data['Rank G: 1 Year Performance'])
-    elif sector == 7:
-        data = json_normalize(data['Rank H: 3 Year Performance'])
-    elif sector == 8:
-        data = json_normalize(data['Rank I: 5 Year Performance'])
-    elif sector == 9:
-        data = json_normalize(data['Rank J: 10 Year Performance'])
-    else:
-        data = json_normalize(data['Rank A: Real-Time Performance'])
-
-    data = data.transpose()
-    print(data)
+    def get_current_data(self, stockSymbol, print_results=False):
+        """Grabs current data"""
+        stock = Stock(symbol=stockSymbol)
+        data = stock.get_current_stock_data()
+        if print_results == True:
+            print('\nData:', data)
+        return data
 
 
-
-def create_market_report():
-    """Uses companies listed in nasdaq file and retrieves data on all of them"""
-    filePath = os.getcwd + '/Spreadsheets/Market_Summary.xlsx'
-    nasdaq_data = pd.read_csv('Nasdaq_Company_List.csv')
-    marketData = pd.DataFrame(columns=['Symbol', 'Name', 'Price', 'Change',
-                                       'Change_Percent', 'Open', 'High', 'Low',
-                                       'Previous_Close', 'Volume', 'Latest_Trading_Day',
-                                       'Industry', 'Sector', 'Summary_Quote'])
-
-    for i in range(len(nasdaq_data)):
-        try:
-            time.sleep(0.3)
-            data = marketData
-            data.Symbol = nasdaq_data['Symbol']
-            data.Name = nasdaq_data['Name']
-            data.Sector = nasdaq_data['Sector']
-            data.Industry = nasdaq_data['Industry']
-            data.Summary_Quote = nasdaq_data['Summary Quote']
-
-            name = marketData.Symbol.iloc[i]
-            currentData = get_current_data(name)
-
-            data.iloc[i].Price = currentData['Price']
-            data.iloc[i].Change = currentData['Change']
-            data.iloc[i].Change_Percent = currentData['Change Percent']
-            data.iloc[i].Open = currentData['Open']
-            data.iloc[i].High = currentData['High']
-            data.iloc[i].Low = currentData['Low']
-            data.iloc[i].Previous_Close = currentData['Previous Close']
-            data.iloc[i].Volume = currentData['Volume']
-            data.iloc[i].Latest_Trading_Day = currentData['Latest Trading Day']
-            marketData.append(data)
-
-            if i % 50 == 0:
-                print(f'{i} of {len(nasdaq_data)} Stocks')
-                marketData.to_excel(filePath)
-
-        except Exception as e:
-            print(f'ERROR Grabbing Data for {name}:', e)
-
-
-    marketData.to_excel(filePath)
-    print("Market_Summary.xlsx has been created.")
-
-
-def split_percentage(change):
-    """Splits percentage string and returns float"""
-    try:
-        change = float(change.split('%')[0])
-        return change
-
-    except Exception as e:
-        print(e)
-
-def search_for_company_symbol(keyword_to_search_for, automated=False):
-    """Searches for company symbol based on string"""
-    url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword_to_search_for}&apikey={get_API_key()}'
-    try:
-        with urllib.request.urlopen(url) as response:
+    def get_sector_data(self):
+        """Prints Sector data"""
+        sectorDataUrl = f'https://www.alphavantage.co/query?' \
+                        f'function=SECTOR&' \
+                        f'apikey={get_API_key()}'
+        with urllib.request.urlopen(sectorDataUrl) as response:
             html = response.read()
             data = json.loads(html)
 
-        length_of_results = len(data['bestMatches'])
-        data = json_normalize(data['bestMatches'])
-        data = data.rename(columns = {'1. symbol' : 'Symbol',
-                                      '2. name' : 'Name',
-                                      '3. type' : 'Type',
-                                      '4. region' : 'Region',
-                                      '5. marketOpen' : 'Market_Open',
-                                      '6. marketClose' : 'Market_Close',
-                                      '7. timezone' : 'Timezone',
-                                      '8. currency' : 'Currency',
-                                      '9. matchScore' : 'Match_Score'})
-        if automated == True:
-            return data
+        sector = int(input('\nWhich Sector Data would you like to view?\n'
+                           '0: Real-Time Performance\n'
+                           '1: 1 Day Performance\n'
+                           '2: 5 Day Performance\n'
+                           '3: 1 Month Performance\n'
+                           '4: 3 Month Performance\n'
+                           '5: Year To Date Performance\n'
+                           '6: 1 Year Performance\n'
+                           '7: 3 Year Performance\n'
+                           '8: 5 Year Performance\n'
+                           '9: 10 Year Performance\n'))
+        if sector == 1:
+            data = json_normalize(data['Rank B: 1 Day Performance'], meta=['Sector', 'Change'])
+        elif sector == 2:
+            data = json_normalize(data['Rank C: 5 Day Performance'])
+        elif sector == 3:
+            data = json_normalize(data['Rank D: 1 Month Performance'])
+        elif sector == 4:
+            data = json_normalize(data['Rank E: 3 Month Performance'])
+        elif sector == 5:
+            data = json_normalize(data['Rank F: Year-to-Date (YTD) Performance'])
+        elif sector == 6:
+            data = json_normalize(data['Rank G: 1 Year Performance'])
+        elif sector == 7:
+            data = json_normalize(data['Rank H: 3 Year Performance'])
+        elif sector == 8:
+            data = json_normalize(data['Rank I: 5 Year Performance'])
+        elif sector == 9:
+            data = json_normalize(data['Rank J: 10 Year Performance'])
+        else:
+            data = json_normalize(data['Rank A: Real-Time Performance'])
 
-        index = 0
-        answer = 0
-        while index < length_of_results or answer != 1:
-            print('\nSymbol:', data.Symbol.iloc[index],
-                  '\nName:', data.Name.iloc[index],
-                  '\nMatch:', data.Match_Score.iloc[index])
-            answer = int(input('Is this what you are looking for?\n'
-                               '1: Yes\n'
-                               '2: No\n'))
-            if answer == 1:
-                return data.Symbol.iloc[index]
-            index += 1
-
-        print('\nNo Stocks Found')
-        return None
-
-    except:
-        return None
+        data = data.transpose()
+        print(data)
 
 
 
+    def create_market_report(self):
+        """Uses companies listed in nasdaq file and retrieves data on all of them"""
+        filePath = os.getcwd + '/Spreadsheets/Market_Summary.xlsx'
+        nasdaq_data = pd.read_csv('Nasdaq_Company_List.csv')
+        marketData = pd.DataFrame(columns=['Symbol', 'Name', 'Price', 'Change',
+                                           'Change_Percent', 'Open', 'High', 'Low',
+                                           'Previous_Close', 'Volume', 'Latest_Trading_Day',
+                                           'Industry', 'Sector', 'Summary_Quote'])
 
+        for i in range(len(nasdaq_data)):
+            try:
+                time.sleep(0.3)
+                data = marketData
+                data.Symbol = nasdaq_data['Symbol']
+                data.Name = nasdaq_data['Name']
+                data.Sector = nasdaq_data['Sector']
+                data.Industry = nasdaq_data['Industry']
+                data.Summary_Quote = nasdaq_data['Summary Quote']
+
+                name = marketData.Symbol.iloc[i]
+                currentData = self.get_current_data(name)
+
+                data.iloc[i].Price = currentData['Price']
+                data.iloc[i].Change = currentData['Change']
+                data.iloc[i].Change_Percent = currentData['Change Percent']
+                data.iloc[i].Open = currentData['Open']
+                data.iloc[i].High = currentData['High']
+                data.iloc[i].Low = currentData['Low']
+                data.iloc[i].Previous_Close = currentData['Previous Close']
+                data.iloc[i].Volume = currentData['Volume']
+                data.iloc[i].Latest_Trading_Day = currentData['Latest Trading Day']
+                marketData.append(data)
+
+                if i % 50 == 0:
+                    print(f'{i} of {len(nasdaq_data)} Stocks')
+                    marketData.to_excel(filePath)
+
+            except Exception as e:
+                print(f'ERROR Grabbing Data for {name}:', e)
+
+
+        marketData.to_excel(filePath)
+        print("Market_Summary.xlsx has been created.")
+
+
+    def split_percentage(self, change):
+        """Splits percentage string and returns float"""
+        try:
+            change = float(change.split('%')[0])
+            return change
+
+        except Exception as e:
+            print(e)
+
+    def search_for_company_symbol(self, keyword_to_search_for, automated=False):
+        """Searches for company symbol based on string"""
+        url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword_to_search_for}&apikey={get_API_key()}'
+        try:
+            with urllib.request.urlopen(url) as response:
+                html = response.read()
+                data = json.loads(html)
+
+            length_of_results = len(data['bestMatches'])
+            data = json_normalize(data['bestMatches'])
+            data = data.rename(columns = {'1. symbol' : 'Symbol',
+                                          '2. name' : 'Name',
+                                          '3. type' : 'Type',
+                                          '4. region' : 'Region',
+                                          '5. marketOpen' : 'Market_Open',
+                                          '6. marketClose' : 'Market_Close',
+                                          '7. timezone' : 'Timezone',
+                                          '8. currency' : 'Currency',
+                                          '9. matchScore' : 'Match_Score'})
+            if automated == True:
+                return data
+
+            index = 0
+            answer = 0
+            while index < length_of_results or answer != 1:
+                print('\nSymbol:', data.Symbol.iloc[index],
+                      '\nName:', data.Name.iloc[index],
+                      '\nMatch:', data.Match_Score.iloc[index])
+                answer = int(input('Is this what you are looking for?\n'
+                                   '1: Yes\n'
+                                   '2: No\n'))
+                if answer == 1:
+                    return data.Symbol.iloc[index]
+                index += 1
+
+            print('\nNo Stocks Found')
+            return None
+
+        except:
+            return None

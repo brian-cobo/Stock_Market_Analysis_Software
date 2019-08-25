@@ -1,6 +1,6 @@
 # File Imports
 from Main_Program.Web_Scraper import Find_Articles
-from Main_Program.Stock_Visualizations_Menu import Gather_Stock_Info_Menu as Stock
+from Main_Program.Stock_Info import Gather_Stock_Info_Menu as Stock
 
 
 def navigate_through_article_scraper():
@@ -67,18 +67,18 @@ def navigate_through_stock_data():
 
 if __name__ == "__main__":
     main_choice = 0
-    print('Stock Market Analysis Software')
 
     while main_choice != -1:
+        print('Stock Market Analysis Software')
         choice = int(input('\nDo you want to retrieve stock data of article data?\n'
                            ' 1: Retrieve Stock Data\n'
                            ' 2: Retrieve Article Data\n'
                            '-1: Quit\n'))
         if choice == 1:
             navigate_through_stock_data()
-        if choice == 2:
+        elif choice == 2:
             navigate_through_article_scraper()
-        if choice == -1:
+        elif choice == -1:
             print('Goodbye')
             exit(0)
         else:

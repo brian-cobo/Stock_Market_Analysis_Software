@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$Market_Summary.xlsx" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +17,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-99">
+            <state relative-caret-position="8700">
               <caret line="588" column="8" selection-start-line="588" selection-start-column="8" selection-end-line="588" selection-end-column="8" />
               <folding>
                 <element signature="e#55#64#0" expanded="true" />
@@ -27,23 +29,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2997">
-              <caret line="149" column="36" lean-forward="true" selection-start-line="149" selection-start-column="36" selection-end-line="149" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="6" selection-start-column="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor>
-                <caret column="32" selection-start-column="32" selection-end-column="32" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -112,6 +108,7 @@
         <option value="$PROJECT_DIR$/NLTK-Sentiment-Analysis.py" />
         <option value="$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -135,6 +132,11 @@
             <path>
               <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
               <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
+              <item name="Article_Sentiment_Results" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -322,23 +324,24 @@
       <workItem from="1565910005489" duration="1810000" />
       <workItem from="1566173712443" duration="7898000" />
       <workItem from="1566406521672" duration="4212000" />
-      <workItem from="1566694410480" duration="8627000" />
+      <workItem from="1566694410480" duration="8799000" />
+      <workItem from="1566741545729" duration="493000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169340000" />
+    <option name="totallyTimeSpent" value="170005000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="724" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="724" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19547658" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1987076" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3227848" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" visible="true" weight="0.31012657" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" weight="0.31012657" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -401,9 +404,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Articles/Apple-Article.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Articles/Apple-Article.txt" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/indexing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -415,35 +416,14 @@
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Untitled.ipynb" />
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/IMDB Review Analysis.ipynb" />
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Analyze_Sentiment_Results.ipynb" />
-    <entry file="file://$PROJECT_DIR$/NLTK Exploration/nltk_practice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NLTK Exploration/Sentiment_Analysis_Classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/NLTK Exploration/nltk_practice.py" />
+    <entry file="file://$PROJECT_DIR$/NLTK Exploration/Sentiment_Analysis_Classifier.py" />
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Explore Market Data.ipynb">
       <provider selected="true" editor-type-id="jupyter-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results_1.csv" />
-    <entry file="file://$PROJECT_DIR$/Financial Lexicon/Lexicon Analysis.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Financial Lexicon/Lexicon Analysis.ipynb" />
     <entry file="file://$PROJECT_DIR$/Main_Program/APIData.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Main_Program/LoughranMcDonald_MasterDictionary_2018.csv">
@@ -456,13 +436,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Financial Lexicon/Load_MasterDictionary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Financial Lexicon/Load_MasterDictionary.py" />
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="240">
@@ -473,36 +447,7 @@
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="588" column="8" selection-start-line="588" selection-start-column="8" selection-end-line="588" selection-end-column="8" />
-          <folding>
-            <element signature="e#55#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Financial Lexicon/Generic_Parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding>
-            <element signature="e#1208#1218#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2997">
-          <caret line="149" column="36" lean-forward="true" selection-start-line="149" selection-start-column="36" selection-end-line="149" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Financial Lexicon/Generic_Parser.py" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -510,6 +455,30 @@
             <caret column="32" selection-start-column="32" selection-end-column="32" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8700">
+          <caret line="588" column="8" selection-start-line="588" selection-start-column="8" selection-end-line="588" selection-end-column="8" />
+          <folding>
+            <element signature="e#55#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/NLTK-Sentiment-Analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>

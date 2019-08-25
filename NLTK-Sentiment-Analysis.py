@@ -7,11 +7,16 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 from collections import Counter
+import string
 import re
+import Load_MasterDictionary as LM
+
+MASTER_DICTIONARY_FILE = 'LoughranMcDonald_MasterDictionary_2018.csv'
+lm_dictionary = LM.load_masterdictionary(MASTER_DICTIONARY_FILE, True)
+
 # http://www.nltk.org/howto/sentiment.html
 # https://www.dataquest.io/blog/web-scraping-tutorial-python/
 #https://sraf.nd.edu
-
 
 #TODO
 # Analyze company earnings reports
@@ -33,10 +38,21 @@ class Webscraper:
                                               'Author': article_info['Author'],
                                               'Date_Published': article_info['Date_Published'],
                                               'Time_Published': article_info['Time_Published'],
-                                              'Overall_SA': article_info['Overall_SA'],
-                                              'Positive_SA': article_info['Positive_SA'],
-                                              'Negative_SA': article_info['Negative_SA'],
-                                              'Neutral_SA': article_info['Neutral_SA']
+                                              'numberOfWords': article_info['numberOfWords'],
+                                              'positive_%': article_info['positive_%'],
+                                              'negative_%': article_info['negative_%'],
+                                              'uncertainty_%': article_info['uncertainty_%'],
+                                              'litigious': article_info['litigious'],
+                                              'modal-weak_%': article_info['modal-weak_%'],
+                                              'modal-moderate_%': article_info['modal-moderate_%'],
+                                              'modal-strong_%': article_info['modal-strong_%'],
+                                              'constraining_%': article_info['constraining_%'],
+                                              'num_of_alphanumeric': article_info['num_of_alphanumeric'],
+                                              'num_of_digits': article_info['num_of_digits'],
+                                              'num_of_Numbers': article_info['num_of_Numbers'] ,
+                                              'avg_num_Of_syllables_per_word': article_info['avg_num_Of_syllables_per_word'],
+                                              'avg_word_length': article_info['avg_word_length'],
+                                              'vocabulary': article_info['vocabulary']
                                              },
                                              ignore_index=True)
             self.clean_article_results_columns(article_results_dataframe)
@@ -59,8 +75,13 @@ class Webscraper:
 
     def clean_article_results_columns(self, article_results_dataframe):
         columns = ['URL', 'Title', 'Company_Symbol', 'Author',
-                   'Date_Published', 'Time_Published', 'Overall_SA',
-                   'Positive_SA', 'Negative_SA', 'Neutral_SA']
+                   'Date_Published', 'Time_Published', 'numberOfWords',
+                   'positive_%', 'negative_%', 'uncertainty_%',
+                   'litigious', 'modal-weak_%', 'modal-moderate_%',
+                    'modal-strong_%', 'constraining_%', 'num_of_alphanumeric',
+                    'num_of_digits', 'num_of_Numbers', 'avg_num_Of_syllables_per_word',
+                    'avg_word_length', 'vocabulary']
+
         for column in article_results_dataframe.columns:
             if column not in columns:
                 article_results_dataframe = article_results_dataframe.drop(columns=[column], axis=1)
@@ -75,10 +96,21 @@ class Webscraper:
                                         'Author',
                                         'Date_Published',
                                         'Time_Published',
-                                        'Overall_SA',
-                                        'Positive_SA',
-                                        'Negative_SA',
-                                        'Neutral_SA'])
+                                        'numberOfWords',
+                                        'positive_%',
+                                        'negative_%',
+                                        'uncertainty_%',
+                                        'litigious',
+                                        'modal-weak_%',
+                                        'modal-moderate_%',
+                                        'modal-strong_%',
+                                        'constraining_%',
+                                        'num_of_alphanumeric',
+                                        'num_of_digits',
+                                        'num_of_Numbers',
+                                        'avg_num_Of_syllables_per_word',
+                                        'avg_word_length',
+                                        'vocabulary'])
         article.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
         return article
 
@@ -125,31 +157,24 @@ class Webscraper:
         return tokenized_sentence
 
     def get_sentiment_analysis(self, article_info):
-        article = article_info['Article']
-        print(article)
-        exit(0)
-        sid = SentimentIntensityAnalyzer()
-        total_sentiment_values = {'Compound': 0, 'Positive': 0, 'Negative': 0, 'Neutral': 0}
-        average_sentiment_values = {'Compound': 0, 'Positive': 0, 'Negative': 0, 'Neutral': 0}
-        number_of_sentences = len(article)
+        article = article_info['Article'][0]
+        article_results = parser(article)
 
-        for sentence in article:
-            results = sid.polarity_scores(sentence)
-            total_sentiment_values['Compound'] += results['compound']
-            total_sentiment_values['Positive'] += results['pos']
-            total_sentiment_values['Negative'] += results['neg']
-            total_sentiment_values['Neutral'] += results['neu']
-
-        average_sentiment_values['Compound'] = float(total_sentiment_values['Compound'] / number_of_sentences)
-        average_sentiment_values['Positive'] = float(total_sentiment_values['Positive'] / number_of_sentences)
-        average_sentiment_values['Negative'] = float(total_sentiment_values['Negative'] / number_of_sentences)
-        average_sentiment_values['Neutral'] = float(total_sentiment_values['Neutral'] / number_of_sentences)
-
-        article_info['Overall_SA'] = average_sentiment_values['Compound']
-        article_info['Positive_SA'] = average_sentiment_values['Positive']
-        article_info['Negative_SA'] = average_sentiment_values['Negative']
-        article_info['Neutral_SA'] = average_sentiment_values['Neutral']
-        article_info.pop('Article', None)
+        article_info['numberOfWords'] = article_results['numberOfWords']
+        article_info['positive_%'] = article_results['positive_%']
+        article_info['negative_%'] = article_results['negative_%']
+        article_info['uncertainty_%'] = article_results['uncertainty_%']
+        article_info['litigious'] = article_results['litigious']
+        article_info['modal-weak_%'] = article_results['modal-weak_%']
+        article_info['modal-moderate_%'] = article_results['modal-moderate_%']
+        article_info['modal-strong_%'] = article_results['modal-strong_%']
+        article_info['constraining_%'] = article_results['constraining_%']
+        article_info['num_of_alphanumeric'] = article_results['num_of_alphanumeric']
+        article_info['num_of_digits'] = article_results['num_of_digits']
+        article_info['num_of_Numbers'] = article_results['num_of_Numbers']
+        article_info['avg_num_Of_syllables_per_word'] = article_results['avg_num_Of_syllables_per_word']
+        article_info['avg_word_length'] = article_results['avg_word_length']
+        article_info['vocabulary'] = article_results['vocabulary']
 
         return article_info
 
@@ -213,7 +238,7 @@ class Webscraper:
 
     def scrape_article_from_web(self, article_URL):
         try:
-            page = requests.get(article_URL)
+            page = requests.get(article_URL)-1
             soup = BeautifulSoup(page.content, 'html.parser')
 
             title = self.find_title_from_article(soup)
@@ -319,6 +344,70 @@ class Find_Articles:
             web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
         except Exception as e:
             print(e)
+
+def parser(doc):
+    doc = doc.upper()  # for this parse caps aren't informative so shift
+    output_data = get_article_data(doc)
+    article_info = {
+        'numberOfWords': output_data[2],
+        'positive_%': output_data[3],
+        'negative_%': output_data[4],
+        'uncertainty_%': output_data[5],
+        'litigious': output_data[6],
+        'modal-weak_%': output_data[7],
+        'modal-moderate_%': output_data[8],
+        'modal-strong_%': output_data[9],
+        'constraining_%': output_data[10],
+        'num_of_alphanumeric': output_data[11],
+        'num_of_digits': output_data[12],
+        'num_of_Numbers': output_data[13],
+        'avg_num_Of_syllables_per_word': output_data[14],
+        'avg_word_length': output_data[15],
+        'vocabulary': output_data[16]
+    }
+
+    return article_info
+
+
+def get_article_data(doc):
+    vdictionary = {}
+    _odata = [0] * 17
+    total_syllables = 0
+    word_length = 0
+
+    tokens = re.findall('\w+', doc)  # Note that \w+ splits hyphenated words
+    for token in tokens:
+        if not token.isdigit() and len(token) > 1 and token in lm_dictionary:
+            _odata[2] += 1  # word count
+            word_length += len(token)
+            if token not in vdictionary:
+                vdictionary[token] = 1
+            if lm_dictionary[token].positive: _odata[3] += 1
+            if lm_dictionary[token].negative: _odata[4] += 1
+            if lm_dictionary[token].uncertainty: _odata[5] += 1
+            if lm_dictionary[token].litigious: _odata[6] += 1
+            if lm_dictionary[token].weak_modal: _odata[7] += 1
+            if lm_dictionary[token].moderate_modal: _odata[8] += 1
+            if lm_dictionary[token].strong_modal: _odata[9] += 1
+            if lm_dictionary[token].constraining: _odata[10] += 1
+            total_syllables += lm_dictionary[token].syllables
+
+    _odata[11] = len(re.findall('[A-Z]', doc))
+    _odata[12] = len(re.findall('[0-9]', doc))
+    # drop punctuation within numbers for number count
+    doc = re.sub('(?!=[0-9])(\.|,)(?=[0-9])', '', doc)
+    doc = doc.translate(str.maketrans(string.punctuation, " " * len(string.punctuation)))
+    _odata[13] = len(re.findall(r'\b[-+\(]?[$€£]?[-+(]?\d+\)?\b', doc))
+    _odata[14] = total_syllables / _odata[2]
+    _odata[15] = word_length / _odata[2]
+    _odata[16] = len(vdictionary)
+
+    # Convert counts to %
+    for i in range(3, 10 + 1):
+        _odata[i] = (_odata[i] / _odata[2]) * 100
+    # Vocabulary
+
+    return _odata
 
 if __name__ == "__main__":
     choice = 0

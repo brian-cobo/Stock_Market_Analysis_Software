@@ -18,9 +18,6 @@ import time
 # File Imports
 from APIData import get_API_key
 
-# Code Sources
-#    - Stochastic Oscillation
-#       - https://pythonforfinance.net/2017/10/10/stochastic-oscillator-trading-strategy-backtest-in-python/
 
 class Stock:
     def __init__(self, symbol, stockInfo=None,
@@ -379,17 +376,17 @@ def get_historical_data(stockSymbol):
 
     stock = Stock(symbol=stockSymbol)
 
-    if choice == 2:
+    if data_range == 2:
         data = stock.get_daily_adjusted_data()
         if print_csv_link == 1:
             stock.get_csv_daily_adjusted_data()
 
-    elif choice == 3:
+    elif data_range == 3:
         data = stock.get_intraday_data()
         if print_csv_link == 1:
             stock.get_intraday_csv_data()
 
-    elif choice == 4:
+    elif data_range == 4:
         data = stock.get_all_available_data()
         if print_csv_link == 1:
             stock.get_csv_all_available_data()
@@ -399,12 +396,9 @@ def get_historical_data(stockSymbol):
             stock.get_five_months_csv_data()
 
     data = stock.convert_url_data_into_json(url_data=data)
-    print(data)
     data = stock.convert_json_to_dataframe(json_data=data)
     print('\nFirst 10 entries:\n', data.head(10))
     print('\nLast 10 entries:\n', data.tail(10))
-
-
 
     if draw_graphs == 1:
         attributes = input("\nWhich attributes would you like to draw?"

@@ -112,7 +112,7 @@ class MasterDictionary:
 
 if __name__ == '__main__':
     print(time.strftime('%c') + '/n')
-    md = ('Main_Program\LoughranMcDonald_MasterDictionary_2018.csv')
+    md = ('LoughranMcDonald_MasterDictionary_2018.csv')
     master_dictionary, md_header, sentiment_categories, stopwords, total_documents = load_masterdictionary(md, True, False, True)
     print('\n' + 'Normal termination.')
     print(time.strftime('%c') + '/n')

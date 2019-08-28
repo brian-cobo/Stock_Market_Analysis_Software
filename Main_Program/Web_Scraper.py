@@ -86,8 +86,8 @@ class Webscraper:
         for column in article_results_dataframe.columns:
             if column not in columns:
                 article_results_dataframe = article_results_dataframe.drop(columns=[column], axis=1)
-                article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
-        article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+                article_results_dataframe.to_csv('Sentiment_Results.csv')
+        article_results_dataframe.to_csv('Sentiment_Results.csv')
         return article_results_dataframe
 
     def create_saved_article_results_dataframe(self):
@@ -113,12 +113,12 @@ class Webscraper:
                                         'avg_num_Of_syllables_per_word',
                                         'avg_word_length',
                                         'vocabulary'])
-        article.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+        article.to_csv('Sentiment_Results.csv')
         return article
 
     def return_article_results_dataframe(self):
         """Check to see if csv file exists, if not create a new one"""
-        article_result_file_path = os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv'
+        article_result_file_path = 'Sentiment_Results.csv'
         if os.path.exists(article_result_file_path):
             saved_article_results = pd.read_csv(article_result_file_path)
             if len(saved_article_results) > 0:
@@ -130,7 +130,7 @@ class Webscraper:
 
     def check_for_existing_article_results(self, URL_to_check_for):
         """ Check to see if URL extracted from webscraper already exists in the csv file"""
-        article_result_file_path = os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv'
+        article_result_file_path = 'Sentiment_Results.csv'
         if os.path.exists(article_result_file_path):
             article = pd.read_csv(article_result_file_path)
             data = article[(article.URL == URL_to_check_for)]
@@ -232,20 +232,18 @@ class Webscraper:
                     i[item] = regex.sub('', i[item])
                 count = Counter(i)
                 for key, value in count.items():
-                    # try:
-                    print('Company symbol:', company_symbol)
-                    if company_symbol == None:
-                        # The line below is what's giving me errors
-                        symbols = symbolSearch(key, automated=True)
-                        if (key in title.lower() and
-                                key in article_content[0].lower() and
-                                key in symbols.Name.iloc[0].lower() and
-                                symbols.Currency.iloc[0] == 'USD' and
-                                article_content[0].count(symbols.Name.iloc[0].split()[0]) > 1):
-                            company_symbol = symbols.Symbol.iloc[0]
-
-                    # except Exception as e:
-                    #     print(e)
+                    try:
+                        if company_symbol == None:
+                            # The line below is what's giving me errors
+                            symbols = symbolSearch(key, automated=True)
+                            if (key in title.lower() and
+                                    key in article_content[0].lower() and
+                                    key in symbols.Name.iloc[0].lower() and
+                                    symbols.Currency.iloc[0] == 'USD' and
+                                    article_content[0].count(symbols.Name.iloc[0].split()[0]) > 1):
+                                company_symbol = symbols.Symbol.iloc[0]
+                    except Exception as e:
+                        pass
                 break
         return company_symbol
 

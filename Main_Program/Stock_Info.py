@@ -552,43 +552,43 @@ class Gather_Stock_Info_Menu():
         except Exception as e:
             print(e)
 
-    def search_for_company_symbol(self, keyword_to_search_for, automated=False):
-        """Searches for company symbol based on string"""
-        url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword_to_search_for}&apikey={get_API_key()}'
-        try:
-            with urllib.request.urlopen(url) as response:
-                html = response.read()
-                data = json.loads(html)
+def search_for_company_symbol(keyword_to_search_for, automated=False):
+    """Searches for company symbol based on string"""
+    url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword_to_search_for}&apikey={get_API_key()}'
+    try:
+        with urllib.request.urlopen(url) as response:
+            html = response.read()
+            data = json.loads(html)
 
-            length_of_results = len(data['bestMatches'])
-            data = json_normalize(data['bestMatches'])
-            data = data.rename(columns = {'1. symbol' : 'Symbol',
-                                          '2. name' : 'Name',
-                                          '3. type' : 'Type',
-                                          '4. region' : 'Region',
-                                          '5. marketOpen' : 'Market_Open',
-                                          '6. marketClose' : 'Market_Close',
-                                          '7. timezone' : 'Timezone',
-                                          '8. currency' : 'Currency',
-                                          '9. matchScore' : 'Match_Score'})
-            if automated == True:
-                return data
+        length_of_results = len(data['bestMatches'])
+        data = json_normalize(data['bestMatches'])
+        data = data.rename(columns = {'1. symbol' : 'Symbol',
+                                      '2. name' : 'Name',
+                                      '3. type' : 'Type',
+                                      '4. region' : 'Region',
+                                      '5. marketOpen' : 'Market_Open',
+                                      '6. marketClose' : 'Market_Close',
+                                      '7. timezone' : 'Timezone',
+                                      '8. currency' : 'Currency',
+                                      '9. matchScore' : 'Match_Score'})
+        if automated == True:
+            return data
 
-            index = 0
-            answer = 0
-            while index < length_of_results or answer != 1:
-                print('\nSymbol:', data.Symbol.iloc[index],
-                      '\nName:', data.Name.iloc[index],
-                      '\nMatch:', data.Match_Score.iloc[index])
-                answer = int(input('Is this what you are looking for?\n'
-                                   '1: Yes\n'
-                                   '2: No\n'))
-                if answer == 1:
-                    return data.Symbol.iloc[index]
-                index += 1
+        index = 0
+        answer = 0
+        while index < length_of_results or answer != 1:
+            print('\nSymbol:', data.Symbol.iloc[index],
+                  '\nName:', data.Name.iloc[index],
+                  '\nMatch:', data.Match_Score.iloc[index])
+            answer = int(input('Is this what you are looking for?\n'
+                               '1: Yes\n'
+                               '2: No\n'))
+            if answer == 1:
+                return data.Symbol.iloc[index]
+            index += 1
 
-            print('\nNo Stocks Found')
-            return None
+        print('\nNo Stocks Found')
+        return None
 
-        except:
-            return None
+    except:
+        return None

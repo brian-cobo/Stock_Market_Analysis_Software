@@ -1,21 +1,18 @@
-from nltk.corpus import stopwords
-from nltk.tokenize import sent_tokenize
-from Main_Program.Stock_Visualizations_Menu import search_for_company_symbol
+# File Imports
+from Main_Program.Stock_Info import Stock
+from Main_Program.Sentiment_Analyzer import parser
+from Main_Program.Stock_Info import search_for_company_symbol as symbolSearch
+from Main_Program import Load_MasterDictionary as LM
+
+
+# Library Imports
 import os
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 from collections import Counter
-import string
 import re
-from Main_Program import Load_MasterDictionary as LM
 
-MASTER_DICTIONARY_FILE = 'LoughranMcDonald_MasterDictionary_2018.csv'
-lm_dictionary = LM.load_masterdictionary(MASTER_DICTIONARY_FILE, True)
-
-# http://www.nltk.org/howto/sentiment.html
-# https://www.dataquest.io/blog/web-scraping-tutorial-python/
-#https://sraf.nd.edu
 
 #TODO
 # Analyze company earnings reports
@@ -24,7 +21,11 @@ lm_dictionary = LM.load_masterdictionary(MASTER_DICTIONARY_FILE, True)
 
 
 class Webscraper:
+    """This class deals with extracting info from articles and saving them"""
     def add_row_to_saved_article_results_dataframe(self, article_info):
+        """If it turns out that the article it analyzes isn't already in the
+            Sentiments_Results.csv file, this function will add the information
+            gathered into the csv file"""
         if (self.check_for_existing_article_results(article_info['URL']) == False and
                 self.check_for_null_values(article_info) == True):
             article_results_dataframe = self.return_article_results_dataframe()
@@ -60,6 +61,7 @@ class Webscraper:
                 print('Article Info Already Saved')
 
     def check_for_null_values(self, article_info):
+        """Check to see if the entire result of the webscraper is null"""
         if (article_info['URL'] != None and
                 article_info['Title'] != None and
                 article_info['Company_Symbol'] != None and
@@ -71,6 +73,8 @@ class Webscraper:
             return False
 
     def clean_article_results_columns(self, article_results_dataframe):
+        """For some reason, each append to the csv file created a new column, so the
+            code is removing the columns that we don't want to save"""
         columns = ['URL', 'Title', 'Company_Symbol', 'Author',
                    'Date_Published', 'Time_Published', 'numberOfWords',
                    'positive_%', 'negative_%', 'uncertainty_%',
@@ -82,11 +86,12 @@ class Webscraper:
         for column in article_results_dataframe.columns:
             if column not in columns:
                 article_results_dataframe = article_results_dataframe.drop(columns=[column], axis=1)
-                article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
-        article_results_dataframe.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+                article_results_dataframe.to_csv('Sentiment_Results.csv')
+        article_results_dataframe.to_csv('Sentiment_Results.csv')
         return article_results_dataframe
 
     def create_saved_article_results_dataframe(self):
+        """Creates new CSV file with the columns listed below"""
         article = pd.DataFrame(columns=['URL',
                                         'Title',
                                         'Company_Symbol',
@@ -108,11 +113,12 @@ class Webscraper:
                                         'avg_num_Of_syllables_per_word',
                                         'avg_word_length',
                                         'vocabulary'])
-        article.to_csv(os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv')
+        article.to_csv('Sentiment_Results.csv')
         return article
 
     def return_article_results_dataframe(self):
-        article_result_file_path = os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv'
+        """Check to see if csv file exists, if not create a new one"""
+        article_result_file_path = 'Sentiment_Results.csv'
         if os.path.exists(article_result_file_path):
             saved_article_results = pd.read_csv(article_result_file_path)
             if len(saved_article_results) > 0:
@@ -123,7 +129,8 @@ class Webscraper:
 
 
     def check_for_existing_article_results(self, URL_to_check_for):
-        article_result_file_path = os.getcwd() + '/Article_Sentiment_Results/Sentiment_Results.csv'
+        """ Check to see if URL extracted from webscraper already exists in the csv file"""
+        article_result_file_path = 'Sentiment_Results.csv'
         if os.path.exists(article_result_file_path):
             article = pd.read_csv(article_result_file_path)
             data = article[(article.URL == URL_to_check_for)]
@@ -133,28 +140,11 @@ class Webscraper:
                 return False
         return False
 
-
-    def filter_out_stop_words(self, tokenized_words):
-        stop_words = set(stopwords.words("english"))
-        filtered_sentence= []
-        for word in tokenized_words:
-            if word not in stop_words \
-                    and (word.isalnum() == True
-                         or word == '.'):
-                filtered_sentence.append(word)
-        filtered_sentence = (' ').join(filtered_sentence)
-        return filtered_sentence
-
-    def prepare_article(self):
-        filePath = os.getcwd() + '/Articles/Apple-Article.txt'
-        with open(filePath) as file:
-            file = file.read()
-        tokenized_sentence = sent_tokenize(file)
-        return tokenized_sentence
-
-    def get_sentiment_analysis(self, article_info):
+    def get_sentiment_analysis(self, article_info, lm_dictionary):
+        """Calls to Main_Program.Sentiment_Analyzer.parser to analyze article
+            and adds the results to the article_info dictionary"""
         article = article_info['Article'][0]
-        article_results = parser(article)
+        article_results = parser(article, lm_dictionary)
 
         article_info['numberOfWords'] = article_results['numberOfWords']
         article_info['positive_%'] = article_results['positive_%']
@@ -175,13 +165,16 @@ class Webscraper:
         return article_info
 
     def find_title_from_article(self, soup):
+        """Finds Title tag from HTML"""
         return soup.find_all('title')[0].get_text()
 
     def find_author_from_article(self, soup):
+        """Finds Span tag, and name property from HTML"""
         return soup.find_all('span', itemprop='name')[0].get_text()
 
     def find_publish_date_and_time_from_article(self, soup):
-        # Find Article Date and Time
+        """Finds Time tag and date published property from
+            HTML and separates the date and time"""
         time = soup.find_all('time', itemprop='datePublished')
         published_time = ''
         for i in time:
@@ -192,6 +185,7 @@ class Webscraper:
         return (date_published, time_published)
 
     def find_article_content(self, soup):
+        """Finds Article by looking for P tags in HTML"""
         tag = soup.find_all('p')
         article = ''
         for i in tag:
@@ -199,9 +193,35 @@ class Webscraper:
         return [article]
 
     def find_company_symbol_from_article(self, soup, title, article_content):
-        # Find the Company Symbol the article talks about
+        """This is a tricky one.
+            Most articles won't state the symbol of the
+            company they're writing about, so I'm searching through the metadata
+            for their keywords. To try to ensure the symbol I extract is accurate:
+                * I take all the keywords and put them into a frequency map to see which
+                  keywords show up the most
+                * I iterate through the keywords and search for them using a function
+                  which takes in a string and searches for possible company matches
+                  to retrieve the company symbol. With the symbol and company name
+                  it produces, It checks:
+                   * That the keyword is in the title
+                   * The keyword is in the article somewhere
+                   * The symbol results' company is located in the US by looking at the currency
+                   * The name of the symbol results' company is located in the article at least twice
+                * If the 4 condititions above are not met, it will iterate through the list of keywords
+                   found in the meta data.
+                    * If no company names are found, it returns None and the article will not be saved
+
+            Note: * This algorithm is not perfect and does find company symbols that satisfies all conditions
+                    that are incorrect.
+                  * The algorithm also produces incorrect results when multiple company
+                    names are found in the article and title.
+                  * The algorithm can be refined, however, for articles where the company name shows up
+                    in the meta data, it finds the company symbol accurately.
+        """
+
         company_symbol = None
         company = soup.find_all('meta')
+
         for i in company:
             if 'keywords' in str(i):
                 i = str(i)
@@ -214,29 +234,31 @@ class Webscraper:
                 for key, value in count.items():
                     try:
                         if company_symbol == None:
-                            symbols = search_for_company_symbol(key, automated=True)
+                            # The line below is what's giving me errors
+                            symbols = symbolSearch(key, automated=True)
                             if (key in title.lower() and
                                     key in article_content[0].lower() and
                                     key in symbols.Name.iloc[0].lower() and
                                     symbols.Currency.iloc[0] == 'USD' and
                                     article_content[0].count(symbols.Name.iloc[0].split()[0]) > 1):
                                 company_symbol = symbols.Symbol.iloc[0]
-
                     except Exception as e:
                         pass
                 break
         return company_symbol
 
     def print_dictionary(self, dict):
+        """Prints each key and value for dictionaries passed in"""
         print()
         for key, value in dict.items():
             print(key, ':', value)
 
     def scrape_article_from_web(self, article_URL):
+        """Given a url, it calls out to other functions to extract article info
+           and returns the info """
         try:
-            page = requests.get(article_URL)-1
+            page = requests.get(article_URL)
             soup = BeautifulSoup(page.content, 'html.parser')
-
             title = self.find_title_from_article(soup)
             author = self.find_author_from_article(soup)
             date_published, time_published = self.find_publish_date_and_time_from_article(soup)
@@ -255,14 +277,26 @@ class Webscraper:
             print(e)
 
 
+
+
 class Find_Articles:
+    def establish_library(self):
+        MASTER_DICTIONARY_FILE = 'LoughranMcDonald_MasterDictionary_2018.csv'
+        return LM.load_masterdictionary(MASTER_DICTIONARY_FILE, True)
+
+
+    """This class deals with finding the URLs to the articles to be extracted"""
     def find_search_URL(self, string_to_search_for):
+        """I found the algorithm for searches at ibtimes.com and use that so that I can turn
+            the string to search info for into a URL I can use to grab the article URLS"""
         search = string_to_search_for.replace(' ', '%20')
         search_URL = 'https://www.ibtimes.com/search/site/' + search
         print(search_URL)
         return search_URL
 
     def find_article_from_search_URL(self, search_URL, numPages=1):
+        lm_dictionary = self.establish_library()
+        """Given a search URL, it finds all the article URLs and sends them to get extracted"""
         page = requests.get(search_URL)
         soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -273,11 +307,12 @@ class Find_Articles:
                 'facebook.com' not in newLink and
                 'linkedin.com' not in newLink and
                 'ibtimes.tumblr.com' not in newLink):
-                self.scrape_analyze_store_article(newLink)
+                self.scrape_analyze_store_article(newLink, lm_dictionary)
 
-        self.search_multiple_pages(search_URL, numPages)
+        self.search_multiple_pages(search_URL, lm_dictionary, numPages)
 
-    def search_multiple_pages(self, search_URL, num_of_pages=1):
+    def search_multiple_pages(self, search_URL, lm_dictionary, num_of_pages=1):
+        """Retrieves URLs from n number of pages given a search URL"""
         for i in range(1,num_of_pages):
             try:
                 URL = search_URL + f'?page={i}'
@@ -290,12 +325,13 @@ class Find_Articles:
                             'facebook.com' not in newLink and
                             'linkedin.com' not in newLink and
                             'ibtimes.tumblr.com' not in newLink):
-                        self.scrape_analyze_store_article(newLink)
+                        self.scrape_analyze_store_article(newLink, lm_dictionary)
             except Exception as e:
                 print(f'Error loading info from page {i}:', e)
 
 
     def find_articles_from_main_business_page(self, search_URL, numOfPages=1):
+        """Finds all URLs from Business section's home page"""
         page = requests.get(search_URL)
         soup = BeautifulSoup(page.content, 'html.parser')
         links = soup.findAll('a')
@@ -312,6 +348,7 @@ class Find_Articles:
 
 
     def search_multiple_pages_business(self, search_URL, numOfPages=1):
+        """Finds all URLs by searching multiple pages from business section"""
         for i in range(1, numOfPages):
             try:
                 URL = search_URL + f'?page={i}'
@@ -330,118 +367,13 @@ class Find_Articles:
             except Exception as e:
                 print(e)
 
-    def scrape_analyze_store_article(self, url):
+    def scrape_analyze_store_article(self, url, lm_dictionary):
+        """Takes in a URL and sends it off to get extracted and saved"""
         try:
             web = Webscraper()
             article = web.scrape_article_from_web(url)
-            article_sentiment_analysis = web.get_sentiment_analysis(article)
+            article_sentiment_analysis = web.get_sentiment_analysis(article, lm_dictionary)
             web.print_dictionary(article_sentiment_analysis)
             web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
         except Exception as e:
             print(e)
-
-def parser(doc):
-    # 1. Number of words(based on LM_MasterDictionary
-    # 2. Proportion of positive words(use with care - see LM, JAR 2016)
-    # 3.  Proportion of negative words
-    # 4.  Proportion of uncertainty words
-    # 5.  Proportion of litigious words
-    # 6.  Proportion of modal-weak words
-    # 7.  Proportion of modal-moderate words
-    # 8.  Proportion of modal-strong words
-    # 9.  Proportion of constraining words (see Bodnaruk, Loughran and McDonald, JFQA 2015)
-    # 10.  Number of alphanumeric characters (a-z, A-Z)
-    # 11.  Number of digits (0-9)
-    # 12.  Number of numbers (collections of digits)
-    # 13.  Average number of syllables
-    # 14.  Average word length
-    # 15.  Vocabulary (see Loughran-McDonald, JF, 2015)
-
-
-    doc = doc.upper()  # for this parse caps aren't informative so shift
-    output_data = get_article_data(doc)
-    article_info = {
-        'numberOfWords': output_data[2],
-        'positive_%': output_data[3],
-        'negative_%': output_data[4],
-        'uncertainty_%': output_data[5],
-        'litigious': output_data[6],
-        'modal-weak_%': output_data[7],
-        'modal-moderate_%': output_data[8],
-        'modal-strong_%': output_data[9],
-        'constraining_%': output_data[10],
-        'num_of_alphanumeric': output_data[11],
-        'num_of_digits': output_data[12],
-        'num_of_Numbers': output_data[13],
-        'avg_num_Of_syllables_per_word': output_data[14],
-        'avg_word_length': output_data[15],
-        'vocabulary': output_data[16]
-    }
-
-    return article_info
-
-
-def get_article_data(doc):
-    vdictionary = {}
-    _odata = [0] * 17
-    total_syllables = 0
-    word_length = 0
-
-    tokens = re.findall('\w+', doc)  # Note that \w+ splits hyphenated words
-    for token in tokens:
-        if not token.isdigit() and len(token) > 1 and token in lm_dictionary:
-            _odata[2] += 1  # word count
-            word_length += len(token)
-            if token not in vdictionary:
-                vdictionary[token] = 1
-            if lm_dictionary[token].positive: _odata[3] += 1
-            if lm_dictionary[token].negative: _odata[4] += 1
-            if lm_dictionary[token].uncertainty: _odata[5] += 1
-            if lm_dictionary[token].litigious: _odata[6] += 1
-            if lm_dictionary[token].weak_modal: _odata[7] += 1
-            if lm_dictionary[token].moderate_modal: _odata[8] += 1
-            if lm_dictionary[token].strong_modal: _odata[9] += 1
-            if lm_dictionary[token].constraining: _odata[10] += 1
-            total_syllables += lm_dictionary[token].syllables
-
-    _odata[11] = len(re.findall('[A-Z]', doc))
-    _odata[12] = len(re.findall('[0-9]', doc))
-    # drop punctuation within numbers for number count
-    doc = re.sub('(?!=[0-9])(\.|,)(?=[0-9])', '', doc)
-    doc = doc.translate(str.maketrans(string.punctuation, " " * len(string.punctuation)))
-    _odata[13] = len(re.findall(r'\b[-+\(]?[$€£]?[-+(]?\d+\)?\b', doc))
-    _odata[14] = total_syllables / _odata[2]
-    _odata[15] = word_length / _odata[2]
-    _odata[16] = len(vdictionary)
-
-    # Convert counts to %
-    for i in range(3, 10 + 1):
-        _odata[i] = (_odata[i] / _odata[2]) * 100
-
-    return _odata
-
-if __name__ == "__main__":
-    choice = 0
-    print('Article Scraper/Sentiment Analysis')
-    scraper = Find_Articles()
-    while choice != -1:
-        choice = int(input('\nChoose Option:\n'
-                            '1: Retrieve Articles About Specific Company\n'
-                            '2: Retrieve Articles From Front Page\n'
-                            '-1: Quit\n'))
-        if choice == -1:
-            print('\nGoodbye\n')
-
-        elif choice == 1:
-            print('In choice 1')
-            company = input("\nWhat company would you like to search articles for?\n")
-            num_of_pages_to_search = int(input("\nHow many pages would you like to go through?\n"))
-            scraper.find_article_from_search_URL(scraper.find_search_URL(company), num_of_pages_to_search)
-        elif choice == 2:
-            print('in choice 2')
-            home_page_URL = f'https://www.ibtimes.com/business'
-            num_of_pages_to_search = int(input("\nHow many pages would you like to go through?\n"))
-            scraper.find_articles_from_main_business_page(home_page_URL,
-                                                  num_of_pages_to_search)
-        else:
-            print('Choice not recognized')

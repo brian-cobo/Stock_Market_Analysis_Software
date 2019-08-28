@@ -1,7 +1,3 @@
-#!/usr/bin/python3
-"""Routine to load MasterDictionary class"""
-# BDM : 201510
-
 import time
 
 def load_masterdictionary(file_path, print_flag=False, f_log=None, get_other=False):

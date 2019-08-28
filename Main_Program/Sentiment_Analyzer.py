@@ -1,12 +1,12 @@
-# File imports
-from Main_Program import Load_MasterDictionary as LM
 
 # Library imports
 import string
 import re
 
 # The code in this file was taken and modified from https://sraf.nd.edu
-def parser(doc):
+
+
+def parser(doc, lm_dictionary):
     """Takes article and sends it to get analyzed based on the LM Master Dictionary"""
     # 1. Number of words(based on LM_MasterDictionary
     # 2. Proportion of positive words(use with care - see LM, JAR 2016)
@@ -25,7 +25,10 @@ def parser(doc):
     # 15.  Vocabulary (see Loughran-McDonald, JF, 2015)
 
     doc = doc.upper()  # for this parse caps aren't informative so shift
-    output_data = analyze_article_contents(doc)
+    # print(doc)
+
+    # exit(0)
+    output_data = analyze_article_contents(doc, lm_dictionary)
     article_info = \
         {
             'numberOfWords': output_data[2],
@@ -45,14 +48,13 @@ def parser(doc):
             'vocabulary': output_data[16]
         }
 
+    print(article_info)
     return article_info
 
 
-def analyze_article_contents(doc):
+def analyze_article_contents(doc, lm_dictionary):
     """Parses through article contents and rates everything based on the words that
        appear according to the master dictionary"""
-    MASTER_DICTIONARY_FILE = 'Main_Program/LoughranMcDonald_MasterDictionary_2018.csv'
-    lm_dictionary = LM.load_masterdictionary(MASTER_DICTIONARY_FILE, True)
 
     vdictionary = {}
     _odata = [0] * 17

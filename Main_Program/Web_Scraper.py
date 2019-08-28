@@ -1,6 +1,9 @@
 # File Imports
 from Main_Program.Stock_Info import Stock
 from Main_Program.Sentiment_Analyzer import parser
+from Main_Program.Stock_Info import search_for_company_symbol as symbolSearch
+from Main_Program import Load_MasterDictionary as LM
+
 
 # Library Imports
 import os
@@ -137,11 +140,11 @@ class Webscraper:
                 return False
         return False
 
-    def get_sentiment_analysis(self, article_info):
+    def get_sentiment_analysis(self, article_info, lm_dictionary):
         """Calls to Main_Program.Sentiment_Analyzer.parser to analyze article
             and adds the results to the article_info dictionary"""
         article = article_info['Article'][0]
-        article_results = parser(article)
+        article_results = parser(article, lm_dictionary)
 
         article_info['numberOfWords'] = article_results['numberOfWords']
         article_info['positive_%'] = article_results['positive_%']
@@ -163,7 +166,6 @@ class Webscraper:
 
     def find_title_from_article(self, soup):
         """Finds Title tag from HTML"""
-        print('In Title')
         return soup.find_all('title')[0].get_text()
 
     def find_author_from_article(self, soup):
@@ -216,8 +218,10 @@ class Webscraper:
                   * The algorithm can be refined, however, for articles where the company name shows up
                     in the meta data, it finds the company symbol accurately.
         """
+
         company_symbol = None
         company = soup.find_all('meta')
+
         for i in company:
             if 'keywords' in str(i):
                 i = str(i)
@@ -228,18 +232,20 @@ class Webscraper:
                     i[item] = regex.sub('', i[item])
                 count = Counter(i)
                 for key, value in count.items():
-                    try:
-                        if company_symbol == None:
-                            symbols = Stock.search_for_company_symbol(key, automated=True)
-                            if (key in title.lower() and
-                                    key in article_content[0].lower() and
-                                    key in symbols.Name.iloc[0].lower() and
-                                    symbols.Currency.iloc[0] == 'USD' and
-                                    article_content[0].count(symbols.Name.iloc[0].split()[0]) > 1):
-                                company_symbol = symbols.Symbol.iloc[0]
+                    # try:
+                    print('Company symbol:', company_symbol)
+                    if company_symbol == None:
+                        # The line below is what's giving me errors
+                        symbols = symbolSearch(key, automated=True)
+                        if (key in title.lower() and
+                                key in article_content[0].lower() and
+                                key in symbols.Name.iloc[0].lower() and
+                                symbols.Currency.iloc[0] == 'USD' and
+                                article_content[0].count(symbols.Name.iloc[0].split()[0]) > 1):
+                            company_symbol = symbols.Symbol.iloc[0]
 
-                    except Exception as e:
-                        pass
+                    # except Exception as e:
+                    #     print(e)
                 break
         return company_symbol
 
@@ -253,25 +259,14 @@ class Webscraper:
         """Given a url, it calls out to other functions to extract article info
            and returns the info """
         try:
-            print('Article_URL', article_URL)
-
-            page = requests.get(article_URL)-1
+            page = requests.get(article_URL)
             soup = BeautifulSoup(page.content, 'html.parser')
-
             title = self.find_title_from_article(soup)
-            print('Title:', title)
-
             author = self.find_author_from_article(soup)
-            print('Author:', author)
-
             date_published, time_published = self.find_publish_date_and_time_from_article(soup)
-            print('Date Published:', date_published)
-
             article_content = self.find_article_content(soup)
-            print('Article Content:', article_content)
-
             company_symbol = self.find_company_symbol_from_article(soup, title, article_content)
-            print('Company Symbol:', company_symbol)
+
             article_extracted_info = {'URL' : article_URL,
                                       'Title' : title,
                                       'Company_Symbol': company_symbol,
@@ -279,17 +274,19 @@ class Webscraper:
                                       'Date_Published' : date_published,
                                       'Time_Published' : time_published,
                                       'Article' : article_content}
-
-            print(article_extracted_info)
-            exit(0)
-
             return(article_extracted_info)
         except Exception as e:
-            print(3)
-            exit(0)
+            print(e)
+
+
 
 
 class Find_Articles:
+    def establish_library(self):
+        MASTER_DICTIONARY_FILE = 'LoughranMcDonald_MasterDictionary_2018.csv'
+        return LM.load_masterdictionary(MASTER_DICTIONARY_FILE, True)
+
+
     """This class deals with finding the URLs to the articles to be extracted"""
     def find_search_URL(self, string_to_search_for):
         """I found the algorithm for searches at ibtimes.com and use that so that I can turn
@@ -300,6 +297,7 @@ class Find_Articles:
         return search_URL
 
     def find_article_from_search_URL(self, search_URL, numPages=1):
+        lm_dictionary = self.establish_library()
         """Given a search URL, it finds all the article URLs and sends them to get extracted"""
         page = requests.get(search_URL)
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -311,11 +309,11 @@ class Find_Articles:
                 'facebook.com' not in newLink and
                 'linkedin.com' not in newLink and
                 'ibtimes.tumblr.com' not in newLink):
-                self.scrape_analyze_store_article(newLink)
+                self.scrape_analyze_store_article(newLink, lm_dictionary)
 
-        self.search_multiple_pages(search_URL, numPages)
+        self.search_multiple_pages(search_URL, lm_dictionary, numPages)
 
-    def search_multiple_pages(self, search_URL, num_of_pages=1):
+    def search_multiple_pages(self, search_URL, lm_dictionary, num_of_pages=1):
         """Retrieves URLs from n number of pages given a search URL"""
         for i in range(1,num_of_pages):
             try:
@@ -329,7 +327,7 @@ class Find_Articles:
                             'facebook.com' not in newLink and
                             'linkedin.com' not in newLink and
                             'ibtimes.tumblr.com' not in newLink):
-                        self.scrape_analyze_store_article(newLink)
+                        self.scrape_analyze_store_article(newLink, lm_dictionary)
             except Exception as e:
                 print(f'Error loading info from page {i}:', e)
 
@@ -369,15 +367,15 @@ class Find_Articles:
                     url = 'https://www.ibtimes.com' + i
                     self.scrape_analyze_store_article(url)
             except Exception as e:
-                print(2)
+                print(e)
 
-    def scrape_analyze_store_article(self, url):
+    def scrape_analyze_store_article(self, url, lm_dictionary):
         """Takes in a URL and sends it off to get extracted and saved"""
         try:
             web = Webscraper()
             article = web.scrape_article_from_web(url)
-            article_sentiment_analysis = web.get_sentiment_analysis(article)
+            article_sentiment_analysis = web.get_sentiment_analysis(article, lm_dictionary)
             web.print_dictionary(article_sentiment_analysis)
             web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
         except Exception as e:
-            print(1)
+            print(e)

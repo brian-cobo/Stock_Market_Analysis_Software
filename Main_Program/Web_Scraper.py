@@ -60,6 +60,7 @@ class Webscraper:
             else:
                 print('Article Info Already Saved')
 
+
     def check_for_null_values(self, article_info):
         """Check to see if the entire result of the webscraper is null"""
         if (article_info['URL'] != None and
@@ -375,5 +376,6 @@ class Find_Articles:
             article_sentiment_analysis = web.get_sentiment_analysis(article, lm_dictionary)
             web.print_dictionary(article_sentiment_analysis)
             web.add_row_to_saved_article_results_dataframe(article_sentiment_analysis)
+
         except Exception as e:
             print(e)

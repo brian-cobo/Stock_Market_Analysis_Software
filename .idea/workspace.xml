@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Federal_Reserve/fedres.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main_Program/Web_Scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_Program/Web_Scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main_Program/LoughranMcDonald_MasterDictionary_2018.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
+            <state relative-caret-position="310">
+              <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
               <folding>
                 <element signature="e#34#43#0" expanded="true" />
               </folding>
@@ -31,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main_Program/Web_Scraper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="321" column="55" lean-forward="true" selection-start-line="321" selection-start-column="55" selection-end-line="321" selection-end-column="80" />
+            <state relative-caret-position="130">
+              <caret line="190" column="8" selection-start-line="190" selection-start-column="8" selection-end-line="193" selection-end-column="24" />
               <folding>
                 <element signature="e#15#56#0" expanded="true" />
               </folding>
@@ -371,12 +368,12 @@
       <workItem from="1567020085667" duration="2017000" />
       <workItem from="1567026619961" duration="135000" />
       <workItem from="1567093490991" duration="4244000" />
-      <workItem from="1567219239274" duration="9506000" />
+      <workItem from="1567219239274" duration="16927000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198975000" />
+    <option name="totallyTimeSpent" value="206396000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="723" extended-state="0" />
@@ -387,7 +384,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32171157" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4983845" visible="true" weight="0.47543582" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4983845" visible="true" weight="0.3866878" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -418,7 +415,7 @@
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Main.coverage" NAME="Main Coverage Results" MODIFIED="1567100586092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$fedres.coverage" NAME="fedres Coverage Results" MODIFIED="1567221580331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1566752275830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$FederalReserve.coverage" NAME="FederalReserve Coverage Results" MODIFIED="1567289907671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$FederalReserve.coverage" NAME="FederalReserve Coverage Results" MODIFIED="1567478391139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566413574671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Web_Scraper.coverage" NAME="Web_Scraper Coverage Results" MODIFIED="1566761559119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
   </component>
@@ -586,8 +583,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Main_Program/Web_Scraper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="321" column="55" lean-forward="true" selection-start-line="321" selection-start-column="55" selection-end-line="321" selection-end-column="80" />
+        <state relative-caret-position="130">
+          <caret line="190" column="8" selection-start-line="190" selection-start-column="8" selection-end-line="193" selection-end-column="24" />
           <folding>
             <element signature="e#15#56#0" expanded="true" />
           </folding>
@@ -596,8 +593,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
+        <state relative-caret-position="310">
+          <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
           <folding>
             <element signature="e#34#43#0" expanded="true" />
           </folding>

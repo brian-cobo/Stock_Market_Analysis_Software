@@ -4,6 +4,7 @@
 import re
 import requests
 import os
+import csv
 from bs4 import BeautifulSoup
 from nltk import ngrams
 from nltk import FreqDist
@@ -133,12 +134,39 @@ def get_archive_beige_links():
             print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
 
 
-def get_ngrams(url, articleContent, n):
-    print(url, '\n')
-    ngramsResult = ngrams(articleContent.split(), n)
-    frequency = FreqDist(ngramsResult).most_common()
-    for i in frequency:
-        print(i)
+def get_ngrams(articleFile, date, n):
+    """Takes in a file name and a number n to create a file with
+        each ngram it produces"""
+    year = date.group(0)[:4]
+    month = date.group(0)[4:]
+
+    # Check if ngram folder exists, if not make it
+    path = f"Federal_Reserve/NGrams/{year}/"
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    # Check if ngram file exists, if not write it
+    fileName = f"{path}{year}_{month}_ngram_n={n}.csv"
+    if not os.path.exists(fileName):
+        with open(articleFile) as articlefile:
+            article = articlefile.read()
+        article = re.sub(r'([^\s\w]|_)+', '', article)
+        ngramsResult = ngrams(article.split(), n)
+        frequency = FreqDist(ngramsResult).most_common()
+
+        articleNGrams = {}
+        for ngram in frequency:
+            words = ngram[0]
+            freq = ngram[1]
+            articleNGrams[words] = freq
+
+        with open(fileName, 'w') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(('NGram', 'Frequency'))
+            for key, value in articleNGrams.items():
+                writer.writerow([key, value])
+        print('Created', fileName)
+
 
 
 def get_article_info(url):
@@ -148,12 +176,12 @@ def get_article_info(url):
         month = date.group(0)[4:]
 
     # Check if Article folder exists, if not make it
-    path = "Federal_Reserve/Articles/"
+    path = f"Federal_Reserve/Articles/{year}/"
     if not os.path.exists(path):
-        os.mkdir(path)
+        os.makedirs(path)
 
     # Check if Article is already written if not, webscrape it and save it
-    fileName = f"Federal_Reserve/Articles/{year}_{month}_Report.txt"
+    fileName = f"{path}{year}_{month}_Report.txt"
     if not os.path.exists(fileName):
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -165,7 +193,10 @@ def get_article_info(url):
         file = open(fileName, "w+")
         file.write(articleContent)
         file.close()
-        print("Created", fileName)
+        print("\nCreated", fileName)
+
+        for i in range(1, 6):
+            get_ngrams(fileName, date, i)
 
 
 def get_monthly_links():
@@ -174,9 +205,9 @@ def get_monthly_links():
     for i in links2019:
         monthURL.append(i)
 
-    linksArchive = get_archive_beige_links()
-    for i in linksArchive:
-        monthURL.append(i)
+    # linksArchive = get_archive_beige_links()
+    # for i in linksArchive:
+    #     monthURL.append(i)
 
     for i in monthURL:
         get_article_info(i)

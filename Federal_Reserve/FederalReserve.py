@@ -3,6 +3,7 @@
 # Library Imports
 import re
 import requests
+import os
 from bs4 import BeautifulSoup
 from nltk import ngrams
 from nltk import FreqDist
@@ -136,21 +137,35 @@ def get_ngrams(url, articleContent, n):
     print(url, '\n')
     ngramsResult = ngrams(articleContent.split(), n)
     frequency = FreqDist(ngramsResult).most_common()
-
     for i in frequency:
         print(i)
 
 
 def get_article_info(url):
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    articleTag = soup.findAll('p')
-    articleContent = ''
-    for i in articleTag:
-        articleContent += (i.get_text())
+    date = re.search('\d\d\d\d\d\d', url)
+    if date:
+        year = date.group(0)[:4]
+        month = date.group(0)[4:]
 
-    for i in range(1, 6):
-        get_ngrams(url, articleContent, i)
+    # Check if Article folder exists, if not make it
+    path = "Federal_Reserve/Articles/"
+    if not os.path.exists(path):
+        os.mkdir(path)
+
+    # Check if Article is already written if not, webscrape it and save it
+    fileName = f"Federal_Reserve/Articles/{year}_{month}_Report.txt"
+    if not os.path.exists(fileName):
+        page = requests.get(url)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        articleTag = soup.findAll('p')
+        articleContent = ''
+        for i in articleTag:
+            articleContent += (i.get_text())
+
+        file = open(fileName, "w+")
+        file.write(articleContent)
+        file.close()
+        print("Created", fileName)
 
 
 def get_monthly_links():
@@ -159,9 +174,9 @@ def get_monthly_links():
     for i in links2019:
         monthURL.append(i)
 
-    # linksArchive = get_archive_beige_links()
-    # for i in linksArchive:
-    #     monthURL.append(i)
+    linksArchive = get_archive_beige_links()
+    for i in linksArchive:
+        monthURL.append(i)
 
     for i in monthURL:
         get_article_info(i)

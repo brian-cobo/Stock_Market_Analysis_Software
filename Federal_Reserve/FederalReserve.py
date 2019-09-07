@@ -132,6 +132,7 @@ def get_archive_beige_links():
                             break
         except Exception as e:
             print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
+    return monthlyLinks
 
 
 def get_ngrams(articleFile, date, n):
@@ -205,9 +206,9 @@ def get_monthly_links():
     for i in links2019:
         monthURL.append(i)
 
-    # linksArchive = get_archive_beige_links()
-    # for i in linksArchive:
-    #     monthURL.append(i)
+    linksArchive = get_archive_beige_links()
+    for i in linksArchive:
+        monthURL.append(i)
 
     for i in monthURL:
         get_article_info(i)

@@ -2,428 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_06_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_09_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2011/2011_11_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_02_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_06_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_08_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2012/2012_11_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_06_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_09_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2013/2013_12_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_06_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_09_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2014/2014_12_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_06_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_09_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2015/2015_12_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_06_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_09_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2016/2016_11_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_05_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_09_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2017/2017_11_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_05_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_09_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_10_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2018/2018_12_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2019/2019_01_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2019/2019_03_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2019/2019_04_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2019/2019_06_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2019/2019_07_Report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Articles/2019/2019_09_Report.txt" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_06_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_06_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_06_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_06_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_06_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_09_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_11_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_11_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_11_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_11_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011_11_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_02_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_02_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_02_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_02_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_02_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_06_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_06_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_06_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_06_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_06_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_08_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_08_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_08_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_08_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_08_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_11_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_11_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_11_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_11_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012_11_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_06_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_06_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_06_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_06_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_06_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_09_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_12_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_12_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_12_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_12_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2013/2013_12_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_06_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_06_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_06_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_06_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_06_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_09_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_12_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_12_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_12_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_12_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014_12_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_06_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_06_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_06_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_06_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_06_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_09_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_12_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_12_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_12_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_12_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015_12_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_06_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_06_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_06_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_06_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_06_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_09_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_11_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_11_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_11_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_11_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2016/2016_11_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_05_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_05_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_05_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_05_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_05_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_09_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_11_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_11_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_11_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_11_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017_11_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_05_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_05_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_05_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_05_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_05_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_09_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_10_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_10_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_10_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_10_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_10_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_12_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_12_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_12_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_12_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018_12_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_01_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_01_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_01_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_01_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_01_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_03_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_03_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_03_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_03_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_03_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_04_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_04_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_04_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_04_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_04_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_06_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_06_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_06_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_06_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_06_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_07_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_07_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_07_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_07_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_07_ngram_n=5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_09_ngram_n=1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_09_ngram_n=2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_09_ngram_n=3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_09_ngram_n=4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019_09_ngram_n=5.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -436,13 +16,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="247" column="26" selection-start-line="247" selection-start-column="26" selection-end-line="247" selection-end-column="26" />
+            <state relative-caret-position="305">
+              <caret line="219" column="38" selection-start-line="219" selection-start-column="38" selection-end-line="219" selection-end-column="38" />
               <folding>
                 <element signature="e#34#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb">
+          <provider selected="true" editor-type-id="jupyter-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -462,14 +47,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Arthur Villasanta</find>
       <find>company</find>
       <find>Apple</find>
       <find>auth</find>
@@ -499,6 +83,7 @@
       <find>clean</find>
       <find>search</find>
       <find>2019</find>
+      <find>get_article</find>
     </findStrings>
     <replaceStrings>
       <replace>self.stockInfo</replace>
@@ -530,6 +115,7 @@
         <option value="$PROJECT_DIR$/Main_Program/fedres.py" />
         <option value="$PROJECT_DIR$/FederalReserve.py" />
         <option value="$PROJECT_DIR$/Main_Program/Web_Scraper.py" />
+        <option value="$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb" />
         <option value="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" />
       </list>
     </option>
@@ -789,22 +375,23 @@
       <workItem from="1567026619961" duration="135000" />
       <workItem from="1567093490991" duration="4244000" />
       <workItem from="1567219239274" duration="16927000" />
-      <workItem from="1567889395582" duration="3189000" />
+      <workItem from="1567889395582" duration="3481000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209585000" />
+    <option name="totallyTimeSpent" value="209877000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="723" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25686592" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32171157" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4983845" visible="true" weight="0.49603805" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4983845" weight="0.4675119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -815,7 +402,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016155" side_tool="true" weight="0.6275753" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32913387" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32913387" />
-      <window_info anchor="bottom" id="Jupyter" order="13" sideWeight="0.4983845" weight="0.2266244" />
+      <window_info active="true" anchor="bottom" id="Jupyter" order="13" sideWeight="0.4983845" visible="true" weight="0.2266244" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -987,22 +574,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="247" column="26" selection-start-line="247" selection-start-column="26" selection-end-line="247" selection-end-column="26" />
-          <folding>
-            <element signature="e#34#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main_Program/Web_Scraper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2850">
           <caret line="190" column="8" selection-start-line="190" selection-start-column="8" selection-end-line="193" selection-end-column="24" />
           <folding>
             <element signature="e#15#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="219" column="38" selection-start-line="219" selection-start-column="38" selection-end-line="219" selection-end-column="38" />
+          <folding>
+            <element signature="e#34#43#0" expanded="true" />
           </folding>
         </state>
       </provider>

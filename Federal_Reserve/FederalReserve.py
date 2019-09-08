@@ -160,7 +160,7 @@ def get_ngrams(articleFile, fullDate, n):
         os.makedirs(path)
 
     # Check if ngram file exists, if not write it
-    fileName = f"{path}{year}_{month}_{day}_ngram_n={n}.csv"
+    fileName = f"{path}{year}-{month}-{day}_ngram_n={n}.csv"
     if not os.path.exists(fileName):
         with open(articleFile) as articlefile:
             article = articlefile.read()
@@ -217,7 +217,7 @@ def get_article_info(url):
         os.makedirs(path)
 
     # Check if Article is already written if not, webscrape it and save it
-    fileName = f"{path}{year}_{month}_{day}_Report.txt"
+    fileName = f"{path}{year}-{month}-{day}_Report.txt"
     if not os.path.exists(fileName):
         # page = requests.get(url)
         # soup = BeautifulSoup(page.content, 'html.parser')

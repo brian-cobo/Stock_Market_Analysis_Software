@@ -76,7 +76,6 @@ def get_2019_beige_links(currentURL):
     currentURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm'
     page = requests.get(currentURL)
     soup = BeautifulSoup(page.content, 'html.parser')
-
     links = soup.findAll('td')
     for i in links:
         if re.match('.*htm.*', str(i)):
@@ -135,11 +134,25 @@ def get_archive_beige_links():
     return monthlyLinks
 
 
-def get_ngrams(articleFile, date, n):
+def get_ngrams(articleFile, fullDate, n):
     """Takes in a file name and a number n to create a file with
         each ngram it produces"""
-    year = date.group(0)[:4]
-    month = date.group(0)[4:]
+    months = {'January': 1,
+              'February': 2,
+              'March': 3,
+              'April': 4,
+              'May': 5,
+              'June': 6,
+              'July': 7,
+              'August': 8,
+              'September': 9,
+              'October': 10,
+              'November': 11,
+              'December': 12}
+
+    month = months[fullDate[0]]
+    day = fullDate[1]
+    year = fullDate[2]
 
     # Check if ngram folder exists, if not make it
     path = f"Federal_Reserve/NGrams/{year}/"
@@ -147,7 +160,7 @@ def get_ngrams(articleFile, date, n):
         os.makedirs(path)
 
     # Check if ngram file exists, if not write it
-    fileName = f"{path}{year}_{month}_ngram_n={n}.csv"
+    fileName = f"{path}{year}_{month}_{day}_ngram_n={n}.csv"
     if not os.path.exists(fileName):
         with open(articleFile) as articlefile:
             article = articlefile.read()
@@ -171,10 +184,32 @@ def get_ngrams(articleFile, date, n):
 
 
 def get_article_info(url):
-    date = re.search('\d\d\d\d\d\d', url)
-    if date:
-        year = date.group(0)[:4]
-        month = date.group(0)[4:]
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    date = soup.find('title')
+    date = date.get_text()
+    date = date.split(' - ')
+    date = str(date[-1])
+    date = date.replace(',', '')
+    fullDate = date.split()
+
+    months = {'January' : 1,
+              'February' : 2,
+              'March' : 3,
+              'April' : 4,
+              'May' : 5,
+              'June' : 6,
+              'July' : 7,
+              'August' : 8,
+              'September' : 9,
+              'October' : 10,
+              'November': 11,
+              'December': 12}
+
+    month = months[fullDate[0]]
+    day = fullDate[1]
+    year = fullDate[2]
 
     # Check if Article folder exists, if not make it
     path = f"Federal_Reserve/Articles/{year}/"
@@ -182,10 +217,10 @@ def get_article_info(url):
         os.makedirs(path)
 
     # Check if Article is already written if not, webscrape it and save it
-    fileName = f"{path}{year}_{month}_Report.txt"
+    fileName = f"{path}{year}_{month}_{day}_Report.txt"
     if not os.path.exists(fileName):
-        page = requests.get(url)
-        soup = BeautifulSoup(page.content, 'html.parser')
+        # page = requests.get(url)
+        # soup = BeautifulSoup(page.content, 'html.parser')
         articleTag = soup.findAll('p')
         articleContent = ''
         for i in articleTag:
@@ -197,20 +232,23 @@ def get_article_info(url):
         print("\nCreated", fileName)
 
         for i in range(1, 6):
-            get_ngrams(fileName, date, i)
+            get_ngrams(fileName, fullDate, i)
 
 
-def get_monthly_links():
-    monthURL = []
-    links2019 = get_2019_beige_links(currentURL='https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm')
-    for i in links2019:
-        monthURL.append(i)
+def get_monthly_links(webscrape=False):
+    if webscrape:
+        monthURL = []
+        links2019 = get_2019_beige_links(currentURL='https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm')
+        linksArchive = get_archive_beige_links()
 
-    linksArchive = get_archive_beige_links()
-    for i in linksArchive:
-        monthURL.append(i)
+        for i in links2019:
+            monthURL.append(i)
+        for i in linksArchive:
+            monthURL.append(i)
+        for i in monthURL:
+            try:
+                get_article_info(i)
+            except Exception as e:
+                print(e)
 
-    for i in monthURL:
-        get_article_info(i)
-
-get_monthly_links()
+get_monthly_links(webscrape=True)

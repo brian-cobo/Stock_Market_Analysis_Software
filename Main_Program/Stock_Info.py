@@ -21,8 +21,8 @@ class Stock:
                  api_key = get_API_key(),
                  type_of_graph = None,
                  output_data_type = 'csv',
-                 interval_in_minutes = 5,
-                 output_size = 'full'):
+                 output_size = 'full',
+                 interval_in_minutes = 5):
         self.api_key = api_key
         self.symbol = symbol
         self.stockInfo = stockInfo
@@ -33,7 +33,7 @@ class Stock:
 
     def get_five_months_data(self):
         """Returns URL to five months of data"""
-        self.type_of_graph = 'TIME_SERIES_MONTHLY'
+        self.type_of_graph = 'TIME_SERIES_DAILY'
         print('Get Five Month:', self.type_of_graph)
         three_month_URL = (f'https://www.alphavantage.co/query?'
                           f'function={self.type_of_graph}&'

@@ -5,6 +5,9 @@ import re
 import requests
 import os
 import csv
+
+import pandas as pd
+
 from bs4 import BeautifulSoup
 from nltk import ngrams
 from nltk import FreqDist
@@ -235,6 +238,38 @@ def get_article_info(url):
             get_ngrams(fileName, fullDate, i)
 
 
+def collect_stock_information():
+    ngramFiles = []
+    dates = []
+    marketPrices = {}
+    path = 'Federal_Reserve/NGrams/'
+    for i in os.walk(path):
+        if i[2]:
+            for file in i[2]:
+                ngramFiles.append(file)
+
+    ngramFiles = sorted(ngramFiles)
+    for i in ngramFiles:
+        date = i.split('_')[0]
+        dates.append(date)
+
+    dates = sorted(list(set(dates)))
+    marketData = pd.read_csv('Federal_Reserve/GSPC.csv')
+
+    for i in dates:
+        close = marketData[(marketData.Date == i)]
+        close = close.Close
+        print(close)
+        #marketPrices[i] = close
+
+    #print(marketPrices)
+
+
+
+
+
+
+
 def get_monthly_links(webscrape=False):
     if webscrape:
         monthURL = []
@@ -251,4 +286,5 @@ def get_monthly_links(webscrape=False):
             except Exception as e:
                 print(e)
 
-get_monthly_links(webscrape=True)
+get_monthly_links(webscrape=False)
+collect_stock_information()

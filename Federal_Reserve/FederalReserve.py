@@ -363,18 +363,26 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
                 if difference > 0:
                     for row in reader:
                         if row['NGram'] not in scored_ngrams:
-                            scored_ngrams[(row['NGram'])] = {'Increase': int(row['Frequency']), 'Decrease': 0}
+                            scored_ngrams[(row['NGram'])] = {'Increase': int(row['Frequency']), 'Decrease': 0,
+                                                             'Increase_Weight': 0, 'Decrease_Weight': 0}
                         else:
                             scored_ngrams[(row['NGram'])]['Increase'] += int(row['Frequency'])
 
                 else:
                     for row in reader:
                         if row['NGram'] not in scored_ngrams:
-                            scored_ngrams[(row['NGram'])] = {'Increase': 0, 'Decrease': int(row['Frequency'])}
+                            scored_ngrams[(row['NGram'])] = {'Increase': 0, 'Decrease': int(row['Frequency']),
+                                                             'Increase_Weight': 0, 'Decrease_Weight': 0}
                         else:
                             scored_ngrams[(row['NGram'])]['Decrease'] += int(row['Frequency'])
             except Exception as e:
                 print('Error handling', files[file])
+
+        for ngram, value in scored_ngrams.items():
+            increase = value['Increase']
+            decrease = value['Decrease']
+            value['Increase_Weight'] = round(float(increase / (increase + decrease)), 5)
+            value['Decrease_Weight'] = round(float(decrease / (increase + decrease)), 5)
 
         path = f"Federal_Reserve/Increase_Decrease/"
         if not os.path.exists(path):
@@ -383,9 +391,10 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
         fileName = f'{os.getcwd()}/Federal_Reserve/Increase_Decrease/n={n}.csv'
         with open(fileName, 'w') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow(('NGram', 'Increase', 'Decrease'))
+            writer.writerow(('NGram', 'Increase', 'Decrease', 'Increase_Weight', 'Decrease_Weight'))
             for key, value in scored_ngrams.items():
-                writer.writerow([key, value['Increase'], value['Decrease']])
+                writer.writerow([key, value['Increase'], value['Decrease'],
+                                 value['Increase_Weight'], value['Decrease_Weight']])
         print('Created', fileName)
 
 

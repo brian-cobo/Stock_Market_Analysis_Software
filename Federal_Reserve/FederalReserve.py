@@ -238,6 +238,40 @@ def get_article_info(url):
             get_ngrams(fileName, fullDate, i)
 
 
+def find_date_from_dataframe(date, marketData):
+    data = marketData[(marketData.Date == date)]
+    if len(data) > 0:
+        return True
+    else:
+        return False
+
+
+def increase_day_from_string(i):
+    day = int(i.split('-')[-1])
+    if (day + 1) > 30:
+        day = 1
+    else:
+        day += 1
+        day = '0' + str(day)
+    i = i.split('-')
+    i[-1] = str(day)
+    i = ('-').join(i)
+    return i
+
+
+def fix_month_and_days(dates):
+    fixed_dates = []
+    for date in dates:
+        newDate = date.split('-')
+        # Adding 0 to beginning of month if len = 1
+        if len(newDate[1]) == 1:
+            newDate[1] = '0' + newDate[1]
+        if len(newDate[2]) == 1:
+            newDate[2] = '0' + newDate[2]
+        newDate = ('-').join(newDate)
+        fixed_dates.append(newDate)
+    return fixed_dates
+
 def collect_stock_information():
     ngramFiles = []
     dates = []
@@ -254,19 +288,29 @@ def collect_stock_information():
         dates.append(date)
 
     dates = sorted(list(set(dates)))
+    dates = fix_month_and_days(dates)
     marketData = pd.read_csv('Federal_Reserve/GSPC.csv')
 
-    for i in dates:
-        close = marketData[(marketData.Date == i)]
-        close = close.Close
-        print(close)
-        #marketPrices[i] = close
+    print('Number of Original Dates:', len(dates))
+    for date in dates:
+        # Finds data of next closest trading day
+        found_trading_day = find_date_from_dataframe(date, marketData)
+        data = marketData[(marketData.Date == date)]
 
-    #print(marketPrices)
+        while found_trading_day == False:
+            data = increase_day_from_string(date)
+            found_trading_day = find_date_from_dataframe(data, marketData)
+            data = marketData[(marketData.Date == date)]
 
+        try:
+            marketPrices[date] = {'Open': data.Open.values[0], 'High': data.High.values[0],
+                                  'Low': data.Low.values[0], 'Close': data.Close.values[0],
+                                  'Volume': data.Volume.values[0]}
+        except Exception as e:
+            print('Error loading market data for', date)
 
-
-
+    for key, value in marketPrices.items():
+        print(key, value)
 
 
 
@@ -286,5 +330,5 @@ def get_monthly_links(webscrape=False):
             except Exception as e:
                 print(e)
 
-get_monthly_links(webscrape=False)
+#get_monthly_links(webscrape=False)
 collect_stock_information()

@@ -11,6 +11,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from nltk import ngrams
 from nltk import FreqDist
+from time import sleep
 
 """
 NOTES:
@@ -75,6 +76,7 @@ TODO:
 
 def get_2019_beige_links(currentURL):
     """Gets links for 2019 Articles"""
+    print('Scraping 2019 Articles')
     currentLinks = []
     currentURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm'
     page = requests.get(currentURL)
@@ -110,6 +112,8 @@ def get_archive_beige_links():
 
     for yearLink in yearlyLinks:
         try:
+            sleep(3)
+            print('Scraping', yearLink)
             page = requests.get(yearLink)
             soup = BeautifulSoup(page.content, 'html.parser')
             links = soup.findAll('td')
@@ -137,6 +141,12 @@ def get_archive_beige_links():
     return monthlyLinks
 
 
+def add_zero_to_date(date):
+    if len(str(date)) == 1:
+        return '0' + str(date)
+    else:
+        return date
+
 def get_ngrams(articleFile, fullDate, n):
     """Takes in a file name and a number n to create a file with
         each ngram it produces"""
@@ -153,9 +163,9 @@ def get_ngrams(articleFile, fullDate, n):
               'November': 11,
               'December': 12}
 
-    month = months[fullDate[0]]
-    day = fullDate[1]
-    year = fullDate[2]
+    month = add_zero_to_date(months[fullDate[0]])
+    day = add_zero_to_date(fullDate[1])
+    year = add_zero_to_date(fullDate[2])
 
     # Check if ngram folder exists, if not make it
     path = f"Federal_Reserve/NGrams/{year}/"
@@ -210,9 +220,9 @@ def get_article_info(url):
               'November': 11,
               'December': 12}
 
-    month = months[fullDate[0]]
-    day = fullDate[1]
-    year = fullDate[2]
+    month = add_zero_to_date(months[fullDate[0]])
+    day = add_zero_to_date(fullDate[1])
+    year = add_zero_to_date(fullDate[2])
 
     # Check if Article folder exists, if not make it
     path = f"Federal_Reserve/Articles/{year}/"
@@ -308,11 +318,18 @@ def collect_stock_information():
                                   'Volume': data.Volume.values[0]}
         except Exception as e:
             print('Error loading market data for', date)
+    return ngramFiles, marketPrices
 
-    for key, value in marketPrices.items():
-        print(key, value)
-
-
+def sort_ngram_files(ngramFiles):
+    sorted_n = {}
+    for file in ngramFiles:
+        n = file.split('=')[1]
+        n = n.split('.')[0]
+        if n not in sorted_n:
+            sorted_n[n] = [file]
+        else:
+            sorted_n[n].append(file)
+    return sorted_n
 
 def get_monthly_links(webscrape=False):
     if webscrape:
@@ -330,5 +347,51 @@ def get_monthly_links(webscrape=False):
             except Exception as e:
                 print(e)
 
-#get_monthly_links(webscrape=False)
-collect_stock_information()
+def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
+    scored_ngrams = {'Increase': 0, 'Decrease': 0}
+    for n, files in sorted_ngram_files.items():
+        scored_ngrams = {}
+        print('\nn =', n)
+        for file in range(len(files)-1):
+            try:
+                startDate = files[file].split('_')[0]
+                endDate = files[file+1].split('_')[0]
+                difference = stock_info[endDate]['Close'] - stock_info[startDate]['Close']
+                year = files[file].split('-')[0]
+                reader = csv.DictReader(open(f'{os.getcwd()}/Federal_Reserve/NGrams/{year}/{files[file]}'))
+
+                if difference > 0:
+                    for row in reader:
+                        if row['NGram'] not in scored_ngrams:
+                            scored_ngrams[(row['NGram'])] = {'Increase': int(row['Frequency']), 'Decrease': 0}
+                        else:
+                            scored_ngrams[(row['NGram'])]['Increase'] += int(row['Frequency'])
+
+                else:
+                    for row in reader:
+                        if row['NGram'] not in scored_ngrams:
+                            scored_ngrams[(row['NGram'])] = {'Increase': 0, 'Decrease': int(row['Frequency'])}
+                        else:
+                            scored_ngrams[(row['NGram'])]['Decrease'] += int(row['Frequency'])
+            except Exception as e:
+                print('Error handling', files[file])
+
+        path = f"Federal_Reserve/Increase_Decrease/"
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        fileName = f'{os.getcwd()}/Federal_Reserve/Increase_Decrease/n={n}.csv'
+        with open(fileName, 'w') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(('NGram', 'Increase', 'Decrease'))
+            for key, value in scored_ngrams.items():
+                writer.writerow([key, value['Increase'], value['Decrease']])
+        print('Created', fileName)
+
+
+
+
+#get_monthly_links(webscrape=True)
+ngramsFiles, stock_info = collect_stock_information()
+sorted_ngram_files = sort_ngram_files(ngramsFiles)
+compute_increase_decrease_counts(sorted_ngram_files, stock_info)

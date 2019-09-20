@@ -347,12 +347,45 @@ def get_monthly_links(webscrape=False):
             except Exception as e:
                 print(e)
 
+def write_increase_decrease_files(n, ngram_list, ratio=False, increase=False):
+    paths = [f"{os.getcwd()}/Federal_Reserve/Increase_Decrease/Increase_Ngrams/",
+             f"{os.getcwd()}/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/",
+             f"{os.getcwd()}/Federal_Reserve/Increase_Decrease/All_Ngrams/"]
+    for path in paths:
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+    if ratio and increase:
+        fileName = f'{os.getcwd()}/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n={n}.csv'
+    elif ratio and not increase:
+        fileName = f'{os.getcwd()}/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv'
+    else:
+        fileName = f'{os.getcwd()}/Federal_Reserve/Increase_Decrease/All_Ngrams/n={n}.csv'
+
+
+    with open(fileName, 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(('NGram', 'Increase', 'Decrease',
+                         'Increase_Weight', 'Decrease_Weight',
+                         'Increase_Ratio', 'Decrease_Ratio'))
+        for key, value in ngram_list.items():
+            writer.writerow([key, value['Increase'], value['Decrease'],
+                             value['Increase_Weight'], value['Decrease_Weight'],
+                             value['Increase_Ratio'], value['Decrease_Ratio']])
+        print('Created', fileName)
+
+
 def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
-    scored_ngrams = {'Increase': 0, 'Decrease': 0,
-                     'Increase_Weight': 0, 'Decrease_Weight': 0,
-                     'Increase_Ratio': 0, 'Decrease_Ratio': 0}
+    # scored_ngrams = {'Increase': 0, 'Decrease': 0,
+    #                  'Increase_Weight': 0, 'Decrease_Weight': 0,
+    #                  'Increase_Ratio': 0, 'Decrease_Ratio': 0}
+    # increase_ngrams = {'Increase_Weight': 0, 'Decrease_Weight': 0}
+    # decrease_ngrams = {'Increase_Weight': 0, 'Decrease_Weight': 0}
+
     for n, files in sorted_ngram_files.items():
         scored_ngrams = {}
+        increase_ngrams = {}
+        decrease_ngrams = {}
         print('\nn =', n)
         for file in range(len(files)-1):
             try:
@@ -391,28 +424,20 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
                 value['Increase_Ratio'] = round(float(value['Increase_Weight'] / value['Decrease_Weight']))
             except ZeroDivisionError:
                 value['Increase_Ratio'] = 0
-
             try:
                 value['Decrease_Ratio'] = round(float(value['Decrease_Weight'] / value['Increase_Weight']))
             except ZeroDivisionError:
                 value['Decrease_Ratio'] = 0
-        path = f"Federal_Reserve/Increase_Decrease/"
-        if not os.path.exists(path):
-            os.makedirs(path)
 
-        fileName = f'{os.getcwd()}/Federal_Reserve/Increase_Decrease/n={n}.csv'
-        with open(fileName, 'w') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(('NGram', 'Increase', 'Decrease',
-                             'Increase_Weight', 'Decrease_Weight',
-                             'Increase_Ratio', 'Decrease_Ratio'))
-            for key, value in scored_ngrams.items():
-                writer.writerow([key, value['Increase'], value['Decrease'],
-                                 value['Increase_Weight'], value['Decrease_Weight'],
-                                 value['Increase_Ratio'], value['Decrease_Ratio']])
-        print('Created', fileName)
+            if value['Increase_Ratio'] >= 3:
+                increase_ngrams[ngram] = value
 
+            if value['Decrease_Ratio'] >= 3:
+                decrease_ngrams[ngram] = value
 
+        write_increase_decrease_files(n, scored_ngrams, ratio=False, increase=False)
+        write_increase_decrease_files(n, increase_ngrams, ratio=True, increase=True)
+        write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
 
 
 #get_monthly_links(webscrape=True)

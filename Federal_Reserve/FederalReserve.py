@@ -348,7 +348,9 @@ def get_monthly_links(webscrape=False):
                 print(e)
 
 def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
-    scored_ngrams = {'Increase': 0, 'Decrease': 0}
+    scored_ngrams = {'Increase': 0, 'Decrease': 0,
+                     'Increase_Weight': 0, 'Decrease_Weight': 0,
+                     'Increase_Ratio': 0, 'Decrease_Ratio': 0}
     for n, files in sorted_ngram_files.items():
         scored_ngrams = {}
         print('\nn =', n)
@@ -364,7 +366,8 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
                     for row in reader:
                         if row['NGram'] not in scored_ngrams:
                             scored_ngrams[(row['NGram'])] = {'Increase': int(row['Frequency']), 'Decrease': 0,
-                                                             'Increase_Weight': 0, 'Decrease_Weight': 0}
+                                                             'Increase_Weight': 0, 'Decrease_Weight': 0,
+                                                             'Increase_Ratio': 0, 'Decrease_Ratio': 0}
                         else:
                             scored_ngrams[(row['NGram'])]['Increase'] += int(row['Frequency'])
 
@@ -372,7 +375,8 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
                     for row in reader:
                         if row['NGram'] not in scored_ngrams:
                             scored_ngrams[(row['NGram'])] = {'Increase': 0, 'Decrease': int(row['Frequency']),
-                                                             'Increase_Weight': 0, 'Decrease_Weight': 0}
+                                                             'Increase_Weight': 0, 'Decrease_Weight': 0,
+                                                             'Increase_Ratio': 0, 'Decrease_Ratio': 0}
                         else:
                             scored_ngrams[(row['NGram'])]['Decrease'] += int(row['Frequency'])
             except Exception as e:
@@ -383,7 +387,15 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
             decrease = value['Decrease']
             value['Increase_Weight'] = round(float(increase / (increase + decrease)), 5)
             value['Decrease_Weight'] = round(float(decrease / (increase + decrease)), 5)
+            try:
+                value['Increase_Ratio'] = round(float(value['Increase_Weight'] / value['Decrease_Weight']))
+            except ZeroDivisionError:
+                value['Increase_Ratio'] = 0
 
+            try:
+                value['Decrease_Ratio'] = round(float(value['Decrease_Weight'] / value['Increase_Weight']))
+            except ZeroDivisionError:
+                value['Decrease_Ratio'] = 0
         path = f"Federal_Reserve/Increase_Decrease/"
         if not os.path.exists(path):
             os.makedirs(path)
@@ -391,10 +403,13 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
         fileName = f'{os.getcwd()}/Federal_Reserve/Increase_Decrease/n={n}.csv'
         with open(fileName, 'w') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow(('NGram', 'Increase', 'Decrease', 'Increase_Weight', 'Decrease_Weight'))
+            writer.writerow(('NGram', 'Increase', 'Decrease',
+                             'Increase_Weight', 'Decrease_Weight',
+                             'Increase_Ratio', 'Decrease_Ratio'))
             for key, value in scored_ngrams.items():
                 writer.writerow([key, value['Increase'], value['Decrease'],
-                                 value['Increase_Weight'], value['Decrease_Weight']])
+                                 value['Increase_Weight'], value['Decrease_Weight'],
+                                 value['Increase_Ratio'], value['Decrease_Ratio']])
         print('Created', fileName)
 
 

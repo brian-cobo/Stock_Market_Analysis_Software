@@ -5,7 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main_Program/Stock_Info.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_Program/Stock_Info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jupyter Notebooks/Sentiment_Results_Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter Notebooks/Sentiment_Results_Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,34 +16,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="264" column="5" selection-start-line="264" selection-start-column="5" selection-end-line="264" selection-end-column="5" />
+            <state relative-caret-position="59">
+              <caret line="381" column="70" selection-start-line="381" selection-start-column="70" selection-end-line="381" selection-end-column="70" />
               <folding>
                 <element signature="e#34#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Info.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main_Program/Main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1065">
-              <caret line="71" column="47" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
-              <folding>
-                <element signature="e#15#65#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,10 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>company</find>
-      <find>Apple</find>
-      <find>auth</find>
-      <find>def get_sector</find>
       <find>scrape</find>
       <find>add</find>
       <find>print_di</find>
@@ -90,6 +66,10 @@
       <find>search</find>
       <find>2019</find>
       <find>get_article</find>
+      <find>Data being</find>
+      <find>collect_stock_information</find>
+      <find>os.</find>
+      <find>drawSt</find>
     </findStrings>
     <replaceStrings>
       <replace>self.stockInfo</replace>
@@ -122,8 +102,9 @@
         <option value="$PROJECT_DIR$/FederalReserve.py" />
         <option value="$PROJECT_DIR$/Main_Program/Web_Scraper.py" />
         <option value="$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb" />
-        <option value="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" />
         <option value="$PROJECT_DIR$/Main_Program/Stock_Info.py" />
+        <option value="$PROJECT_DIR$/Main_Program/APIData.py" />
+        <option value="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" />
       </list>
     </option>
   </component>
@@ -140,6 +121,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -152,25 +134,19 @@
               <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
               <item name="Federal_Reserve" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-              <item name="Main_Program" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Federal_Reserve" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -181,6 +157,7 @@
       <recent name="$PROJECT_DIR$/Main_Program" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Federal_Reserve" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -196,7 +173,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.FederalReserve">
+  <component name="RunManager" selected="Python.Main">
     <configuration name="FederalReserve" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Stock_Visualization_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -389,21 +366,37 @@
       <workItem from="1567219239274" duration="16927000" />
       <workItem from="1567889395582" duration="7965000" />
       <workItem from="1568232761997" duration="1619000" />
+      <workItem from="1568335053440" duration="559000" />
+      <workItem from="1568338034361" duration="288000" />
+      <workItem from="1568515580601" duration="419000" />
+      <workItem from="1568567629988" duration="5996000" />
+      <workItem from="1568755136558" duration="5393000" />
+      <workItem from="1568848985067" duration="11470000" />
+      <workItem from="1568942689266" duration="6425000" />
+      <workItem from="1569029803650" duration="569000" />
+      <workItem from="1569034557948" duration="242000" />
+      <workItem from="1569083629431" duration="296000" />
+      <workItem from="1569100325557" duration="2262000" />
+      <workItem from="1569116372268" duration="1256000" />
+      <workItem from="1569137913972" duration="40000" />
+      <workItem from="1569290018360" duration="593000" />
+      <workItem from="1569445760820" duration="343000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215980000" />
+    <option name="totallyTimeSpent" value="252131000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="723" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2609047" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25282714" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32171157" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49757674" weight="0.83518225" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49757674" weight="0.47226626" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -412,9 +405,9 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5024233" side_tool="true" weight="0.2947702" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32913387" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3280507" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32913387" />
-      <window_info anchor="bottom" id="Jupyter" order="13" sideWeight="0.49757674" weight="0.2947702" />
+      <window_info anchor="bottom" id="Jupyter" order="13" sideWeight="0.49757674" visible="true" weight="0.2931854" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -431,10 +424,10 @@
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1565973432625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Load_MasterDictionary.coverage" NAME="Load_MasterDictionary Coverage Results" MODIFIED="1566413416456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Financial Lexicon" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566751909942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Main.coverage" NAME="Main Coverage Results" MODIFIED="1568235103373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Main.coverage" NAME="Main Coverage Results" MODIFIED="1569034586598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$fedres.coverage" NAME="fedres Coverage Results" MODIFIED="1567221580331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1566752275830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$FederalReserve.coverage" NAME="FederalReserve Coverage Results" MODIFIED="1568232963189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$FederalReserve.coverage" NAME="FederalReserve Coverage Results" MODIFIED="1569029936036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566413574671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Web_Scraper.coverage" NAME="Web_Scraper Coverage Results" MODIFIED="1566761559119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
   </component>
@@ -485,14 +478,8 @@
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Analyze_Sentiment_Results.ipynb" />
     <entry file="file://$PROJECT_DIR$/NLTK Exploration/nltk_practice.py" />
     <entry file="file://$PROJECT_DIR$/NLTK Exploration/Sentiment_Analysis_Classifier.py" />
-    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Explore Market Data.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results_1.csv" />
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Lexicon Analysis.ipynb" />
-    <entry file="file://$PROJECT_DIR$/Main_Program/APIData.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Load_MasterDictionary.py" />
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv" />
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Generic_Parser.py" />
@@ -520,33 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1094">
-          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Analyzer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-          <folding>
-            <element signature="e#15#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Results.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-544">
-          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -557,21 +517,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/LoughranMcDonald_MasterDictionary_2018.csv" />
     <entry file="file://$PROJECT_DIR$/Spreadsheets/Nasdaq_Company_List.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Federal_Reserve/fedres.py" />
     <entry file="file://$PROJECT_DIR$/Federal_Reserve/Untitled.ipynb" />
-    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main_Program/Web_Scraper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -582,19 +535,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="264" column="5" selection-start-line="264" selection-start-column="5" selection-end-line="264" selection-end-column="5" />
-          <folding>
-            <element signature="e#34#43#0" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-1-12_ngram_n=1.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=4.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=5.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-01-12_ngram_n=1.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=1.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=2.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=3.csv" />
     <entry file="file://$PROJECT_DIR$/Main_Program/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
+        <state relative-caret-position="1050">
           <caret line="71" column="47" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
           <folding>
             <element signature="e#15#65#0" expanded="true" />
@@ -602,10 +560,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/APIData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Results.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="15">
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Info.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+        <state relative-caret-position="4440">
+          <caret line="308" column="49" selection-start-line="308" selection-start-column="33" selection-end-line="308" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/LoughranMcDonald_MasterDictionary_2018.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="-5120" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Sentiment_Results_Analysis.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Explore Market Data.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="381" column="70" selection-start-line="381" selection-start-column="70" selection-end-line="381" selection-end-column="70" />
+          <folding>
+            <element signature="e#34#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

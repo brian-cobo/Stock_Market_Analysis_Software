@@ -73,7 +73,6 @@ TODO:
 # Jan 22, 1997 https://www.federalreserve.gov/fomc/beigebook/1997/19970122/default.htm
 
 
-
 def get_2019_beige_links(currentURL):
     """Gets links for 2019 Articles"""
     print('Scraping 2019 Articles')
@@ -90,6 +89,7 @@ def get_2019_beige_links(currentURL):
                 urlEnding = i[1].split('/')[-1]
                 currentLinks.append('https://www.federalreserve.gov/monetarypolicy/'+ urlEnding)
     return currentLinks
+
 
 def get_archive_beige_links():
     """Gets links for the archived years"""
@@ -147,6 +147,7 @@ def add_zero_to_date(date):
     else:
         return date
 
+
 def get_ngrams(articleFile, fullDate, n):
     """Takes in a file name and a number n to create a file with
         each ngram it produces"""
@@ -193,7 +194,6 @@ def get_ngrams(articleFile, fullDate, n):
             for key, value in articleNGrams.items():
                 writer.writerow([key, value])
         print('Created', fileName)
-
 
 
 def get_article_info(url):
@@ -282,6 +282,7 @@ def fix_month_and_days(dates):
         fixed_dates.append(newDate)
     return fixed_dates
 
+
 def collect_stock_information():
     ngramFiles = []
     dates = []
@@ -320,6 +321,7 @@ def collect_stock_information():
             print('Error loading market data for', date)
     return ngramFiles, marketPrices
 
+
 def sort_ngram_files(ngramFiles):
     sorted_n = {}
     for file in ngramFiles:
@@ -330,6 +332,7 @@ def sort_ngram_files(ngramFiles):
         else:
             sorted_n[n].append(file)
     return sorted_n
+
 
 def get_monthly_links(webscrape=False):
     if webscrape:
@@ -346,6 +349,7 @@ def get_monthly_links(webscrape=False):
                 get_article_info(i)
             except Exception as e:
                 print(e)
+
 
 def write_increase_decrease_files(n, ngram_list, ratio=False, increase=False):
     paths = [f"{os.getcwd()}/Federal_Reserve/Increase_Decrease/Increase_Ngrams/",
@@ -376,12 +380,6 @@ def write_increase_decrease_files(n, ngram_list, ratio=False, increase=False):
 
 
 def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
-    # scored_ngrams = {'Increase': 0, 'Decrease': 0,
-    #                  'Increase_Weight': 0, 'Decrease_Weight': 0,
-    #                  'Increase_Ratio': 0, 'Decrease_Ratio': 0}
-    # increase_ngrams = {'Increase_Weight': 0, 'Decrease_Weight': 0}
-    # decrease_ngrams = {'Increase_Weight': 0, 'Decrease_Weight': 0}
-
     for n, files in sorted_ngram_files.items():
         scored_ngrams = {}
         increase_ngrams = {}
@@ -440,7 +438,7 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
         write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
 
 
-#get_monthly_links(webscrape=True)
-ngramsFiles, stock_info = collect_stock_information()
-sorted_ngram_files = sort_ngram_files(ngramsFiles)
-compute_increase_decrease_counts(sorted_ngram_files, stock_info)
+# get_monthly_links(webscrape=True)
+# ngramsFiles, stock_info = collect_stock_information()
+# sorted_ngram_files = sort_ngram_files(ngramsFiles)
+# compute_increase_decrease_counts(sorted_ngram_files, stock_info)

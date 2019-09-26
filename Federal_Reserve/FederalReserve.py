@@ -5,13 +5,13 @@ import re
 import requests
 import os
 import csv
-
 import pandas as pd
 
 from bs4 import BeautifulSoup
 from nltk import ngrams
 from nltk import FreqDist
 from time import sleep
+from random import randint
 
 """
 NOTES:
@@ -179,6 +179,7 @@ def get_ngrams(articleFile, fullDate, n):
         with open(articleFile) as articlefile:
             article = articlefile.read()
         article = re.sub(r'([^\s\w]|_)+', '', article)
+        article = article.lower()
         ngramsResult = ngrams(article.split(), n)
         frequency = FreqDist(ngramsResult).most_common()
 
@@ -283,6 +284,19 @@ def fix_month_and_days(dates):
     return fixed_dates
 
 
+def save_market_info(marketPrices):
+    fileName = os.getcwd() + '/Federal_Reserve/Stock_History.csv'
+
+    with open(fileName, 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(('Date', 'Open', 'High', 'Low', 'Close', 'Volume'))
+        for key, value in marketPrices.items():
+            writer.writerow([key, value['Open'], value['High'],
+                             value['Low'], value['Close'],
+                             value['Volume']])
+        print('Created', fileName)
+
+
 def collect_stock_information():
     ngramFiles = []
     dates = []
@@ -319,6 +333,8 @@ def collect_stock_information():
                                   'Volume': data.Volume.values[0]}
         except Exception as e:
             print('Error loading market data for', date)
+
+    save_market_info(marketPrices)
     return ngramFiles, marketPrices
 
 
@@ -438,7 +454,65 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
         write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
 
 
-# get_monthly_links(webscrape=True)
-# ngramsFiles, stock_info = collect_stock_information()
-# sorted_ngram_files = sort_ngram_files(ngramsFiles)
-# compute_increase_decrease_counts(sorted_ngram_files, stock_info)
+def test_program_with_articles(n): #, stock_info):
+    # Chooses random article to analyze
+    year = randint(2011, 2019)
+    articlePath = str(os.getcwd() + f'/Federal_Reserve/Articles/{year}/')
+    articlesInPath = os.listdir(articlePath)
+    articleToAnalyze = randint(0, len(articlesInPath) - 1)
+    articleTitle = articlesInPath[articleToAnalyze]
+    date = articleTitle.split('_')[0]
+    article = articlePath + articleTitle
+    print('Article to Analyze:', articleTitle)
+
+    with open(article) as file:
+        data = file.read()
+    data = data.lower()
+
+    ngramResult = ngrams(data.split(), n)
+    frequency = FreqDist(ngramResult).most_common()
+
+    articleNGrams = {}
+    for ngram in frequency:
+        words = ngram[0]
+        freq = ngram[1]
+        articleNGrams[words] = freq
+
+    increase_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n={n}.csv')
+    increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
+
+    decrease_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
+    decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
+
+    stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History.csv')
+
+    sum = 0
+    for ngram, freq in articleNGrams.items():
+        try:
+            if increase_ngrams[ngram]:
+                print('Ngram:', ngram, 'In increase ngrams')
+                print(increase_ngrams[ngram])
+                sum += (increase_ngrams['Increase_Weight'] * freq)
+                print('New Sum:', sum)
+        except KeyError:
+            pass
+
+        try:
+            if decrease_ngrams[ngram]:
+                print('Ngram:', ngram, 'In decrease ngrams')
+                print(decrease_ngrams[ngram])
+                sum -= (decrease_ngrams['Increase_Weight'] * freq)
+        except KeyError:
+            pass
+    print('Article Total:', sum)
+
+
+get_monthly_links(webscrape=True)
+ngramsFiles, stock_info = collect_stock_information()
+sorted_ngram_files = sort_ngram_files(ngramsFiles)
+compute_increase_decrease_counts(sorted_ngram_files, stock_info)
+test_program_with_articles(1)
+test_program_with_articles(2)
+test_program_with_articles(3)
+test_program_with_articles(4)
+test_program_with_articles(5)

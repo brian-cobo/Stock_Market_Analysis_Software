@@ -6,6 +6,7 @@ import requests
 import os
 import csv
 import pandas as pd
+import numpy as np
 
 from bs4 import BeautifulSoup
 from nltk import ngrams
@@ -443,7 +444,7 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
             except ZeroDivisionError:
                 value['Decrease_Ratio'] = 0
 
-            if value['Increase_Ratio'] >= 3:
+            if value['Increase_Ratio'] >= 5:
                 increase_ngrams[ngram] = value
 
             if value['Decrease_Ratio'] >= 3:
@@ -454,65 +455,112 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
         write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
 
 
-def test_program_with_articles(n): #, stock_info):
-    # Chooses random article to analyze
-    year = randint(2011, 2019)
-    articlePath = str(os.getcwd() + f'/Federal_Reserve/Articles/{year}/')
-    articlesInPath = os.listdir(articlePath)
-    articleToAnalyze = randint(0, len(articlesInPath) - 1)
-    articleTitle = articlesInPath[articleToAnalyze]
-    date = articleTitle.split('_')[0]
-    article = articlePath + articleTitle
-    print('Article to Analyze:', articleTitle)
+def test_program_with_articles(runs=1): #, stock_info):
+    score = 0
+    # Grabs all Articles so it can randomly choose one
+    allArticles = []
+    for root,dirs,files in os.walk(os.getcwd() + f'/Federal_Reserve/Articles/'):
+        for file in files:
+            allArticles.append(f'{root}/{file}')
+    allArticles = sorted(allArticles)
+    allArticles = allArticles[:-1]  # Getting rid of last article
+    print(len(allArticles))
 
-    with open(article) as file:
-        data = file.read()
-    data = data.lower()
+    for run in range(runs):
+        indexToAnalyze = randint(0, len(allArticles) - 1)
+        article = allArticles[indexToAnalyze]
+        articleTitle = article.split('/')[-1]
+        date = articleTitle.split('_')[0]
+        date = date.split('-')[:-1]
+        date = ('-').join(date)
 
-    ngramResult = ngrams(data.split(), n)
-    frequency = FreqDist(ngramResult).most_common()
+        print('\nArticle to Analyze:', articleTitle)
 
-    articleNGrams = {}
-    for ngram in frequency:
-        words = ngram[0]
-        freq = ngram[1]
-        articleNGrams[words] = freq
+        with open(article) as file:
+            data = file.read()
+        data = data.lower()
 
-    increase_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n={n}.csv')
-    increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
+        sums = []
+        increase_sum = 0
+        decrease_sum = 0
+        sum = 0
+        for n in range(1, 6):
+            ngramResult = ngrams(data.split(), n)
+            frequency = FreqDist(ngramResult).most_common()
 
-    decrease_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
-    decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
+            articleNGrams = {}
+            for ngram in frequency:
+                words = ngram[0]
+                freq = ngram[1]
+                articleNGrams[f"{words}"] = freq
 
-    stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History.csv')
+            increase_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n={n}.csv')
+            increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
 
-    sum = 0
-    for ngram, freq in articleNGrams.items():
-        try:
-            if increase_ngrams[ngram]:
-                print('Ngram:', ngram, 'In increase ngrams')
-                print(increase_ngrams[ngram])
-                sum += (increase_ngrams['Increase_Weight'] * freq)
-                print('New Sum:', sum)
-        except KeyError:
-            pass
+            decrease_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
+            decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
 
-        try:
-            if decrease_ngrams[ngram]:
-                print('Ngram:', ngram, 'In decrease ngrams')
-                print(decrease_ngrams[ngram])
-                sum -= (decrease_ngrams['Increase_Weight'] * freq)
-        except KeyError:
-            pass
-    print('Article Total:', sum)
+            stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History.csv')
+            stock_history = stock_history.set_index('Date').T.to_dict('dict')
+
+            for ngram, freq in articleNGrams.items():
+                try:
+                    if increase_ngrams[ngram]:
+                        sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
+                        increase_sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
+                except KeyError:
+                    pass
+
+                try:
+                    if decrease_ngrams[ngram]:
+                        sum -= (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
+                        decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
+                except KeyError:
+                    pass
+            # print(f'\nN = {n}')
+            # print('Increase Sum:', increase_sum)
+            # print('Decrease Sum:', decrease_sum)
+            # print('Article Total:', sum)
+            sums.append(sum)
+
+        # Get actual stock movement between current period
+        acutalStockMovement = 0
+        actualStockChange = 0
+        listStockHistory = list(stock_history)
+        for reportDate in range(len(listStockHistory)):
+            if date in listStockHistory[reportDate]:
+                startDate = listStockHistory[reportDate]
+                endDate = listStockHistory[reportDate + 1]
+                startPrice = stock_history[startDate]['Close']
+                endPrice = stock_history[endDate]['Close']
+
+                if endPrice - startPrice > 0:
+                    acutalStockMovement = 1
+                actualStockChange = endPrice - startPrice
+
+        sums = np.mean(sums)
+        # print('Average Weight:', sums)
+
+        predictedStockMovement = 0
+        # If the postive greatly outweighs negative, the article is considered positive
+        if (decrease_sum/increase_sum) < 0.20:
+            predictedStockMovement = 1
+
+        print('Increase Sum:', increase_sum)
+        print('Decrease Sum:', decrease_sum)
+        print(f'Stock Movement: {actualStockChange}')
+        print(f'Predicted Movement: {predictedStockMovement} Actual Movement: {acutalStockMovement}')
 
 
-get_monthly_links(webscrape=True)
-ngramsFiles, stock_info = collect_stock_information()
-sorted_ngram_files = sort_ngram_files(ngramsFiles)
-compute_increase_decrease_counts(sorted_ngram_files, stock_info)
-test_program_with_articles(1)
-test_program_with_articles(2)
-test_program_with_articles(3)
-test_program_with_articles(4)
-test_program_with_articles(5)
+        if predictedStockMovement == acutalStockMovement:
+            score += 1
+        allArticles.pop(indexToAnalyze)
+    print(f'\nTotal Score: {(score/runs)*100}% Accuracy of {runs} Runs')
+
+
+# get_monthly_links(webscrape=True)
+# ngramsFiles, stock_info = collect_stock_information()
+# sorted_ngram_files = sort_ngram_files(ngramsFiles)
+# compute_increase_decrease_counts(sorted_ngram_files, stock_info)
+test_program_with_articles(runs=50)
+

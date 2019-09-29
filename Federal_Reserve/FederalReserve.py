@@ -73,25 +73,39 @@ TODO:
 #              https://www.federalreserve.gov/fomc/beigebook/2005/20050119/default.htm
 # Jan 22, 1997 https://www.federalreserve.gov/fomc/beigebook/1997/19970122/default.htm
 
+class Federal_Reserve:
+    # These are public functions
+    def gather_articles_and_stock_info(self):
+        links2019 = self.__get_current_beige_links()
 
-def get_2019_beige_links(currentURL):
-    """Gets links for 2019 Articles"""
-    print('Scraping 2019 Articles')
-    currentLinks = []
-    currentURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm'
-    page = requests.get(currentURL)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    links = soup.findAll('td')
-    for i in links:
-        if re.match('.*htm.*', str(i)):
-            i = str(i)
-            i = i.split('"')
-            if 'htm' in i[1]:
-                urlEnding = i[1].split('/')[-1]
-                currentLinks.append('https://www.federalreserve.gov/monetarypolicy/'+ urlEnding)
-    return currentLinks
+    def test_program(self):
+        pass
+    # end public functions
+
+    def __get_current_beige_links(self):
+        """Gets links for Articles of the current year"""
+        print('Scraping 2019 Articles')
+        currentLinks = []
+        currentURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm'
+        page = requests.get(currentURL)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        links = soup.findAll('td')
+
+        for link in links:
+            if re.match('.*htm.*', str(link)):
+                link = str(link)
+                link = link.split('"')
+                if 'htm' in link[1]:
+                    urlEnding = link[1].split('/')[-1]
+                    currentLinks.append('https://www.federalreserve.gov/monetarypolicy/' + urlEnding)
+
+        return currentLinks
+
+fed = Federal_Reserve()
+# fed.gather_articles_and_stock_info()
 
 
+exit(0)
 def get_archive_beige_links():
     """Gets links for the archived years"""
     archiveURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-archive.htm'
@@ -101,6 +115,7 @@ def get_archive_beige_links():
         page = requests.get(archiveURL)
         soup = BeautifulSoup(page.content, 'html.parser')
         links = soup.findAll(re.compile(r'a'))
+        print(links)
         for i in links:
             if re.match('.*beigebook.*', str(i)):
                 i = str(i)
@@ -298,8 +313,9 @@ def save_market_info(marketPrices):
         print('Created', fileName)
 
 
-def collect_stock_information():
+def get_stock_information():
     ngramFiles = []
+    testingFiles = []
     dates = []
     marketPrices = {}
     path = 'Federal_Reserve/NGrams/'
@@ -307,7 +323,6 @@ def collect_stock_information():
         if i[2]:
             for file in i[2]:
                 ngramFiles.append(file)
-
     ngramFiles = sorted(ngramFiles)
     for i in ngramFiles:
         date = i.split('_')[0]
@@ -315,6 +330,15 @@ def collect_stock_information():
 
     dates = sorted(list(set(dates)))
     dates = fix_month_and_days(dates)
+
+    #Filter out training and testing articles
+    for file in ngramFiles:
+        if ('2017' in file or
+            '2018' in file or
+            '2019' in file):
+            testingFiles.append(file)
+            ngramFiles.remove(file)
+    testingFiles = list(set(testingFiles))
     marketData = pd.read_csv('Federal_Reserve/GSPC.csv')
 
     print('Number of Original Dates:', len(dates))
@@ -336,7 +360,7 @@ def collect_stock_information():
             print('Error loading market data for', date)
 
     save_market_info(marketPrices)
-    return ngramFiles, marketPrices
+    return ngramFiles, testingFiles, marketPrices
 
 
 def sort_ngram_files(ngramFiles):
@@ -354,7 +378,6 @@ def sort_ngram_files(ngramFiles):
 def get_monthly_links(webscrape=False):
     if webscrape:
         monthURL = []
-        links2019 = get_2019_beige_links(currentURL='https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm')
         linksArchive = get_archive_beige_links()
 
         for i in links2019:
@@ -455,112 +478,102 @@ def compute_increase_decrease_counts(sorted_ngram_files, stock_info):
         write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
 
 
-def test_program_with_articles(runs=1): #, stock_info):
+def test_program_with_articles(testingFiles): #, stock_info):
     score = 0
-    # Grabs all Articles so it can randomly choose one
-    allArticles = []
-    for root,dirs,files in os.walk(os.getcwd() + f'/Federal_Reserve/Articles/'):
-        for file in files:
-            allArticles.append(f'{root}/{file}')
-    allArticles = sorted(allArticles)
-    allArticles = allArticles[:-1]  # Getting rid of last article
-    print(len(allArticles))
+    error = 0
+    runs = len(testingFiles)
 
-    for run in range(runs):
-        indexToAnalyze = randint(0, len(allArticles) - 1)
-        article = allArticles[indexToAnalyze]
-        articleTitle = article.split('/')[-1]
-        date = articleTitle.split('_')[0]
-        date = date.split('-')[:-1]
-        date = ('-').join(date)
+    for date in testingFiles:
+        try:
+            year = date.split('-')[0]
+            article = (f'{os.getcwd()}/Federal_Reserve/Articles/{year}/{date}_Report.txt')
 
-        print('\nArticle to Analyze:', articleTitle)
+            print('\nArticle to Analyze:', article)
 
-        with open(article) as file:
-            data = file.read()
-        data = data.lower()
+            with open(article) as file:
+                data = file.read()
+            data = data.lower()
 
-        sums = []
-        increase_sum = 0
-        decrease_sum = 0
-        sum = 0
-        for n in range(1, 6):
-            ngramResult = ngrams(data.split(), n)
-            frequency = FreqDist(ngramResult).most_common()
+            increase_sum = 0
+            decrease_sum = 0
+            for n in range(1, 6):
+                ngramResult = ngrams(data.split(), n)
+                frequency = FreqDist(ngramResult).most_common()
 
-            articleNGrams = {}
-            for ngram in frequency:
-                words = ngram[0]
-                freq = ngram[1]
-                articleNGrams[f"{words}"] = freq
+                articleNGrams = {}
+                for ngram in frequency:
+                    words = ngram[0]
+                    freq = ngram[1]
+                    articleNGrams[f"{words}"] = freq
 
-            increase_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n={n}.csv')
-            increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
+                increase_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n={n}.csv')
+                increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
 
-            decrease_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
-            decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
+                decrease_ngrams = pd.read_csv(os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
+                decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
 
-            stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History.csv')
-            stock_history = stock_history.set_index('Date').T.to_dict('dict')
+                stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History.csv')
+                stock_history = stock_history.set_index('Date').T.to_dict('dict')
 
-            for ngram, freq in articleNGrams.items():
-                try:
-                    if increase_ngrams[ngram]:
-                        sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
-                        increase_sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
-                except KeyError:
-                    pass
+                for ngram, freq in articleNGrams.items():
+                    try:
+                        if increase_ngrams[ngram]:
+                            increase_sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
+                    except KeyError:
+                        pass
 
-                try:
-                    if decrease_ngrams[ngram]:
-                        sum -= (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
-                        decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
-                except KeyError:
-                    pass
-            # print(f'\nN = {n}')
-            # print('Increase Sum:', increase_sum)
-            # print('Decrease Sum:', decrease_sum)
-            # print('Article Total:', sum)
-            sums.append(sum)
+                    try:
+                        if decrease_ngrams[ngram]:
+                            decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
+                    except KeyError:
+                        pass
+                # print(f'\nN = {n}')
+                # print('Increase Sum:', increase_sum)
+                # print('Decrease Sum:', decrease_sum)
+                # print('Article Total:', sum)
 
-        # Get actual stock movement between current period
-        acutalStockMovement = 0
-        actualStockChange = 0
-        listStockHistory = list(stock_history)
-        for reportDate in range(len(listStockHistory)):
-            if date in listStockHistory[reportDate]:
-                startDate = listStockHistory[reportDate]
-                endDate = listStockHistory[reportDate + 1]
-                startPrice = stock_history[startDate]['Close']
-                endPrice = stock_history[endDate]['Close']
+            # Get actual stock movement between current period
+            acutalStockMovement = -1
+            actualStockChange = 0
+            listStockHistory = list(stock_history)
+            for reportDate in range(len(listStockHistory)):
+                if date in listStockHistory[reportDate]:
+                    startDate = listStockHistory[reportDate]
+                    endDate = listStockHistory[reportDate + 1]
+                    startPrice = stock_history[startDate]['Close']
+                    endPrice = stock_history[endDate]['Close']
 
-                if endPrice - startPrice > 0:
-                    acutalStockMovement = 1
-                actualStockChange = endPrice - startPrice
+                    if endPrice - startPrice > 0:
+                        acutalStockMovement = 1
+                    actualStockChange = endPrice - startPrice
 
-        sums = np.mean(sums)
-        # print('Average Weight:', sums)
+            predictedStockMovement = -1
+            # If the postive greatly outweighs negative, the article is considered positive
+            if (decrease_sum/increase_sum) < 0.20:
+                predictedStockMovement = 1
 
-        predictedStockMovement = 0
-        # If the postive greatly outweighs negative, the article is considered positive
-        if (decrease_sum/increase_sum) < 0.20:
-            predictedStockMovement = 1
-
-        print('Increase Sum:', increase_sum)
-        print('Decrease Sum:', decrease_sum)
-        print(f'Stock Movement: {actualStockChange}')
-        print(f'Predicted Movement: {predictedStockMovement} Actual Movement: {acutalStockMovement}')
+            print('Increase Sum:', increase_sum)
+            print('Decrease Sum:', decrease_sum)
+            print('Inc - Dec Ratio:', (decrease_sum/increase_sum))
+            print(f'Stock Movement: {actualStockChange}')
+            print(f'Predicted Movement: {predictedStockMovement} Actual Movement: {acutalStockMovement}')
 
 
-        if predictedStockMovement == acutalStockMovement:
-            score += 1
-        allArticles.pop(indexToAnalyze)
+            if predictedStockMovement == acutalStockMovement:
+                score += 1
+            error += (predictedStockMovement - acutalStockMovement)
+        except Exception as e:
+            print('ERROR:', e)
+
     print(f'\nTotal Score: {(score/runs)*100}% Accuracy of {runs} Runs')
+    print(f'Total Error: {error}')
 
 
 # get_monthly_links(webscrape=True)
-# ngramsFiles, stock_info = collect_stock_information()
-# sorted_ngram_files = sort_ngram_files(ngramsFiles)
+# trainingFiles, testingFiles, stock_info = get_stock_information()
+# sorted_ngram_files = sort_ngram_files(trainingFiles)
 # compute_increase_decrease_counts(sorted_ngram_files, stock_info)
-test_program_with_articles(runs=50)
+testingFiles = ['2017-01-18', '2017-03-01', '2017-04-19', '2017-05-31', '2017-07-12', '2017-09-06', '2017-10-18', '2017-11-29', '2018-01-17', '2018-03-07', '2018-04-18', '2018-05-30', '2018-07-18', '2018-09-12', '2018-10-24', '2018-12-05', '2019-01-16', '2019-03-06', '2019-04-17', '2019-06-05', '2019-07-17', '2019-09-04']
+
+test_program_with_articles(testingFiles)
 

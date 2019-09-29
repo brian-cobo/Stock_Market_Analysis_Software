@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/practice class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=4.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=5.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=4.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=5.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=1.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=2.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=3.csv" afterDir="false" />
@@ -20,42 +32,33 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7671">
-              <caret line="564" column="34" selection-start-line="564" selection-start-column="34" selection-end-line="564" selection-end-column="34" />
+            <state relative-caret-position="273">
+              <caret line="99" column="89" selection-start-line="99" selection-start-column="89" selection-end-line="99" selection-end-column="89" />
               <folding>
                 <element signature="e#34#43#0" expanded="true" />
+                <element signature="e#4204#6425#0" />
+                <element signature="e#6460#6544#0" />
+                <element signature="e#6593#8169#0" />
+                <element signature="e#8203#9698#0" />
+                <element signature="e#9753#9870#0" />
+                <element signature="e#10147#10519#0" />
+                <element signature="e#10562#11033#0" />
+                <element signature="e#11073#12744#0" />
+                <element signature="e#12785#13019#0" />
+                <element signature="e#13622#14881#0" />
+                <element signature="e#14958#17932#0" />
+                <element signature="e#18001#21739#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Federal_Reserve/Stock_History.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="182">
-              <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+        <entry file="file://$PROJECT_DIR$/practice class.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
             </state>
-          </provider>
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=3.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=3.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="-1643" />
-          </provider>
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
         </entry>
       </file>
@@ -64,19 +67,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>No results</find>
-      <find>#print</find>
-      <find>#</find>
-      <find>prepare_article</find>
-      <find>get_sentiment_analysis</find>
-      <find>lm_dictionary</find>
       <find>check_if_attribute_in_list</find>
       <find>analyze_market_data</find>
       <find>find_articles</find>
@@ -92,7 +89,6 @@
       <find>2019</find>
       <find>get_article</find>
       <find>Data being</find>
-      <find>collect_stock_information</find>
       <find>os.</find>
       <find>drawSt</find>
       <find>return</find>
@@ -101,6 +97,13 @@
       <find>and</find>
       <find>order</find>
       <find>print(date</find>
+      <find>exit(0</find>
+      <find>collect_stock_information</find>
+      <find>get_monthly_links</find>
+      <find>fix_month_and_days</find>
+      <find>add_zero_to_date</find>
+      <find>increase_day_from_string</find>
+      <find>get_2019_beige_links</find>
     </findStrings>
     <replaceStrings>
       <replace>self.stockInfo</replace>
@@ -135,6 +138,7 @@
         <option value="$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb" />
         <option value="$PROJECT_DIR$/Main_Program/Stock_Info.py" />
         <option value="$PROJECT_DIR$/Main_Program/APIData.py" />
+        <option value="$PROJECT_DIR$/practice class.py" />
         <option value="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" />
       </list>
     </option>
@@ -159,31 +163,6 @@
             <path>
               <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
               <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-              <item name="Federal_Reserve" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-              <item name="Federal_Reserve" type="462c0819:PsiDirectoryNode" />
-              <item name="Increase_Decrease" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-              <item name="Federal_Reserve" type="462c0819:PsiDirectoryNode" />
-              <item name="Increase_Decrease" type="462c0819:PsiDirectoryNode" />
-              <item name="Decrease_Ngrams" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-              <item name="Federal_Reserve" type="462c0819:PsiDirectoryNode" />
-              <item name="Increase_Decrease" type="462c0819:PsiDirectoryNode" />
-              <item name="Increase_Ngrams" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -335,16 +314,40 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="practice class" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Stock_Visualization_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/practice class.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.Stock_Visualizations_Menu" />
       <item itemvalue="Python.Web_Scraper" />
       <item itemvalue="Python.Main" />
       <item itemvalue="Python.fedres" />
       <item itemvalue="Python.FederalReserve" />
+      <item itemvalue="Python.practice class" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.FederalReserve" />
+        <item itemvalue="Python.practice class" />
         <item itemvalue="Python.Main" />
         <item itemvalue="Python.fedres" />
         <item itemvalue="Python.Web_Scraper" />
@@ -431,23 +434,27 @@
       <workItem from="1569116372268" duration="1256000" />
       <workItem from="1569137913972" duration="40000" />
       <workItem from="1569290018360" duration="593000" />
-      <workItem from="1569445760820" duration="15456000" />
+      <workItem from="1569445760820" duration="16094000" />
+      <workItem from="1569513137748" duration="2429000" />
+      <workItem from="1569516158018" duration="2193000" />
+      <workItem from="1569720343280" duration="4283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267244000" />
+    <option name="totallyTimeSpent" value="276787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="723" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25282714" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26494345" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32171157" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49757674" visible="true" weight="0.3169572" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49757674" visible="true" weight="0.3058637" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3977813" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -473,23 +480,16 @@
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Generic_Parser.coverage" NAME="Generic_Parser Coverage Results" MODIFIED="1566413708622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Financial Lexicon" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1565973432625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Load_MasterDictionary.coverage" NAME="Load_MasterDictionary Coverage Results" MODIFIED="1566413416456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Financial Lexicon" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$practice_class.coverage" NAME="practice class Coverage Results" MODIFIED="1569727450393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566751909942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Main.coverage" NAME="Main Coverage Results" MODIFIED="1569465267033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$fedres.coverage" NAME="fedres Coverage Results" MODIFIED="1567221580331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1566752275830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$FederalReserve.coverage" NAME="FederalReserve Coverage Results" MODIFIED="1569482694362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$FederalReserve.coverage" NAME="FederalReserve Coverage Results" MODIFIED="1569727503163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566413574671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Web_Scraper.coverage" NAME="Web_Scraper Coverage Results" MODIFIED="1566761559119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Send_Response_To_Text.py" />
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="5066" selection-start-line="5066" selection-end-line="5066" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Nasdaq_Company_List.csv" />
     <entry file="file://$PROJECT_DIR$/Market_Summary.csv" />
     <entry file="file://$PROJECT_DIR$/Explore Market Data.ipynb" />
@@ -653,9 +653,12 @@
     <entry file="file://$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb">
       <provider selected="true" editor-type-id="jupyter-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Hack_Rice_Stock_Prediction/Stochastic_Oscillator.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Federal_Reserve/Stock_History.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="182">
+        <state relative-caret-position="630">
           <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
         </state>
       </provider>
@@ -670,19 +673,36 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=3.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-1643" />
-      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/practice class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7671">
-          <caret line="564" column="34" selection-start-line="564" selection-start-column="34" selection-end-line="564" selection-end-column="34" />
+        <state relative-caret-position="273">
+          <caret line="99" column="89" selection-start-line="99" selection-start-column="89" selection-end-line="99" selection-end-column="89" />
           <folding>
             <element signature="e#34#43#0" expanded="true" />
+            <element signature="e#4204#6425#0" />
+            <element signature="e#6460#6544#0" />
+            <element signature="e#6593#8169#0" />
+            <element signature="e#8203#9698#0" />
+            <element signature="e#9753#9870#0" />
+            <element signature="e#10147#10519#0" />
+            <element signature="e#10562#11033#0" />
+            <element signature="e#11073#12744#0" />
+            <element signature="e#12785#13019#0" />
+            <element signature="e#13622#14881#0" />
+            <element signature="e#14958#17932#0" />
+            <element signature="e#18001#21739#0" />
           </folding>
         </state>
       </provider>

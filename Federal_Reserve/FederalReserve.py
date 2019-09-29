@@ -14,81 +14,22 @@ from nltk import FreqDist
 from time import sleep
 from random import randint
 
-"""
-NOTES:
-I'm still working out some issues with the webscraping part. 
-At the moment I have the webscraper for 2019 working correctly, i'm having some issues 
-with the archive stuff since the formats for the URLs and the sites vary between years. 
-I should have 2011-2018 working correctly soon. Earlier articles will take a lot more effort
-since the URLs are more advanced and require specific dates as a part of them. I can work
-on that if you find value for it, if not I can hold off on it. I'm taking the articles, and
-running the through a function to get the ngrams. I'm currently generating unigrams through
-sextagrams (not sure if that's the correct name, but it sounds right) and printing them.
-
-ALGORITHM:
-* Read in https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm HTML code
-* Look for the table rows which contains links to all the articles written this year
-* Append that to a list that will hold all Monthly URLs
-* Extract article content by looking for P tags in the HTML
-* Add content to a string
-* Create NGrams with N looping from 1 - 6
-* Print NGram
-
-TODO:
-* Rather than rely on URL to grab article, I want to write the article to a text file.
-    * Doing so will make it a bit faster to read and create the n grams and we can
-      specify which article we can look at.
-* Fix the 2011-2018 webscraper portions
-* Come up with better ngram output. Possibly writing each ngram to a file per URL
-* Want to look at Ngram for all articles combined
-    * Writing articles to text files will help with that
-"""
-
-
-# Archive Home
-# https://www.federalreserve.gov/monetarypolicy/beige-book-archive.htm
-
-# 2019 Home
-# https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm
-
-# URLs separated by URL pattern
-
-# Jan 16, 2019 https://www.federalreserve.gov/monetarypolicy/beigebook201901.htm
-# Jan 17, 2018 https://www.federalreserve.gov/monetarypolicy/beigebook201801.htm
-# Jan 18, 2017 https://www.federalreserve.gov/monetarypolicy/beigebook201701.htm
-
-# Jan 13, 2016 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201601.htm
-#              https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201601.htm?summary
-# Jan 14, 2015 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201501.htm
-# Jan 14, 2014 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201401.htm
-# Jan 16, 2013 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201301.htm
-# Jan   , 2012 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201201.htm
-# Jan 12, 2011 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201101.htm
-             # https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook1997.htm
-
-# Jan 13, 2010 https://www.federalreserve.gov/fomc/beigebook/2010/20100113/default.htm
-# Jan 14, 2009 https://www.federalreserve.gov/fomc/beigebook/2009/20090114/FullReport.htm
-#              https://www.federalreserve.gov/fomc/beigebook/2009/20090114/default.htm
-# Jan 17, 2007 https://www.federalreserve.gov/fomc/beigebook/2007/20070117/FullReport.htm
-# Jan 19, 2005 https://www.federalreserve.gov/fomc/beigebook/2005/20050119/FullReport.htm
-#              https://www.federalreserve.gov/fomc/beigebook/2005/20050119/default.htm
-# Jan 22, 1997 https://www.federalreserve.gov/fomc/beigebook/1997/19970122/default.htm
-
 class Federal_Reserve:
-    # These are public functions
     def gather_articles_and_stock_info(self):
+        print('Gathering Articles')
         links2019 = self.__get_current_beige_links()
         links2011_ = self.__get_2011_to_previous_year_beige_links()
         monthly_links_2011_ = self.__get_2011_monthly_links(links2011_)
         monthly_links_1996_2011 = self.__get_1996_2011_monthly_links()
+        all_monthly_links = self.__compile_monthly_links(monthly_links_1996_2011,
+                                                         monthly_links_2011_)
+        print('Finished Gathering Articles')
 
     def test_program(self):
         pass
-    # end public functions
 
     def __get_current_beige_links(self):
         """Gets links for Articles of the current year"""
-        print('Scraping 2019 Articles')
         currentLinks = []
         currentURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm'
         sleep(3)
@@ -128,14 +69,12 @@ class Federal_Reserve:
 
         return yearlyLinks
 
-
     def __get_2011_monthly_links(self, links2011_):
         """Get links from 2011 - (current year - 1)"""
         monthly_links = []
         for yearLink in links2011_:
             try:
                 sleep(3)
-                print('Scraping', yearLink)
                 page = requests.get(yearLink)
                 soup = BeautifulSoup(page.content, 'html.parser')
                 links = soup.findAll('td')
@@ -149,7 +88,7 @@ class Federal_Reserve:
                             if (re.match(r'.*2018', urlEnding) or
                                     re.match(r'.*2017', urlEnding)):
                                 monthly_links.append('https://www.federalreserve.gov/monetarypolicy/' + urlEnding)
-                                links2011_.remove(yearLink)
+
                             elif (re.match(r'.*2011', urlEnding) or
                                   re.match(r'.*2012', urlEnding) or
                                   re.match(r'.*2013', urlEnding) or
@@ -159,7 +98,8 @@ class Federal_Reserve:
                                 monthly_links.append(
                                     'https://www.federalreserve.gov/monetarypolicy/beigebook/' + urlEnding)
                             else:
-                                break
+                                print(i[1])
+                                monthly_links.append(i[1])
             except Exception as e:
                 print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
         return monthly_links
@@ -170,7 +110,6 @@ class Federal_Reserve:
             base_url = f'https://www.federalreserve.gov/monetarypolicy/beigebook{year}.htm'
             try:
                 sleep(3)
-                print('Scraping', base_url)
                 page = requests.get(base_url)
                 soup = BeautifulSoup(page.content, 'html.parser')
                 links = soup.findAll('td')
@@ -185,19 +124,87 @@ class Federal_Reserve:
                 print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
         return monthly_links
 
+    def __compile_monthly_links(self, monthly_links_2011_,
+                                monthly_links_1996_2011):
+        all_links = []
+        for link in monthly_links_2011_:
+            all_links.append(link)
+            try:
+                self.__get_article_info(link)
+            except Exception as e:
+                print('ERROR EXTRACTING ARTICLE INFO:', e)
+
+        for link in monthly_links_1996_2011:
+            all_links.append(link)
+            try:
+                self.__get_article_info(link)
+            except Exception as e:
+                print('ERROR EXTRACTING ARTICLE INFO:', e)
+
+        return all_links
+
+    def __get_article_info(self, url):
+        print('Gathering Article Text From:', url)
+        page = requests.get(url)
+        soup = BeautifulSoup(page.content, 'html.parser')
+
+        date = soup.find('title')
+        date = date.get_text()
+        date = date.split(' - ')
+        date = str(date[-1])
+        date = date.replace(',', '')
+        fullDate = date.split()
+
+        months = {'January': 1,
+                  'February': 2,
+                  'March': 3,
+                  'April': 4,
+                  'May': 5,
+                  'June': 6,
+                  'July': 7,
+                  'August': 8,
+                  'September': 9,
+                  'October': 10,
+                  'November': 11,
+                  'December': 12}
+
+        month = self.__add_zero_to_date(months[fullDate[0]])
+        day = self.__add_zero_to_date(fullDate[1])
+        year = self.__add_zero_to_date(fullDate[2])
+        print(f'DATE FOUND: {month}/{day}/{year}')
+
+        # Check if Article folder exists, if not make it
+        path = f"Federal_Reserve/Articles/{year}/"
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        # Check if Article is already written if not, webscrape it and save it
+        fileName = f"{path}{year}-{month}-{day}_Report.txt"
+        if not os.path.exists(fileName):
+            articleTag = soup.findAll('p')
+            articleContent = ''
+            for i in articleTag:
+                articleContent += (i.get_text())
+
+            file = open(fileName, "w+")
+            file.write(articleContent)
+            file.close()
+            print("\nCreated", fileName)
+
+            for i in range(1, 6):
+                get_ngrams(fileName, fullDate, i)
+
+    def __add_zero_to_date(self, date):
+        if len(str(date)) == 1:
+            return '0' + str(date)
+        else:
+            return date
 
 fed = Federal_Reserve()
-# fed.gather_articles_and_stock_info()
+fed.gather_articles_and_stock_info()
 
 
 exit(0)
-
-
-def add_zero_to_date(date):
-    if len(str(date)) == 1:
-        return '0' + str(date)
-    else:
-        return date
 
 
 def get_ngrams(articleFile, fullDate, n):
@@ -247,59 +254,6 @@ def get_ngrams(articleFile, fullDate, n):
             for key, value in articleNGrams.items():
                 writer.writerow([key, value])
         print('Created', fileName)
-
-
-def get_article_info(url):
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-
-    date = soup.find('title')
-    date = date.get_text()
-    date = date.split(' - ')
-    date = str(date[-1])
-    date = date.replace(',', '')
-    fullDate = date.split()
-
-    months = {'January': 1,
-              'February': 2,
-              'March': 3,
-              'April': 4,
-              'May': 5,
-              'June': 6,
-              'July': 7,
-              'August': 8,
-              'September': 9,
-              'October': 10,
-              'November': 11,
-              'December': 12}
-
-    month = add_zero_to_date(months[fullDate[0]])
-    day = add_zero_to_date(fullDate[1])
-    year = add_zero_to_date(fullDate[2])
-
-    # Check if Article folder exists, if not make it
-    path = f"Federal_Reserve/Articles/{year}/"
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-    # Check if Article is already written if not, webscrape it and save it
-    fileName = f"{path}{year}-{month}-{day}_Report.txt"
-    if not os.path.exists(fileName):
-        # page = requests.get(url)
-        # soup = BeautifulSoup(page.content, 'html.parser')
-        articleTag = soup.findAll('p')
-        articleContent = ''
-        for i in articleTag:
-            articleContent += (i.get_text())
-
-        file = open(fileName, "w+")
-        file.write(articleContent)
-        file.close()
-        print("\nCreated", fileName)
-
-        for i in range(1, 6):
-            get_ngrams(fileName, fullDate, i)
-
 
 def find_date_from_dataframe(date, marketData):
     data = marketData[(marketData.Date == date)]
@@ -409,22 +363,6 @@ def sort_ngram_files(ngramFiles):
         else:
             sorted_n[n].append(file)
     return sorted_n
-
-
-def get_monthly_links(webscrape=False):
-    if webscrape:
-        monthURL = []
-        linksArchive = get_archive_beige_links()
-
-        for i in links2019:
-            monthURL.append(i)
-        for i in linksArchive:
-            monthURL.append(i)
-        for i in monthURL:
-            try:
-                get_article_info(i)
-            except Exception as e:
-                print(e)
 
 
 def write_increase_decrease_files(n, ngram_list, ratio=False, increase=False):

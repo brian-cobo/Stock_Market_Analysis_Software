@@ -17,18 +17,51 @@ from random import randint
 # Note: Functions that begin with __ are private functions
 
 class Federal_Reserve:
+
     def gather_articles_and_stock_info(self):
         print('Gathering Articles')
         links2019 = self.__get_current_beige_links()
         links2011_ = self.__get_2011_to_previous_year_beige_links()
         monthly_links_2011_ = self.__get_2011_monthly_links(links2011_)
         monthly_links_1996_2011 = self.__get_1996_2011_monthly_links()
-        all_monthly_links = self.__compile_monthly_links(monthly_links_1996_2011,
-                                                         monthly_links_2011_)
+        __all_monthly_links = self.__compile_monthly_links(monthly_links_1996_2011,
+                                                         monthly_links_2011_,
+                                                         links2019)
         print('Finished Gathering Articles')
+
+    def create_ngram_files(self):
+        all_files = self.__get_all_article_file_names()
+        for file in all_files:
+            date = self.__get_date_from_file_name(file)
+            for n in range(1, 6):
+                self.__get_ngrams(file, date, n)
 
     def test_program(self):
         pass
+
+    def __get_date_from_file_name(self, fileName):
+        fullDate = {}
+        date = fileName.split('/')[-1]
+        date = date.split('_')[0]
+        date = date.split('-')
+
+        fullDate['year'] = date[0]
+        fullDate['month'] = date[1]
+        fullDate['day'] = date[2]
+
+        return fullDate
+
+    def __get_all_article_file_names(self):
+        all_files = []
+
+        article_path = (os.getcwd() + '/Federal_Reserve/Articles/')
+        for root, dirs, files in os.walk(article_path):
+            if files:
+                for file in files:
+                    fileName = root + '/' + file
+                    all_files.append(fileName)
+
+        return sorted(all_files)
 
     def __get_current_beige_links(self):
         """Gets links for Articles of the current year"""
@@ -125,9 +158,19 @@ class Federal_Reserve:
                 print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
         return monthly_links
 
-    def __compile_monthly_links(self, monthly_links_2011_,
+    def __compile_monthly_links(self,
+                                monthly_links_2019,
+                                monthly_links_2011_,
                                 monthly_links_1996_2011):
         all_links = []
+
+        for link in monthly_links_2019:
+            all_links.append(link)
+            try:
+                self.__get_article_info(link)
+            except Exception as e:
+                print('ERROR EXTRACTING ARTICLE INFO:', e)
+
         for link in monthly_links_2011_:
             all_links.append(link)
             try:
@@ -141,6 +184,7 @@ class Federal_Reserve:
                 self.__get_article_info(link)
             except Exception as e:
                 print('ERROR EXTRACTING ARTICLE INFO:', e)
+
 
         return all_links
 
@@ -173,7 +217,6 @@ class Federal_Reserve:
             month = self.__add_zero_to_date(months[newDate[0]])
             day = self.__add_zero_to_date(newDate[1])
             year = self.__add_zero_to_date(newDate[2])
-            print(f'DATE FOUND: {month}/{day}/{year}')
 
         except Exception as e:
             # Will grab date for articles before 2011
@@ -187,7 +230,6 @@ class Federal_Reserve:
                     month = self.__add_zero_to_date(months[newDate[0]])
                     day = self.__add_zero_to_date(newDate[1])
                     year = self.__add_zero_to_date(newDate[2])
-                    print(f'DATE FOUND: {month}/{day}/{year}')
 
         # Check if Article folder exists, if not make it
         path = f"Federal_Reserve/Articles/{year}/"
@@ -206,9 +248,7 @@ class Federal_Reserve:
             file.write(articleContent)
             file.close()
             print("\nCreated", fileName)
-
-            for i in range(1, 6):
-                self.__get_ngrams(fileName, newDate, i)
+            return fileName
 
     def __add_zero_to_date(self, date):
         if len(str(date)) == 1:
@@ -219,22 +259,10 @@ class Federal_Reserve:
     def __get_ngrams(self, articleFile, fullDate, n):
         """Takes in a file name and a number n to create a file with
             each ngram it produces"""
-        months = {'January': 1,
-                  'February': 2,
-                  'March': 3,
-                  'April': 4,
-                  'May': 5,
-                  'June': 6,
-                  'July': 7,
-                  'August': 8,
-                  'September': 9,
-                  'October': 10,
-                  'November': 11,
-                  'December': 12}
 
-        month = self.__add_zero_to_date(months[fullDate[0]])
-        day = self.__add_zero_to_date(fullDate[1])
-        year = self.__add_zero_to_date(fullDate[2])
+        month = fullDate['month']
+        day = fullDate['day']
+        year = fullDate['year']
 
         # Check if ngram folder exists, if not make it
         path = f"Federal_Reserve/NGrams/{year}/"
@@ -266,6 +294,7 @@ class Federal_Reserve:
 
 fed = Federal_Reserve()
 fed.gather_articles_and_stock_info()
+fed.create_ngram_files()
 
 
 exit(0)

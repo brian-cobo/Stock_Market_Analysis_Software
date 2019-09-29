@@ -64,6 +64,7 @@ TODO:
 # Jan 16, 2013 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201301.htm
 # Jan   , 2012 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201201.htm
 # Jan 12, 2011 https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook201101.htm
+             # https://www.federalreserve.gov/monetarypolicy/beigebook/beigebook1997.htm
 
 # Jan 13, 2010 https://www.federalreserve.gov/fomc/beigebook/2010/20100113/default.htm
 # Jan 14, 2009 https://www.federalreserve.gov/fomc/beigebook/2009/20090114/FullReport.htm
@@ -77,6 +78,9 @@ class Federal_Reserve:
     # These are public functions
     def gather_articles_and_stock_info(self):
         links2019 = self.__get_current_beige_links()
+        links2011_ = self.__get_2011_to_previous_year_beige_links()
+        monthly_links_2011_ = self.__get_2011_monthly_links(links2011_)
+        monthly_links_1996_2011 = self.__get_1996_2011_monthly_links()
 
     def test_program(self):
         pass
@@ -87,6 +91,7 @@ class Federal_Reserve:
         print('Scraping 2019 Articles')
         currentLinks = []
         currentURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm'
+        sleep(3)
         page = requests.get(currentURL)
         soup = BeautifulSoup(page.content, 'html.parser')
         links = soup.findAll('td')
@@ -98,63 +103,94 @@ class Federal_Reserve:
                 if 'htm' in link[1]:
                     urlEnding = link[1].split('/')[-1]
                     currentLinks.append('https://www.federalreserve.gov/monetarypolicy/' + urlEnding)
-
         return currentLinks
+
+    def __get_2011_to_previous_year_beige_links(self):
+        """Gets links for the archived years"""
+        archiveURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-archive.htm'
+        yearlyLinks = []
+        try:
+            sleep(3)
+            page = requests.get(archiveURL)
+            soup = BeautifulSoup(page.content, 'html.parser')
+            links = soup.findAll(re.compile(r'a'))
+
+            for link in links:
+                if re.match('.*beigebook.*', str(link)):
+                    link = str(link)
+                    link = link.split('"')
+                    urlEnding = link[1].split('/')[-1]
+                    if ('htm' in link[1]):
+                        yearlyLinks.append('https://www.federalreserve.gov/monetarypolicy/' + urlEnding)
+
+        except Exception as e:
+            print("ERROR EXTRACTING YEAR URLS", e)
+
+        return yearlyLinks
+
+
+    def __get_2011_monthly_links(self, links2011_):
+        """Get links from 2011 - (current year - 1)"""
+        monthly_links = []
+        for yearLink in links2011_:
+            try:
+                sleep(3)
+                print('Scraping', yearLink)
+                page = requests.get(yearLink)
+                soup = BeautifulSoup(page.content, 'html.parser')
+                links = soup.findAll('td')
+                for i in links:
+                    if re.match('.*htm.*', str(i)) and \
+                            'default' not in str(i):
+                        i = str(i)
+                        i = i.split('"')
+                        if 'htm' in i[1]:
+                            urlEnding = i[1].split('/')[-1]
+                            if (re.match(r'.*2018', urlEnding) or
+                                    re.match(r'.*2017', urlEnding)):
+                                monthly_links.append('https://www.federalreserve.gov/monetarypolicy/' + urlEnding)
+                                links2011_.remove(yearLink)
+                            elif (re.match(r'.*2011', urlEnding) or
+                                  re.match(r'.*2012', urlEnding) or
+                                  re.match(r'.*2013', urlEnding) or
+                                  re.match(r'.*2014', urlEnding) or
+                                  re.match(r'.*2015', urlEnding) or
+                                  re.match(r'.*2016', urlEnding)):
+                                monthly_links.append(
+                                    'https://www.federalreserve.gov/monetarypolicy/beigebook/' + urlEnding)
+                            else:
+                                break
+            except Exception as e:
+                print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
+        return monthly_links
+
+    def __get_1996_2011_monthly_links(self):
+        monthly_links = []
+        for year in range(1996, 2011):
+            base_url = f'https://www.federalreserve.gov/monetarypolicy/beigebook{year}.htm'
+            try:
+                sleep(3)
+                print('Scraping', base_url)
+                page = requests.get(base_url)
+                soup = BeautifulSoup(page.content, 'html.parser')
+                links = soup.findAll('td')
+
+                for link in links:
+                    if re.match('.*htm.*', str(link)):
+                        link = str(link)
+                        link = link.split('"')
+                        if 'htm' in link[1]:
+                            monthly_links.append(link[1])
+            except Exception as e:
+                print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
+        return monthly_links
+
 
 fed = Federal_Reserve()
 # fed.gather_articles_and_stock_info()
 
 
 exit(0)
-def get_archive_beige_links():
-    """Gets links for the archived years"""
-    archiveURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-archive.htm'
-    yearlyLinks = []
-    monthlyLinks = []
-    try:
-        page = requests.get(archiveURL)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        links = soup.findAll(re.compile(r'a'))
-        print(links)
-        for i in links:
-            if re.match('.*beigebook.*', str(i)):
-                i = str(i)
-                i = i.split('"')
-                if 'htm' in i[1]:
-                    urlEnding = i[1].split('/')[-1]
-                    yearlyLinks.append('https://www.federalreserve.gov/monetarypolicy/' + urlEnding)
-    except Exception as e:
-        print("ERROR EXTRACTING YEAR URLS", e)
-
-    for yearLink in yearlyLinks:
-        try:
-            sleep(3)
-            print('Scraping', yearLink)
-            page = requests.get(yearLink)
-            soup = BeautifulSoup(page.content, 'html.parser')
-            links = soup.findAll('td')
-            for i in links:
-                if re.match('.*htm.*', str(i)) and \
-                        'default' not in str(i):
-                    i = str(i)
-                    i = i.split('"')
-                    if 'htm' in i[1]:
-                        urlEnding = i[1].split('/')[-1]
-                        if (re.match(r'.*2018', urlEnding) or
-                                re.match(r'.*2017', urlEnding)):
-                            monthlyLinks.append('https://www.federalreserve.gov/monetarypolicy/' + urlEnding)
-                        elif (re.match(r'.*2011', urlEnding) or
-                                  re.match(r'.*2012', urlEnding) or
-                                  re.match(r'.*2013', urlEnding) or
-                                  re.match(r'.*2014', urlEnding) or
-                                  re.match(r'.*2015', urlEnding) or
-                                  re.match(r'.*2016', urlEnding)):
-                            monthlyLinks.append('https://www.federalreserve.gov/monetarypolicy/beigebook/' + urlEnding)
-                        else:
-                            break
-        except Exception as e:
-            print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
-    return monthlyLinks
 
 
 def add_zero_to_date(date):
@@ -224,16 +260,16 @@ def get_article_info(url):
     date = date.replace(',', '')
     fullDate = date.split()
 
-    months = {'January' : 1,
-              'February' : 2,
-              'March' : 3,
-              'April' : 4,
-              'May' : 5,
-              'June' : 6,
-              'July' : 7,
-              'August' : 8,
-              'September' : 9,
-              'October' : 10,
+    months = {'January': 1,
+              'February': 2,
+              'March': 3,
+              'April': 4,
+              'May': 5,
+              'June': 6,
+              'July': 7,
+              'August': 8,
+              'September': 9,
+              'October': 10,
               'November': 11,
               'December': 12}
 

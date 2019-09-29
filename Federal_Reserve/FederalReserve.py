@@ -14,6 +14,8 @@ from nltk import FreqDist
 from time import sleep
 from random import randint
 
+# Note: Functions that begin with __ are private functions
+
 class Federal_Reserve:
     def gather_articles_and_stock_info(self):
         print('Gathering Articles')
@@ -98,7 +100,6 @@ class Federal_Reserve:
                                 monthly_links.append(
                                     'https://www.federalreserve.gov/monetarypolicy/beigebook/' + urlEnding)
                             else:
-                                print(i[1])
                                 monthly_links.append(i[1])
             except Exception as e:
                 print("ERROR GRABBING ARCHIVE MONTHS URLS", e)
@@ -148,13 +149,6 @@ class Federal_Reserve:
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
 
-        date = soup.find('title')
-        date = date.get_text()
-        date = date.split(' - ')
-        date = str(date[-1])
-        date = date.replace(',', '')
-        fullDate = date.split()
-
         months = {'January': 1,
                   'February': 2,
                   'March': 3,
@@ -168,10 +162,32 @@ class Federal_Reserve:
                   'November': 11,
                   'December': 12}
 
-        month = self.__add_zero_to_date(months[fullDate[0]])
-        day = self.__add_zero_to_date(fullDate[1])
-        year = self.__add_zero_to_date(fullDate[2])
-        print(f'DATE FOUND: {month}/{day}/{year}')
+        try:
+            date = soup.find('title')
+            date = date.get_text()
+            date = date.split(' - ')
+            date = str(date[-1])
+            date = date.replace(',', '')
+            newDate = date.split()
+
+            month = self.__add_zero_to_date(months[newDate[0]])
+            day = self.__add_zero_to_date(newDate[1])
+            year = self.__add_zero_to_date(newDate[2])
+            print(f'DATE FOUND: {month}/{day}/{year}')
+
+        except Exception as e:
+            # Will grab date for articles before 2011
+            possibleDates = soup.findAll('strong')
+            for date in possibleDates:
+                date = date.get_text()
+                if 'last update' in date.lower():
+                    newDate = date.split(': ')[1]
+                    newDate = newDate.replace(',', '')
+                    newDate = newDate.split()
+                    month = self.__add_zero_to_date(months[newDate[0]])
+                    day = self.__add_zero_to_date(newDate[1])
+                    year = self.__add_zero_to_date(newDate[2])
+                    print(f'DATE FOUND: {month}/{day}/{year}')
 
         # Check if Article folder exists, if not make it
         path = f"Federal_Reserve/Articles/{year}/"
@@ -192,7 +208,7 @@ class Federal_Reserve:
             print("\nCreated", fileName)
 
             for i in range(1, 6):
-                get_ngrams(fileName, fullDate, i)
+                self.__get_ngrams(fileName, newDate, i)
 
     def __add_zero_to_date(self, date):
         if len(str(date)) == 1:
@@ -200,60 +216,60 @@ class Federal_Reserve:
         else:
             return date
 
+    def __get_ngrams(self, articleFile, fullDate, n):
+        """Takes in a file name and a number n to create a file with
+            each ngram it produces"""
+        months = {'January': 1,
+                  'February': 2,
+                  'March': 3,
+                  'April': 4,
+                  'May': 5,
+                  'June': 6,
+                  'July': 7,
+                  'August': 8,
+                  'September': 9,
+                  'October': 10,
+                  'November': 11,
+                  'December': 12}
+
+        month = self.__add_zero_to_date(months[fullDate[0]])
+        day = self.__add_zero_to_date(fullDate[1])
+        year = self.__add_zero_to_date(fullDate[2])
+
+        # Check if ngram folder exists, if not make it
+        path = f"Federal_Reserve/NGrams/{year}/"
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        # Check if ngram file exists, if not write it
+        fileName = f"{path}{year}-{month}-{day}_ngram_n={n}.csv"
+        if not os.path.exists(fileName):
+            with open(articleFile) as articlefile:
+                article = articlefile.read()
+            article = re.sub(r'([^\s\w]|_)+', '', article)
+            article = article.lower()
+            ngramsResult = ngrams(article.split(), n)
+            frequency = FreqDist(ngramsResult).most_common()
+
+            articleNGrams = {}
+            for ngram in frequency:
+                words = ngram[0]
+                freq = ngram[1]
+                articleNGrams[words] = freq
+
+            with open(fileName, 'w') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow(('NGram', 'Frequency'))
+                for key, value in articleNGrams.items():
+                    writer.writerow([key, value])
+            print('Created', fileName)
+
 fed = Federal_Reserve()
 fed.gather_articles_and_stock_info()
 
 
 exit(0)
 
-
-def get_ngrams(articleFile, fullDate, n):
-    """Takes in a file name and a number n to create a file with
-        each ngram it produces"""
-    months = {'January': 1,
-              'February': 2,
-              'March': 3,
-              'April': 4,
-              'May': 5,
-              'June': 6,
-              'July': 7,
-              'August': 8,
-              'September': 9,
-              'October': 10,
-              'November': 11,
-              'December': 12}
-
-    month = add_zero_to_date(months[fullDate[0]])
-    day = add_zero_to_date(fullDate[1])
-    year = add_zero_to_date(fullDate[2])
-
-    # Check if ngram folder exists, if not make it
-    path = f"Federal_Reserve/NGrams/{year}/"
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-    # Check if ngram file exists, if not write it
-    fileName = f"{path}{year}-{month}-{day}_ngram_n={n}.csv"
-    if not os.path.exists(fileName):
-        with open(articleFile) as articlefile:
-            article = articlefile.read()
-        article = re.sub(r'([^\s\w]|_)+', '', article)
-        article = article.lower()
-        ngramsResult = ngrams(article.split(), n)
-        frequency = FreqDist(ngramsResult).most_common()
-
-        articleNGrams = {}
-        for ngram in frequency:
-            words = ngram[0]
-            freq = ngram[1]
-            articleNGrams[words] = freq
-
-        with open(fileName, 'w') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(('NGram', 'Frequency'))
-            for key, value in articleNGrams.items():
-                writer.writerow([key, value])
-        print('Created', fileName)
 
 def find_date_from_dataframe(date, marketData):
     data = marketData[(marketData.Date == date)]

@@ -5,6 +5,7 @@ import re
 import requests
 import os
 import csv
+import shutil
 import pandas as pd
 import numpy as np
 
@@ -34,11 +35,30 @@ class Federal_Reserve:
 
     def create_training_files(self):
         """Creates all the ngram data, computations, and files needed for testing"""
-        x_train, x_test = self.__split_files_for_training()
-        self.__record_train_test_files(x_train, x_test)
-        training_ngram_files = self.__create_ngram_files(x_train)
-        training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
-        self.__compute_increase_decrease_counts(training_files_sorted_by_n)
+        try:
+            x_train, x_test = self.__split_files_for_training()
+            self.__record_train_test_files(x_train, x_test)
+            training_ngram_files = self.__create_ngram_files(x_train)
+            training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
+            self.__compute_increase_decrease_counts(training_files_sorted_by_n)
+        except Exception as e:
+            print('Error handling files.\nWill Delete Corrupted Files.\nRun Function again.')
+            try:
+                shutil.rmtree(os.getcwd() + '/Federal_Reserve/Increase_Decrease')
+            except:
+                pass
+            try:
+                shutil.rmtree(os.getcwd() + '/Federal_Reserve/NGrams')
+            except:
+                pass
+            try:
+                os.remove(os.getcwd() + '/Federal_Reserve/Testing_Files_List.txt')
+            except:
+                pass
+            try:
+                os.remove(os.getcwd() + '/Federal_Reserve/Training_Files_List.txt')
+            except:
+                pass
 
     def test_program(self):
         """Takes in Testing files and executes testing"""
@@ -443,11 +463,23 @@ class Federal_Reserve:
             print('\nn =', n)
             for file in range(len(files) - 1):
                 try:
-                    startDate = files[file].split('_')[0]
-                    endDate = files[file + 1].split('_')[0]
-                    difference = stock_info[endDate]['Close'] - stock_info[startDate]['Close']
-                    year = files[file].split('-')[0]
+                    dates = files[file].split('/')[-1]
+                    next_dates = files[file+1].split('/')[-1]
+                    startDate = dates.split('_')[0]
+                    endDate = next_dates.split('_')[0]
+                    #difference = stock_info[endDate]['Close'] - stock_info[startDate]['Close']
+                    #year = startDate.split('-')[0]
+
+                    print(dates)
+                    print(next_dates)
+                    print(startDate)
+                    print(endDate)
+                    #print(difference)
+                    #print(year)
+
                     reader = csv.DictReader(open(f'{os.getcwd()}/Federal_Reserve/NGrams/{year}/{files[file]}'))
+
+                    print('Made it this far')
 
                     if difference > 0:
                         for row in reader:
@@ -467,7 +499,8 @@ class Federal_Reserve:
                             else:
                                 scored_ngrams[(row['NGram'])]['Decrease'] += int(row['Frequency'])
                 except Exception as e:
-                    print('Error handling', files[file])
+                    print('Error handling', e, files[file])
+                    exit(0)
 
             for ngram, value in scored_ngrams.items():
                 increase = value['Increase']

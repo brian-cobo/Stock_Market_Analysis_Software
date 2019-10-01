@@ -52,17 +52,18 @@ class Federal_Reserve:
             except:
                 pass
             try:
-                os.remove(os.getcwd() + '/Federal_Reserve/Testing_Files_List.txt')
+                os.remove(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
             except:
                 pass
             try:
-                os.remove(os.getcwd() + '/Federal_Reserve/Training_Files_List.txt')
+                os.remove(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
             except:
                 pass
 
     def test_program(self):
         """Takes in Testing files and executes testing"""
-        self.__test_program_with_articles(testingFiles)
+        testing_files = self.__get_testing_files()
+        self.__test_program_with_articles(testing_files)
 
 
     # Private Methods
@@ -77,16 +78,17 @@ class Federal_Reserve:
         return sorted(x_train), sorted(x_test)
 
     def __record_train_test_files(self, training_files, testing_files):
-        training_file_name = str(os.getcwd() + '/Federal_Reserve/Training_Files_List.txt')
-        testing_file_name = str(os.getcwd() + '/Federal_Reserve/Testing_Files_List.txt')
+        training_file_name = str(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
+        testing_file_name = str(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
 
         with open(training_file_name, 'w') as txt_file:
             for file in training_files:
-                txt_file.write(str(file + '\n'))
+                txt_file.write(str(file + ','))
 
         with open(testing_file_name, 'w') as txt_file:
             for file in testing_files:
-                txt_file.write(str(file + '\n'))
+                txt_file.write(str(file + ','))
+
 
     def __create_ngram_files(self, all_files):
         ngram_file_names = []
@@ -432,7 +434,7 @@ class Federal_Reserve:
             reader = csv.DictReader(open(fileName))
             for row in reader:
                 try:
-                    stock_info['Date'] = {'Open': row['Open'],
+                    stock_info[row['Date']] = {'Open': row['Open'],
                                           'High': row['High'],
                                           'Low': row['Low'],
                                           'Close': row['Close'],
@@ -467,19 +469,9 @@ class Federal_Reserve:
                     next_dates = files[file+1].split('/')[-1]
                     startDate = dates.split('_')[0]
                     endDate = next_dates.split('_')[0]
-                    #difference = stock_info[endDate]['Close'] - stock_info[startDate]['Close']
-                    #year = startDate.split('-')[0]
-
-                    print(dates)
-                    print(next_dates)
-                    print(startDate)
-                    print(endDate)
-                    #print(difference)
-                    #print(year)
-
-                    reader = csv.DictReader(open(f'{os.getcwd()}/Federal_Reserve/NGrams/{year}/{files[file]}'))
-
-                    print('Made it this far')
+                    difference = float(stock_info[endDate]['Close']) - float(stock_info[startDate]['Close'])
+                    year = startDate.split('-')[0]
+                    reader = csv.DictReader(open(f'{os.getcwd()}/{files[file]}'))
 
                     if difference > 0:
                         for row in reader:
@@ -499,8 +491,7 @@ class Federal_Reserve:
                             else:
                                 scored_ngrams[(row['NGram'])]['Decrease'] += int(row['Frequency'])
                 except Exception as e:
-                    print('Error handling', e, files[file])
-                    exit(0)
+                    pass
 
             for ngram, value in scored_ngrams.items():
                 increase = value['Increase']
@@ -552,15 +543,21 @@ class Federal_Reserve:
                                  value['Increase_Ratio'], value['Decrease_Ratio']])
             print('Created', fileName)
 
-    def __test_program_with_articles(self, testingFiles):  # , stock_info):
+    def __get_testing_files(self):
+        data = pd.read_csv(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
+        return data.columns.tolist()
+
+    def __test_program_with_articles(self, testingFiles, neg_pos_ratio=0.1):  # , stock_info):
         score = 0
         error = 0
         runs = len(testingFiles)
+        print('Testing Files', testingFiles)
 
         for date in testingFiles:
             try:
-                year = date.split('-')[0]
-                article = (f'{os.getcwd()}/Federal_Reserve/Articles/{year}/{date}_Report.txt')
+                fullDate = self.__get_date_from_file_name(date)
+                article = (f'{os.getcwd()}/Federal_Reserve/Articles/{fullDate["year"]}/{fullDate["year"]}'
+                           f'-{fullDate["month"]}-{fullDate["day"]}_Report.txt')
 
                 print('\nArticle to Analyze:', article)
 
@@ -588,7 +585,7 @@ class Federal_Reserve:
                         os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
                     decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
 
-                    stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/GSPC.csv')
+                    stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History_Per_Article.csv')
                     stock_history = stock_history.set_index('Date').T.to_dict('dict')
 
                     for ngram, freq in articleNGrams.items():
@@ -625,7 +622,7 @@ class Federal_Reserve:
 
                 predictedStockMovement = -1
                 # If the postive greatly outweighs negative, the article is considered positive
-                if (decrease_sum / increase_sum) < 0.20:
+                if (decrease_sum / increase_sum) < neg_pos_ratio:
                     predictedStockMovement = 1
 
                 print('Increase Sum:', increase_sum)
@@ -644,7 +641,6 @@ class Federal_Reserve:
         print(f'Total Error: {error}')
 
 fed = Federal_Reserve()
-# fed.gather_articles_and_stock_info()
-fed.create_training_files()
-
+# fed.create_training_files()
+fed.test_program()
 

@@ -3,6 +3,193 @@
   <component name="ChangeListManager">
     <list default="true" id="ebeb85c3-a25e-4cc3-813d-ed9dad4b9ab5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" beforeDir="false" afterPath="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1997/1997-08-06_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1997/1997-08-06_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1997/1997-08-06_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1997/1997-08-06_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1997/1997-08-06_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-06-17_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-06-17_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-06-17_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-06-17_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-06-17_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-09-16_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-09-16_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-09-16_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-09-16_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-09-16_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-12-09_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-12-09_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-12-09_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-12-09_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1998/1998-12-09_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1999/1999-09-22_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1999/1999-09-22_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1999/1999-09-22_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1999/1999-09-22_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/1999/1999-09-22_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-01-19_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-01-19_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-01-19_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-01-19_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-01-19_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-03-08_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-03-08_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-03-08_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-03-08_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-03-08_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-05-03_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-05-03_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-05-03_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-05-03_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-05-03_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-08-09_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-08-09_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-08-09_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-08-09_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-08-09_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-09-20_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-09-20_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-09-20_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-09-20_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2000/2000-09-20_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-06-13_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-06-13_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-06-13_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-06-13_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-06-13_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-08-08_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-08-08_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-08-08_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-08-08_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-08-08_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-09-19_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-09-19_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-09-19_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-09-19_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2001/2001-09-19_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-04-24_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-04-24_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-04-24_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-04-24_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-04-24_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-09-11_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-09-11_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-09-11_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-09-11_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2002/2002-09-11_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-04-23_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-04-23_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-04-23_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-04-23_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-04-23_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-07-30_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-07-30_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-07-30_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-07-30_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-07-30_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-10-15_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-10-15_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-10-15_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-10-15_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2003/2003-10-15_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2005/2005-06-15_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2005/2005-06-15_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2005/2005-06-15_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2005/2005-06-15_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2005/2005-06-15_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2006/2006-10-12_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2006/2006-10-12_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2006/2006-10-12_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2006/2006-10-12_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2006/2006-10-12_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-01-17_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-01-17_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-01-17_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-01-17_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-01-17_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-07-25_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-07-25_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-07-25_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-07-25_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2007/2007-07-25_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-03-05_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-03-05_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-03-05_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-03-05_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-03-05_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-10-15_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-10-15_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-10-15_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-10-15_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2008/2008-10-15_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-06-09_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-06-09_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-06-09_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-06-09_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-06-09_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-12-01_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-12-01_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-12-01_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-12-01_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2010/2010-12-01_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-07-27_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-07-27_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-07-27_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-07-27_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-07-27_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-04-11_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-04-11_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-04-11_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-04-11_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-04-11_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-11-28_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-11-28_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-11-28_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-11-28_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2012/2012-11-28_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-01-15_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-01-15_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-01-15_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-01-15_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-01-15_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-06-04_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-06-04_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-06-04_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-06-04_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-06-04_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-12-03_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-12-03_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-12-03_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-12-03_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2014/2014-12-03_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015-04-15_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015-04-15_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015-04-15_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015-04-15_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2015/2015-04-15_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-03-01_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-03-01_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-03-01_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-03-01_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-03-01_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-07-12_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-07-12_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-07-12_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-07-12_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2017/2017-07-12_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018-09-12_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018-09-12_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018-09-12_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018-09-12_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2018/2018-09-12_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019-07-17_ngram_n=1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019-07-17_ngram_n=2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019-07-17_ngram_n=3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019-07-17_ngram_n=4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/NGrams/2019/2019-07-17_ngram_n=5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federal_Reserve/Stock_History.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,31 +199,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Info.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Main_Program/Web_Scraper.py">
+        <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3181">
-              <caret line="133" column="52" selection-start-line="133" selection-start-column="52" selection-end-line="133" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main_Program/Main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="71" column="47" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
+            <state relative-caret-position="308">
+              <caret line="650" column="19" selection-start-line="650" selection-start-column="19" selection-end-line="650" selection-end-column="19" />
               <folding>
-                <element signature="e#15#65#0" expanded="true" />
+                <element signature="e#34#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,36 +223,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>content</find>
-      <find>date</find>
-      <find>author</find>
-      <find>Arthur Villasanta</find>
-      <find>company</find>
-      <find>Apple</find>
-      <find>auth</find>
-      <find>def get_sector</find>
-      <find>scrape</find>
-      <find>add</find>
-      <find>print_di</find>
-      <find>get_five_months</find>
-      <find>get_historical</find>
-      <find>print_dictionary</find>
-      <find>No results</find>
-      <find>#print</find>
-      <find>#</find>
-      <find>prepare_article</find>
-      <find>get_sentiment_analysis</find>
-      <find>lm_dictionary</find>
-      <find>check_if_attribute_in_list</find>
-      <find>analyze_market_data</find>
-      <find>find_articles</find>
-      <find>ask_f</find>
-      <find>print(e</find>
-      <find>in choice</find>
-      <find>web.scrape_article_from_web</find>
-      <find>scrape_article_from_web</find>
-      <find>Sentiment_Results</find>
-      <find>****</find>
+      <find>search</find>
+      <find>2019</find>
+      <find>get_article</find>
+      <find>Data being</find>
+      <find>os.</find>
+      <find>drawSt</find>
+      <find>return</find>
+      <find>('banks', 'in', 'some')</find>
+      <find>('were', 'moderately', 'above')</find>
+      <find>and</find>
+      <find>order</find>
+      <find>print(date</find>
+      <find>collect_stock_information</find>
+      <find>get_monthly_links</find>
+      <find>fix_month_and_days</find>
+      <find>add_zero_to_date</find>
+      <find>increase_day_from_string</find>
+      <find>get_2019_beige_links</find>
+      <find>get_archive_beige_links</find>
+      <find>'\\'</find>
+      <find>exit(0</find>
+      <find>get_date_from</find>
+      <find>get_ngrams</find>
+      <find>create_ngram_files</find>
+      <find>sort_ngram_file</find>
+      <find>get_stock_inform</find>
+      <find>write</find>
+      <find>exit(0)</find>
+      <find>Testing_Files_List</find>
+      <find>Total Score</find>
     </findStrings>
     <replaceStrings>
       <replace>self.stockInfo</replace>
@@ -111,14 +280,22 @@
         <option value="$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py" />
         <option value="$PROJECT_DIR$/Main_Program/Stock_Visualizations_Menu.py" />
         <option value="$PROJECT_DIR$/Main_Program/Main.py" />
+        <option value="$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb" />
+        <option value="$PROJECT_DIR$/Main_Program/fedres.py" />
+        <option value="$PROJECT_DIR$/FederalReserve.py" />
         <option value="$PROJECT_DIR$/Main_Program/Web_Scraper.py" />
+        <option value="$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb" />
+        <option value="$PROJECT_DIR$/Main_Program/Stock_Info.py" />
+        <option value="$PROJECT_DIR$/Main_Program/APIData.py" />
+        <option value="$PROJECT_DIR$/practice class.py" />
+        <option value="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="727" />
+    <option name="width" value="1600" />
+    <option name="height" value="818" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -128,7 +305,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,33 +315,34 @@
             <path>
               <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
               <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-              <item name="Article_Sentiment_Results" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Stock_Market_Analysis_Software" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Stock_Market_Analysis_Software" type="462c0819:PsiDirectoryNode" />
-              <item name="Main_Program" type="462c0819:PsiDirectoryNode" />
+              <item name="Federal_Reserve" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Federal_Reserve" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Main_Program" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Federal_Reserve" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Federal_Reserve" />
+      <recent name="$PROJECT_DIR$/Documents" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Jupyter Notebooks" />
+      <recent name="$PROJECT_DIR$/Main_Program" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -180,7 +357,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.FederalReserve">
+    <configuration name="FederalReserve" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Stock_Visualization_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Federal_Reserve/FederalReserve.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Stock_Visualization_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -247,14 +446,64 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="fedres" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Stock_Visualization_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Main_Program" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Federal_Reserve/fedres.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="practice class" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Stock_Visualization_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/practice class.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.Stock_Visualizations_Menu" />
       <item itemvalue="Python.Web_Scraper" />
       <item itemvalue="Python.Main" />
+      <item itemvalue="Python.fedres" />
+      <item itemvalue="Python.FederalReserve" />
+      <item itemvalue="Python.practice class" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.FederalReserve" />
+        <item itemvalue="Python.practice class" />
         <item itemvalue="Python.Main" />
+        <item itemvalue="Python.fedres" />
         <item itemvalue="Python.Web_Scraper" />
       </list>
     </recent_temporary>
@@ -321,33 +570,58 @@
       <workItem from="1567018507740" duration="884000" />
       <workItem from="1567020085667" duration="2017000" />
       <workItem from="1567026619961" duration="135000" />
+      <workItem from="1567093490991" duration="4244000" />
+      <workItem from="1567219239274" duration="16927000" />
+      <workItem from="1567889395582" duration="7965000" />
+      <workItem from="1568232761997" duration="1619000" />
+      <workItem from="1568335053440" duration="559000" />
+      <workItem from="1568338034361" duration="288000" />
+      <workItem from="1568515580601" duration="419000" />
+      <workItem from="1568567629988" duration="5996000" />
+      <workItem from="1568755136558" duration="5393000" />
+      <workItem from="1568848985067" duration="11470000" />
+      <workItem from="1568942689266" duration="6425000" />
+      <workItem from="1569029803650" duration="569000" />
+      <workItem from="1569034557948" duration="242000" />
+      <workItem from="1569083629431" duration="296000" />
+      <workItem from="1569100325557" duration="2262000" />
+      <workItem from="1569116372268" duration="1256000" />
+      <workItem from="1569137913972" duration="40000" />
+      <workItem from="1569290018360" duration="593000" />
+      <workItem from="1569445760820" duration="16094000" />
+      <workItem from="1569513137748" duration="2429000" />
+      <workItem from="1569516158018" duration="2193000" />
+      <workItem from="1569720343280" duration="12432000" />
+      <workItem from="1569769082679" duration="21545000" />
+      <workItem from="1569880923179" duration="6630000" />
+      <workItem from="1569967657768" duration="9117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184425000" />
+    <option name="totallyTimeSpent" value="322228000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="723" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="727" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24071082" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27705976" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32171157" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" weight="0.88589543" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.31968504" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49757674" visible="true" weight="0.3417323" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3968504" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50080776" side_tool="true" weight="0.44409448" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32913387" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32913387" />
-      <window_info anchor="bottom" id="Jupyter" order="13" sideWeight="0.49919224" weight="0.22677165" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5024233" side_tool="true" weight="0.2947702" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3280507" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3280507" />
+      <window_info anchor="bottom" id="Jupyter" order="13" sideWeight="0.49757674" visible="true" weight="0.2931854" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -363,46 +637,16 @@
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Generic_Parser.coverage" NAME="Generic_Parser Coverage Results" MODIFIED="1566413708622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Financial Lexicon" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1565973432625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$Load_MasterDictionary.coverage" NAME="Load_MasterDictionary Coverage Results" MODIFIED="1566413416456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Financial Lexicon" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$practice_class.coverage" NAME="practice class Coverage Results" MODIFIED="1569727450393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566751909942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Main.coverage" NAME="Main Coverage Results" MODIFIED="1567021368880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Main.coverage" NAME="Main Coverage Results" MODIFIED="1569465267033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$fedres.coverage" NAME="fedres Coverage Results" MODIFIED="1567221580331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Stock_Visualizations_Menu.coverage" NAME="Stock_Visualizations_Menu Coverage Results" MODIFIED="1566752275830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$FederalReserve.coverage" NAME="FederalReserve Coverage Results" MODIFIED="1570031579048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Visualization_Analysis$NLTK_Sentiment_Analysis.coverage" NAME="NLTK-Sentiment-Analysis Coverage Results" MODIFIED="1566413574671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Stock_Market_Analysis_Software$Web_Scraper.coverage" NAME="Web_Scraper Coverage Results" MODIFIED="1566761559119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main_Program" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stockAnalysis.py" />
-    <entry file="file://$PROJECT_DIR$/StockVisualization.ipynb" />
-    <entry file="file://$PROJECT_DIR$/Send_Response_To_Text.py" />
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="5066" selection-start-line="5066" selection-end-line="5066" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nasdaq_Company_List.csv" />
-    <entry file="file://$PROJECT_DIR$/Market_Summary.csv" />
-    <entry file="file://$PROJECT_DIR$/Explore Market Data.ipynb" />
-    <entry file="file://$PROJECT_DIR$/nltk_practice.py" />
-    <entry file="file://$PROJECT_DIR$/Sentiment_Analysis_Classifier.py" />
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/calendar.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/requests/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Articles/Apple-Article.txt" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/indexing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -416,39 +660,11 @@
     <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Analyze_Sentiment_Results.ipynb" />
     <entry file="file://$PROJECT_DIR$/NLTK Exploration/nltk_practice.py" />
     <entry file="file://$PROJECT_DIR$/NLTK Exploration/Sentiment_Analysis_Classifier.py" />
-    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Explore Market Data.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results_1.csv" />
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Lexicon Analysis.ipynb" />
-    <entry file="file://$PROJECT_DIR$/Main_Program/APIData.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/LoughranMcDonald_MasterDictionary_2018.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Load_MasterDictionary.py" />
-    <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Article_Sentiment_Results/Sentiment_Results.csv" />
     <entry file="file://$PROJECT_DIR$/Financial Lexicon/Generic_Parser.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor>
-            <caret column="32" selection-start-column="32" selection-end-column="32" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -473,30 +689,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1094">
-          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="141">
+            <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Analyzer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-          <folding>
-            <element signature="e#15#67#0" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/Spreadsheets/Nasdaq_Company_List.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/fedres.py" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Untitled.ipynb" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-1-12_ngram_n=1.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=4.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=5.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/NGrams/2011/2011-01-12_ngram_n=1.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Explore GSPC.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=1.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=2.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/n=3.csv" />
     <entry file="file://$PROJECT_DIR$/Main_Program/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
@@ -507,16 +732,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/APIData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Results.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="15">
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Stock_Info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4440">
+          <caret line="308" column="49" selection-start-line="308" selection-start-column="33" selection-end-line="308" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Sentiment_Analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/LoughranMcDonald_MasterDictionary_2018.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="-5120" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Load_MasterDictionary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Sentiment_Results_Analysis.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jupyter Notebooks/Explore Market Data.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main_Program/Analyze_Sentiment.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Hack_Rice_Stock_Prediction/Stochastic_Oscillator.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n=3.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n=3.csv" />
+    <entry file="file://$PROJECT_DIR$/practice class.py" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Articles/2000/2000-01-19_Report.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Increase_Decrease/All_Ngrams/n=2.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/NGrams/1999/1999-01-20_ngram_n=3.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Testing_Files_List.csv" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Training_Files_List.txt" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Testing_Files_List.txt" />
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/GSPC.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="-86018" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main_Program/Web_Scraper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3181">
-          <caret line="133" column="52" selection-start-line="133" selection-start-column="52" selection-end-line="133" selection-end-column="52" />
+        <state relative-caret-position="15">
+          <caret line="178" column="8" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="62" />
+          <folding>
+            <element signature="e#15#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/Stock_History_Per_Article.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="67" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/test_log.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state>
+          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Federal_Reserve/FederalReserve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="650" column="19" selection-start-line="650" selection-start-column="19" selection-end-line="650" selection-end-column="19" />
+          <folding>
+            <element signature="e#34#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

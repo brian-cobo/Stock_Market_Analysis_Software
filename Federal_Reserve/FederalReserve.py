@@ -20,6 +20,9 @@ from random import randint
 
 class Federal_Reserve:
     # Public Methods
+    def __init__(self):
+        self.results = []
+
     def gather_articles_and_stock_info(self):
         """Gathers all article and stock info and writes them to files"""
         print('Gathering Articles')
@@ -33,37 +36,22 @@ class Federal_Reserve:
         self.__get_stock_information()
         print('Finished Gathering Articles')
 
-    def create_training_files(self):
+    def create_training_files(self, random_state=0):
         """Creates all the ngram data, computations, and files needed for testing"""
         try:
-            x_train, x_test = self.__split_files_for_training()
+            self.__clear_previous_training_files()
+            x_train, x_test = self.__split_files_for_training(random_state=random_state)
             self.__record_train_test_files(x_train, x_test)
             training_ngram_files = self.__create_ngram_files(x_train)
             training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
             self.__compute_increase_decrease_counts(training_files_sorted_by_n)
         except Exception as e:
             print('Error handling files.\nWill Delete Corrupted Files.\nRun Function again.')
-            try:
-                shutil.rmtree(os.getcwd() + '/Federal_Reserve/Increase_Decrease')
-            except:
-                pass
-            try:
-                shutil.rmtree(os.getcwd() + '/Federal_Reserve/NGrams')
-            except:
-                pass
-            try:
-                os.remove(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
-            except:
-                pass
-            try:
-                os.remove(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
-            except:
-                pass
 
-    def test_program(self):
+    def test_program(self, neg_pos_ratio=0):
         """Takes in Testing files and executes testing"""
         testing_files = self.__get_testing_files()
-        self.__test_program_with_articles(testing_files)
+        self.results.append(self.__test_program_with_articles(testing_files, neg_pos_ratio=neg_pos_ratio))
 
 
     # Private Methods
@@ -76,6 +64,16 @@ class Federal_Reserve:
                                            random_state=random_state,
                                            shuffle=shuffle)
         return sorted(x_train), sorted(x_test)
+
+    def __clear_previous_training_files(self):
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/Increase_Decrease'):
+            shutil.rmtree(os.getcwd() + '/Federal_Reserve/Increase_Decrease')
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/NGrams'):
+            shutil.rmtree(os.getcwd() + '/Federal_Reserve/NGrams')
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv'):
+            os.remove(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv'):
+            os.remove(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
 
     def __record_train_test_files(self, training_files, testing_files):
         training_file_name = str(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
@@ -507,7 +505,7 @@ class Federal_Reserve:
                 except ZeroDivisionError:
                     value['Decrease_Ratio'] = 0
 
-                if value['Increase_Ratio'] >= 5:
+                if value['Increase_Ratio'] >= 3:
                     increase_ngrams[ngram] = value
 
                 if value['Decrease_Ratio'] >= 3:
@@ -551,11 +549,10 @@ class Federal_Reserve:
         score = 0
         error = 0
         runs = len(testingFiles)
-        print('Testing Files', testingFiles)
 
-        for date in testingFiles:
+        for date in range(len(testingFiles)-1):
             try:
-                fullDate = self.__get_date_from_file_name(date)
+                fullDate = self.__get_date_from_file_name(testingFiles[date])
                 article = (f'{os.getcwd()}/Federal_Reserve/Articles/{fullDate["year"]}/{fullDate["year"]}'
                            f'-{fullDate["month"]}-{fullDate["day"]}_Report.txt')
 
@@ -603,14 +600,13 @@ class Federal_Reserve:
                     # print(f'\nN = {n}')
                     # print('Increase Sum:', increase_sum)
                     # print('Decrease Sum:', decrease_sum)
-                    # print('Article Total:', sum)
 
                 # Get actual stock movement between current period
                 acutalStockMovement = -1
                 actualStockChange = 0
                 listStockHistory = list(stock_history)
                 for reportDate in range(len(listStockHistory)):
-                    if date in listStockHistory[reportDate]:
+                    if f'{fullDate["year"]}-{fullDate["month"]}' in listStockHistory[reportDate]:
                         startDate = listStockHistory[reportDate]
                         endDate = listStockHistory[reportDate + 1]
                         startPrice = stock_history[startDate]['Close']
@@ -619,6 +615,8 @@ class Federal_Reserve:
                         if endPrice - startPrice > 0:
                             acutalStockMovement = 1
                         actualStockChange = endPrice - startPrice
+                    else:
+                        pass
 
                 predictedStockMovement = -1
                 # If the postive greatly outweighs negative, the article is considered positive
@@ -636,11 +634,21 @@ class Federal_Reserve:
                 error += (predictedStockMovement - acutalStockMovement)
             except Exception as e:
                 print('ERROR:', e)
-
-        print(f'\nTotal Score: {(score / runs) * 100}% Accuracy of {runs} Runs')
+        percent_score = ((score/runs) * 100)
+        print(f'\nTotal Score: {percent_score}% Accuracy of {runs} Runs')
         print(f'Total Error: {error}')
 
+        return (f'{percent_score}, {runs}, {error}, {neg_pos_ratio}')
+
+    def print_results(self):
+        for i in self.results:
+            print(i)
+
+
 fed = Federal_Reserve()
-# fed.create_training_files()
-fed.test_program()
+fed.create_training_files(random_state=9)
+fed.test_program(neg_pos_ratio=0.05)
+fed.print_results()
+
+
 

@@ -48,11 +48,12 @@ class Federal_Reserve:
         except Exception as e:
             print('Error handling files.\nWill Delete Corrupted Files.\nRun Function again.')
 
-    def test_program(self, neg_pos_ratio=0):
+    def test_program(self, random_state=0, neg_pos_ratio=0):
         """Takes in Testing files and executes testing"""
         testing_files = self.__get_testing_files()
-        self.results.append(self.__test_program_with_articles(testing_files, neg_pos_ratio=neg_pos_ratio))
-
+        self.results.append(self.__test_program_with_articles(testing_files,
+                                                              random_state=random_state,
+                                                              neg_pos_ratio=neg_pos_ratio))
 
     # Private Methods
     def __split_files_for_training(self, train_size=0.8, test_size=0.2,
@@ -545,7 +546,9 @@ class Federal_Reserve:
         data = pd.read_csv(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
         return data.columns.tolist()
 
-    def __test_program_with_articles(self, testingFiles, neg_pos_ratio=0.1):  # , stock_info):
+    def __test_program_with_articles(self, testingFiles,
+                                     random_state=0,
+                                     neg_pos_ratio=0.1):  # , stock_info):
         score = 0
         error = 0
         runs = len(testingFiles)
@@ -638,16 +641,23 @@ class Federal_Reserve:
         print(f'\nTotal Score: {percent_score}% Accuracy of {runs} Runs')
         print(f'Total Error: {error}')
 
-        return (f'{percent_score}, {runs}, {error}, {neg_pos_ratio}')
+        return (f'{percent_score}, {runs}, {error}, {neg_pos_ratio}, {random_state}')
 
     def print_results(self):
         for i in self.results:
             print(i)
 
-
+random_state = 9
 fed = Federal_Reserve()
-fed.create_training_files(random_state=9)
-fed.test_program(neg_pos_ratio=0.05)
+#fed.create_training_files(random_state=random_state)
+fed.test_program(random_state=random_state,
+                 neg_pos_ratio=0.05)
+fed.test_program(random_state=random_state,
+                 neg_pos_ratio=0.15)
+fed.test_program(random_state=random_state,
+                 neg_pos_ratio=0.25)
+fed.test_program(random_state=random_state,
+                 neg_pos_ratio=0.35)
 fed.print_results()
 
 

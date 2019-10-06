@@ -36,11 +36,13 @@ class Federal_Reserve:
         self.__get_stock_information()
         print('Finished Gathering Articles')
 
-    def create_training_files(self, random_state=0):
+    def create_training_files(self, train_size=0.8, test_size=0.2, random_state=0):
         """Creates all the ngram data, computations, and files needed for testing"""
         try:
             self.__clear_previous_training_files()
-            x_train, x_test = self.__split_files_for_training(random_state=random_state)
+            x_train, x_test = self.__split_files_for_training(train_size=train_size,
+                                                              test_size=test_size,
+                                                              random_state=random_state)
             self.__record_train_test_files(x_train, x_test)
             training_ngram_files = self.__create_ngram_files(x_train)
             training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
@@ -515,6 +517,9 @@ class Federal_Reserve:
             self.__write_increase_decrease_files(n, scored_ngrams, ratio=False, increase=False)
             self.__write_increase_decrease_files(n, increase_ngrams, ratio=True, increase=True)
             self.__write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
+    
+    def __write_training_log_file(self):
+        pass
 
     def __write_increase_decrease_files(self, n, ngram_list, ratio=False, increase=False):
         paths = [f"{os.getcwd()}/Federal_Reserve/Increase_Decrease/Increase_Ngrams/",
@@ -615,7 +620,7 @@ class Federal_Reserve:
                         startPrice = stock_history[startDate]['Close']
                         endPrice = stock_history[endDate]['Close']
 
-                        if endPrice - startPrice > 0:
+                        if endPrice - startPrice > neg_pos_ratio:
                             acutalStockMovement = 1
                         actualStockChange = endPrice - startPrice
                     else:
@@ -647,17 +652,14 @@ class Federal_Reserve:
         for i in self.results:
             print(i)
 
-random_state = 9
+random_state = 5
 fed = Federal_Reserve()
-#fed.create_training_files(random_state=random_state)
-fed.test_program(random_state=random_state,
-                 neg_pos_ratio=0.05)
-fed.test_program(random_state=random_state,
-                 neg_pos_ratio=0.15)
-fed.test_program(random_state=random_state,
-                 neg_pos_ratio=0.25)
-fed.test_program(random_state=random_state,
-                 neg_pos_ratio=0.35)
+#fed.create_training_files(train_size=0.8,
+#                          test_size=0.2,
+#                          random_state=random_state)
+
+# fed.test_program(random_state=random_state,
+#                  neg_pos_ratio=0.25)
 fed.print_results()
 
 

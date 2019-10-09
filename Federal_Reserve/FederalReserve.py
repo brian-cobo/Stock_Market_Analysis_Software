@@ -18,6 +18,7 @@ from random import randint
 
 # Note: Functions that begin with __ are private functions
 
+
 class Federal_Reserve:
     # Public Methods
     def __init__(self):
@@ -517,7 +518,7 @@ class Federal_Reserve:
             self.__write_increase_decrease_files(n, scored_ngrams, ratio=False, increase=False)
             self.__write_increase_decrease_files(n, increase_ngrams, ratio=True, increase=True)
             self.__write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
-    
+
     def __write_training_log_file(self):
         pass
 
@@ -605,9 +606,9 @@ class Federal_Reserve:
                                 decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
                         except KeyError:
                             pass
-                    # print(f'\nN = {n}')
-                    # print('Increase Sum:', increase_sum)
-                    # print('Decrease Sum:', decrease_sum)
+                    print(f'\nN = {n}')
+                    print('Increase Sum:', increase_sum)
+                    print('Decrease Sum:', decrease_sum)
 
                 # Get actual stock movement between current period
                 acutalStockMovement = -1
@@ -631,7 +632,7 @@ class Federal_Reserve:
                 if (decrease_sum / increase_sum) < neg_pos_ratio:
                     predictedStockMovement = 1
 
-                print('Increase Sum:', increase_sum)
+                print('\nIncrease Sum:', increase_sum)
                 print('Decrease Sum:', decrease_sum)
                 print('Inc - Dec Ratio:', (decrease_sum / increase_sum))
                 print(f'Stock Movement: {actualStockChange}')
@@ -654,13 +655,11 @@ class Federal_Reserve:
 
 random_state = 5
 fed = Federal_Reserve()
-#fed.create_training_files(train_size=0.8,
-#                          test_size=0.2,
-#                          random_state=random_state)
+# fed.create_training_files(train_size=0.8,
+#                           test_size=0.2,
+#                           random_state=random_state)
 
-# fed.test_program(random_state=random_state,
-#                  neg_pos_ratio=0.25)
+fed.test_program(random_state=random_state,
+                 neg_pos_ratio=0.25)
 fed.print_results()
-
-
 

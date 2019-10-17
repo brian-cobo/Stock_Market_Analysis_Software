@@ -684,13 +684,15 @@ class Federal_Reserve:
                             decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
                     except KeyError:
                         pass
+                print('N:', n)
+                print('Increase Sum:', increase_sum)
+                print('Decrease Sum:', decrease_sum)
 
             try:
                 dec_inc_ratio = (decrease_sum / increase_sum)
             except:
                 dec_inc_ratio = 0
 
-            print(f'\nN = {n}')
             print('Increase Sum:', increase_sum)
             print('Decrease Sum:', decrease_sum)
             print('Ratio', dec_inc_ratio)
@@ -769,7 +771,7 @@ class Federal_Reserve:
                         if stockChange > 0:
                             movement = 1
                         else:
-                            movement = -1
+                            movement = 0
 
                 training_info = {
                     'Start_Date': startDate,
@@ -815,13 +817,13 @@ class Federal_Reserve:
 
 fed = Federal_Reserve(train_size=0.8,
                       test_size=0.2,
-                      random_state=5,
+                      random_state=26,
                       neg_pos_ratio=0.2,
-                      watch_period_in_days=5,
-                      difference_percent_change_threshold=0,
+                      watch_period_in_days=6,
+                      difference_percent_change_threshold=0.01,
                       shuffle=True)
 # fed.gather_articles_and_stock_info()
-# fed.create_training_files()
+fed.create_training_files()
 fed.train_program()
 
 

@@ -1,0 +1,5 @@
+NGram,Increase,Decrease,Increase_Weight,Decrease_Weight,Increase_Ratio,Decrease_Ratio
+"('minneapolis', 'kansas', 'city', 'and', 'dallas')",3,9,0.25,0.75,0,3
+"('kansas', 'city', 'and', 'dallas', 'reported')",3,9,0.25,0.75,0,3
+"('there', 'were', 'scattered', 'reports', 'of')",3,8,0.27273,0.72727,0,3
+"('banking', 'and', 'finance', 'overall', 'lending')",2,7,0.22222,0.77778,0,4

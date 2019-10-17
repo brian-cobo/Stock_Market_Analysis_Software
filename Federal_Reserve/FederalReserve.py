@@ -78,9 +78,7 @@ class Federal_Reserve:
                                                     test_data=False,
                                                     watch_period_in_days=self.watch_period_in_days,
                                                     difference_threshold=self.difference_percent_change_threshold)
-
-            # testing_ngram_files = self.__create_ngram_files(x_test, test_data=True)
-            # testing_files_sorted_by_n = self.__sort_ngram_files(testing_ngram_files)
+            self.__Create_training_log(x_train)
 
         except Exception as e:
             print('Error handling files. \nRun Function again.', e)
@@ -117,6 +115,9 @@ class Federal_Reserve:
 
         if os.path.exists(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv'):
             os.remove(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
+
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/Training_File.csv'):
+            os.remove(os.getcwd() + '/Federal_Reserve/Training_File.csv')
 
     def __record_train_test_files(self, training_files, testing_files):
         training_file_name = str(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
@@ -517,6 +518,7 @@ class Federal_Reserve:
                                            watch_period_in_days,
                                            difference_threshold):
         stock_info = self.__get_stock_history_from_csv()
+
         for n, files in sorted_ngram_files.items():
             scored_ngrams = {}
             increase_ngrams = {}
@@ -525,16 +527,14 @@ class Federal_Reserve:
             for file in range(len(files) - 1):
                 try:
                     dates = files[file].split('/')[-1]
-                    next_dates = files[file+1].split('/')[-1]
                     startDate = dates.split('_')[0]
                     endDate = self.__get_end_of_watch_period_info(startDate,
                                                                   watch_period_in_days)
                     difference = float(endDate['Close']) - float(stock_info[startDate]['Close'])
-
-
                     year = startDate.split('-')[0]
                     reader = csv.DictReader(open(f'{os.getcwd()}/{files[file]}'))
-                    difference_percent_change = (difference / stock_info[startDate]['Close'])
+                    difference_percent_change = (difference / float(stock_info[startDate]['Close']))
+
                     if (difference > 0 and
                             difference_percent_change > difference_threshold):
                         for row in reader:
@@ -544,7 +544,6 @@ class Federal_Reserve:
                                                                  'Increase_Ratio': 0, 'Decrease_Ratio': 0}
                             else:
                                 scored_ngrams[(row['NGram'])]['Increase'] += int(row['Frequency'])
-
                     else:
                         for row in reader:
                             if row['NGram'] not in scored_ngrams:
@@ -553,7 +552,9 @@ class Federal_Reserve:
                                                                  'Increase_Ratio': 0, 'Decrease_Ratio': 0}
                             else:
                                 scored_ngrams[(row['NGram'])]['Decrease'] += int(row['Frequency'])
+
                 except Exception as e:
+                    print('Failed calculating Increase Decrease counts', e)
                     pass
 
             for ngram, value in scored_ngrams.items():
@@ -579,9 +580,6 @@ class Federal_Reserve:
             self.__write_increase_decrease_files(n, scored_ngrams, test_data, ratio=False, increase=False)
             self.__write_increase_decrease_files(n, increase_ngrams, test_data, ratio=True, increase=True)
             self.__write_increase_decrease_files(n, decrease_ngrams, test_data, ratio=True, increase=False)
-
-    def __write_training_log_file(self):
-        pass
 
     def __write_increase_decrease_files(self, n, ngram_list, test_data, ratio=False, increase=False):
         if test_data:
@@ -653,11 +651,11 @@ class Federal_Reserve:
                         articleNGrams[f"{words}"] = freq
 
                     increase_ngrams = pd.read_csv(
-                        os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Increase_Ngrams/n={n}.csv')
+                        os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Increase_Ngrams/n={n}.csv')
                     increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
 
                     decrease_ngrams = pd.read_csv(
-                        os.getcwd() + f'/Federal_Reserve/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
+                        os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
                     decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
 
                     stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History_Per_Article.csv')
@@ -730,9 +728,117 @@ class Federal_Reserve:
 
         return (f'{percent_score}, {runs}, {error}, {neg_pos_ratio}, {random_state}')
 
-    def print_results(self):
-        for i in self.results:
-            print(i)
+    def __Create_training_log(self, trainingFiles):
+        print('In training log function')
+        for date in range(len(trainingFiles)):
+            try:
+                fullDate = self.__get_date_from_file_name(trainingFiles[date])
+                formatted_date = f'{fullDate["year"]}-{fullDate["month"]}-{fullDate["day"]}'
+                article = (f'{os.getcwd()}/Federal_Reserve/Articles/{fullDate["year"]}/{fullDate["year"]}'
+                           f'-{fullDate["month"]}-{fullDate["day"]}_Report.txt')
+                with open(article) as file:
+                    data = file.read()
+                data = data.lower()
+
+                increase_sum = 0
+                decrease_sum = 0
+                for n in range(1, 6):
+                    ngramResult = ngrams(data.split(), n)
+                    frequency = FreqDist(ngramResult).most_common()
+
+                    articleNGrams = {}
+                    for ngram in frequency:
+                        words = ngram[0]
+                        freq = ngram[1]
+                        articleNGrams[f"{words}"] = freq
+
+                    increase_ngrams = pd.read_csv(
+                        os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Increase_Ngrams/n={n}.csv')
+                    increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
+
+                    decrease_ngrams = pd.read_csv(
+                        os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
+                    decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
+
+                    stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History_Per_Article.csv')
+                    stock_history = stock_history.set_index('Date').T.to_dict('dict')
+
+                    for ngram, freq in articleNGrams.items():
+                        try:
+                            if increase_ngrams[ngram]:
+                                increase_sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
+                        except KeyError:
+                            pass
+
+                        try:
+                            if decrease_ngrams[ngram]:
+                                decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
+                        except KeyError:
+                            pass
+
+                listStockHistory = list(stock_history)
+                for reportDate in range(len(listStockHistory)):
+                    if f'{fullDate["year"]}-{fullDate["month"]}' in listStockHistory[reportDate]:
+                        startDate = listStockHistory[reportDate]
+                        endingDate = self.__get_end_of_watch_period_info(startDate,
+                                                                      self.watch_period_in_days)
+                        endDate = endingDate['Date']
+                        startPrice = stock_history[startDate]['Close']
+                        endPrice = endingDate['Close']
+                        stockChange = endPrice - startPrice
+                        percentChange = stockChange/startPrice
+
+
+                        try:
+                            dec_inc_ratio = (decrease_sum / increase_sum)
+                        except:
+                            dec_inc_ratio = 0
+
+                        if stockChange > 0:
+                            movement = 1
+                        else:
+                            movement = -1
+
+                training_info = {
+                    'Start_Date': startDate,
+                    'Start_Date_Close': startPrice,
+                    'End_Date': endDate,
+                    'End_Date_Close': endPrice,
+                    'Difference': stockChange,
+                    'Difference_Percent_Change': percentChange,
+                    'Increase_Sum': increase_sum,
+                    'Decrease_Sum': decrease_sum,
+                    'Dec_Inc_Ratio': dec_inc_ratio,
+                    'Movement': movement
+                }
+                self.__write_to_training_log_file(training_info)
+            except Exception as e:
+                print('Error training', e)
+        print('Finished Creating Training_File')
+
+    def __write_to_training_log_file(self, training_info):
+        fileName = os.getcwd() + f'/Federal_Reserve/Training_File_{self.watch_period_in_days}_Day_Period.csv'
+        if not os.path.exists(fileName):
+            with open(fileName, 'w+') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow(('Start_Date', 'Start_Date_Close',
+                                 'End_Date', 'End_Date_Close',
+                                 'Difference', 'Difference_Percent_Change',
+                                 'Increase_Sum', 'Decrease_Sum',
+                                 'Dec_Inc_Ratio', 'Movement'))
+        else:
+            with open(fileName, 'a+') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow([training_info['Start_Date'],
+                                 training_info['Start_Date_Close'],
+                                 training_info['End_Date'],
+                                 training_info['End_Date_Close'],
+                                 training_info['Difference'],
+                                 training_info['Difference_Percent_Change'],
+                                 training_info['Increase_Sum'],
+                                 training_info['Decrease_Sum'],
+                                 training_info['Dec_Inc_Ratio'],
+                                 training_info['Movement']])
 
 
 fed = Federal_Reserve(train_size=0.8,
@@ -740,7 +846,7 @@ fed = Federal_Reserve(train_size=0.8,
                       random_state=5,
                       neg_pos_ratio=0.2,
                       watch_period_in_days=5,
-                      difference_percent_change_threshold=0.02,
+                      difference_percent_change_threshold=0,
                       shuffle=True)
 fed.create_training_files()
 #fed.test_program()

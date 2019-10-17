@@ -819,8 +819,8 @@ fed = Federal_Reserve(train_size=0.8,
                       test_size=0.2,
                       random_state=26,
                       neg_pos_ratio=0.2,
-                      watch_period_in_days=6,
-                      difference_percent_change_threshold=0.01,
+                      watch_period_in_days=3,
+                      difference_percent_change_threshold=0.00,
                       shuffle=True)
 # fed.gather_articles_and_stock_info()
 fed.create_training_files()

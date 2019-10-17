@@ -1,6 +1,24 @@
 # File Imports
 
 # Library Imports
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings
+warnings.filterwarnings('ignore')
+
+from sklearn.model_selection import KFold
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
+from sklearn.pipeline import Pipeline
+
+from keras.wrappers.scikit_learn import KerasClassifier
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.utils import np_utils
+
 import re
 import requests
 import os
@@ -8,6 +26,7 @@ import csv
 import shutil
 import pandas as pd
 import numpy as np
+import glob
 
 from bs4 import BeautifulSoup
 from nltk import ngrams
@@ -70,35 +89,36 @@ class Federal_Reserve:
         """Creates all the ngram data, computations, and files needed for testing"""
         try:
             self.__clear_previous_training_files()
-            x_train, x_test = self.__split_files_for_training()
+            # x_train, x_test = self.__split_files_for_training()
             # self.__record_train_test_files(x_train, x_test)
-            training_ngram_files = self.__create_ngram_files(x_train, test_data=False)
+            all_files = self.__get_all_article_file_names()
+            training_ngram_files = self.__create_ngram_files(all_files, test_data=False)
             training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
             self.__compute_increase_decrease_counts(training_files_sorted_by_n,
                                                     test_data=False,
                                                     watch_period_in_days=self.watch_period_in_days,
                                                     difference_threshold=self.difference_percent_change_threshold)
-            self.__Create_training_log(x_train)
+            self.__Create_training_log(all_files)
 
         except Exception as e:
             print('Error handling files. \nRun Function again.', e)
 
-    def test_program(self, neg_pos_ratio=0):
+    def train_program(self, neg_pos_ratio=0):
         """Takes in Testing files and executes testing"""
-        testing_files = self.__get_testing_files()
-        self.results.append(self.__test_program_with_articles(testing_files,
-                                                              random_state=self.random_state,
-                                                              neg_pos_ratio=self.neg_pos_ratio))
+        testing_path = os.getcwd() + '/Federal_Reserve/Test_Articles_In_Here/'
+        if not os.path.exists(testing_path):
+            os.makedirs(testing_path)
+        self.__get_files_to_test(testing_path)
 
     # Private Methods
-    def __split_files_for_training(self):
-        all_files = self.__get_all_article_file_names()
-        x_train, x_test = train_test_split(all_files,
-                                           train_size=self.train_size,
-                                           test_size=self.test_size,
-                                           random_state=self.random_state,
-                                           shuffle=self.shuffle)
-        return sorted(x_train), sorted(x_test)
+    # def __split_files_for_training(self):
+        # all_files = self.__get_all_article_file_names()
+        # x_train, x_test = train_test_split(all_files,
+        #                                    train_size=self.train_size,
+        #                                    test_size=self.test_size,
+        #                                    random_state=self.random_state,
+        #                                    shuffle=self.shuffle)
+        # return sorted(x_train), sorted(x_test)
 
     def __clear_previous_training_files(self):
         if os.path.exists(os.getcwd() + '/Federal_Reserve/Test/'):
@@ -616,120 +636,72 @@ class Federal_Reserve:
         data = pd.read_csv(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
         return data.columns.tolist()
 
-    def __test_program_with_articles(self,
-                                     testingFiles,
-                                     random_state,
-                                     neg_pos_ratio):
-        score = 0
-        error = 0
-        runs = len(testingFiles)
-        tested_values = []
+    def __get_files_to_test(self, testing_path):
+        files_to_test = glob.glob(testing_path + '*.txt')
+        print(files_to_test)
+        for file in files_to_test:
+            increase, decrease, ratio = self.__get_increase_decrease_from_specific_article(file)
 
-        for date in range(len(testingFiles)-1):
-            try:
-                fullDate = self.__get_date_from_file_name(testingFiles[date])
-                formatted_date = f'{fullDate["year"]}-{fullDate["month"]}-{fullDate["day"]}'
-                article = (f'{os.getcwd()}/Federal_Reserve/Articles/{fullDate["year"]}/{fullDate["year"]}'
-                           f'-{fullDate["month"]}-{fullDate["day"]}_Report.txt')
 
-                print('\nArticle to Analyze:', article)
+    def __get_increase_decrease_from_specific_article(self, article):
+        try:
+            with open(article) as file:
+                data = file.read()
+            data = data.lower()
 
-                with open(article) as file:
-                    data = file.read()
-                data = data.lower()
+            increase_sum = 0
+            decrease_sum = 0
+            for n in range(1, 6):
+                ngramResult = ngrams(data.split(), n)
+                frequency = FreqDist(ngramResult).most_common()
 
-                increase_sum = 0
-                decrease_sum = 0
-                for n in range(1, 6):
-                    ngramResult = ngrams(data.split(), n)
-                    frequency = FreqDist(ngramResult).most_common()
+                articleNGrams = {}
+                for ngram in frequency:
+                    words = ngram[0]
+                    freq = ngram[1]
+                    articleNGrams[f"{words}"] = freq
 
-                    articleNGrams = {}
-                    for ngram in frequency:
-                        words = ngram[0]
-                        freq = ngram[1]
-                        articleNGrams[f"{words}"] = freq
+                increase_ngrams = pd.read_csv(
+                    os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Increase_Ngrams/n={n}.csv')
+                increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
 
-                    increase_ngrams = pd.read_csv(
-                        os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Increase_Ngrams/n={n}.csv')
-                    increase_ngrams = increase_ngrams.set_index('NGram').T.to_dict('dict')
+                decrease_ngrams = pd.read_csv(
+                    os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
+                decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
 
-                    decrease_ngrams = pd.read_csv(
-                        os.getcwd() + f'/Federal_Reserve/Train/Increase_Decrease/Decrease_Ngrams/n={n}.csv')
-                    decrease_ngrams = decrease_ngrams.set_index('NGram').T.to_dict('dict')
+                stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History_Per_Article.csv')
+                stock_history = stock_history.set_index('Date').T.to_dict('dict')
 
-                    stock_history = pd.read_csv(os.getcwd() + '/Federal_Reserve/Stock_History_Per_Article.csv')
-                    stock_history = stock_history.set_index('Date').T.to_dict('dict')
-
-                    for ngram, freq in articleNGrams.items():
-                        try:
-                            if increase_ngrams[ngram]:
-                                increase_sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
-                        except KeyError:
-                            pass
-
-                        try:
-                            if decrease_ngrams[ngram]:
-                                decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
-                        except KeyError:
-                            pass
-                    print(f'\nN = {n}')
-                    print('Increase Sum:', increase_sum)
-                    print('Decrease Sum:', decrease_sum)
-
-                # Get actual stock movement between current period
-                actutalStockMovement = -1
-                actualStockChange = 0
-                listStockHistory = list(stock_history)
-                for reportDate in range(len(listStockHistory)):
-                    if f'{fullDate["year"]}-{fullDate["month"]}' in listStockHistory[reportDate]:
-                        startDate = listStockHistory[reportDate]
-                        endDate = listStockHistory[reportDate + 1]
-                        startPrice = stock_history[startDate]['Close']
-                        endPrice = stock_history[endDate]['Close']
-
-                        if endPrice - startPrice > neg_pos_ratio:
-                            actutalStockMovement = 1
-                        actualStockChange = endPrice - startPrice
-                    else:
+                for ngram, freq in articleNGrams.items():
+                    try:
+                        if increase_ngrams[ngram]:
+                            increase_sum += (increase_ngrams[ngram]['Increase_Weight'] * freq)
+                    except KeyError:
                         pass
 
-                predictedStockMovement = -1
-                # If the postive greatly outweighs negative, the article is considered positive
-                if (decrease_sum / increase_sum) < neg_pos_ratio:
-                    predictedStockMovement = 1
+                    try:
+                        if decrease_ngrams[ngram]:
+                            decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
+                    except KeyError:
+                        pass
 
-                print('\nIncrease Sum:', increase_sum)
-                print('Decrease Sum:', decrease_sum)
-                print('Inc - Dec Ratio:', (decrease_sum / increase_sum))
-                print(f'Stock Movement: {actualStockChange}')
-                print(f'Predicted Movement: {predictedStockMovement} Actual Movement: {actutalStockMovement}')
+            try:
+                dec_inc_ratio = (decrease_sum / increase_sum)
+            except:
+                dec_inc_ratio = 0
 
-                if predictedStockMovement == actutalStockMovement:
-                    score += 1
-                error += (predictedStockMovement - actutalStockMovement)
-            except Exception as e:
-                print('ERROR:', e)
-        percent_score = ((score/runs) * 100)
-        print(f'\nTotal Score: {percent_score}% Accuracy of {runs} Runs')
-        print(f'Total Error: {error}')
+            print(f'\nN = {n}')
+            print('Increase Sum:', increase_sum)
+            print('Decrease Sum:', decrease_sum)
+            print('Ratio', dec_inc_ratio)
+            return increase_sum, decrease_sum, dec_inc_ratio
 
-        run_values = {'Formatted Date':formatted_date,
-                      'Increase Sum':increase_sum,
-                      'Decrease Sum':decrease_sum,
-                      'IncDec Ratio':neg_pos_ratio,
-                      'Stock Movement':actualStockChange,
-                      'Predicted Movement':predictedStockMovement,
-                      'Actual Movement':actutalStockMovement,
-                      'Error':error,
-                      'Random_State':self.random_state,
-                      }
-        tested_values.append(run_values)
 
-        return (f'{percent_score}, {runs}, {error}, {neg_pos_ratio}, {random_state}')
+        except Exception as e:
+            print('Error getting counts from file', e)
+
 
     def __Create_training_log(self, trainingFiles):
-        print('In training log function')
         for date in range(len(trainingFiles)):
             try:
                 fullDate = self.__get_date_from_file_name(trainingFiles[date])
@@ -848,7 +820,8 @@ fed = Federal_Reserve(train_size=0.8,
                       watch_period_in_days=5,
                       difference_percent_change_threshold=0,
                       shuffle=True)
-fed.create_training_files()
-#fed.test_program()
-#fed.print_results()
+# fed.gather_articles_and_stock_info()
+# fed.create_training_files()
+fed.train_program()
+
 

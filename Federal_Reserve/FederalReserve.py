@@ -120,16 +120,15 @@ class Federal_Reserve:
             self.__clear_previous_training_files()
             x_train, x_test = self.__split_files_for_training()
             self.__record_train_test_files(x_train, x_test)
-            # training_ngram_files = self.__create_ngram_files(x_train, test_data=False)
-            # training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
-            # self.__compute_increase_decrease_counts(training_files_sorted_by_n,
-            #                                         test_data=False,
-            #                                         watch_period_in_days=self.watch_period_in_days,
-            #                                         difference_threshold=self.difference_percent_change_threshold)
-            # self.__Create_training_log(x_train)
+            training_ngram_files = self.__create_ngram_files(x_train)
+            training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
+            self.__compute_increase_decrease_counts(training_files_sorted_by_n,
+                                                    watch_period_in_days=self.watch_period_in_days,
+                                                    difference_threshold=self.difference_percent_change_threshold)
+            self.__Create_training_log(x_train)
 
         except Exception as e:
-            print('Error handling files. \nRun Function again.', e)
+            print('Error handling files:', e)
 
     def train_program(self, neg_pos_ratio=0):
         """Takes in Testing files and executes testing"""
@@ -161,10 +160,10 @@ class Federal_Reserve:
         if os.path.exists(os.getcwd() + '/Federal_Reserve/NGrams/'):
             shutil.rmtree(os.getcwd() + '/Federal_Reserve/NGrams/')
 
-        if os.path.exists(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv'):
-            os.remove(os.getcwd() + '/Federal_Reserve/Testing_File.csv')
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/Testing_Files.csv'):
+            os.remove(os.getcwd() + '/Federal_Reserve/Testing_Files.csv')
 
-        if os.path.exists(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv'):
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/Training_Files.csv'):
             os.remove(os.getcwd() + '/Federal_Reserve/Training_Files.csv')
 
     def __record_train_test_files(self, training_files, testing_files):
@@ -176,12 +175,12 @@ class Federal_Reserve:
 
 
 
-    def __create_ngram_files(self, all_files, test_data):
+    def __create_ngram_files(self, all_files):
         ngram_file_names = []
         for file in all_files:
             date = self.__get_date_from_file_name(file)
             for n in range(1, 6):
-                ngram_file_names.append(self.__get_ngrams(file, date, n, test_data=test_data))
+                ngram_file_names.append(self.__get_ngrams(file, date, n))
         return ngram_file_names
 
     def __get_date_from_file_name(self, fileName):
@@ -198,7 +197,6 @@ class Federal_Reserve:
 
     def __get_all_article_file_names(self):
         all_files = []
-
         article_path = (os.getcwd() + '/Federal_Reserve/Articles/')
         for root, dirs, files in os.walk(article_path):
             if files:
@@ -288,7 +286,7 @@ class Federal_Reserve:
         for year in range(1996, 2011):
             base_url = f'https://www.federalreserve.gov/monetarypolicy/beigebook{year}.htm'
             try:
-                sleep(1.5) 
+                sleep(1.5)
                 page = requests.get(base_url)
                 soup = BeautifulSoup(page.content, 'html.parser')
                 links = soup.findAll('td')
@@ -326,7 +324,7 @@ class Federal_Reserve:
         else:
             return date
 
-    def __get_ngrams(self, articleFile, fullDate, n, test_data=False):
+    def __get_ngrams(self, articleFile, fullDate, n):
         """Takes in a file name and a number n to create a file with
             each ngram it produces"""
 
@@ -335,10 +333,7 @@ class Federal_Reserve:
         year = fullDate['year']
 
         # Check if ngram folder exists, if not make it
-        if test_data:
-            path = f"Federal_Reserve/NGrams/Test/{year}/"
-        else:
-            path = f"Federal_Reserve/NGrams/Train/{year}/"
+        path = f"Federal_Reserve/NGrams/Train/{year}/"
 
         if not os.path.exists(path):
             os.makedirs(path)
@@ -483,7 +478,6 @@ class Federal_Reserve:
 
     def __compute_increase_decrease_counts(self,
                                            sorted_ngram_files,
-                                           test_data,
                                            watch_period_in_days,
                                            difference_threshold):
         stock_info = self.__get_stock_history_from_csv()
@@ -546,15 +540,12 @@ class Federal_Reserve:
                 if value['Decrease_Ratio'] >= 3:
                     decrease_ngrams[ngram] = value
 
-            self.__write_increase_decrease_files(n, scored_ngrams, test_data, ratio=False, increase=False)
-            self.__write_increase_decrease_files(n, increase_ngrams, test_data, ratio=True, increase=True)
-            self.__write_increase_decrease_files(n, decrease_ngrams, test_data, ratio=True, increase=False)
+            self.__write_increase_decrease_files(n, scored_ngrams, ratio=False, increase=False)
+            self.__write_increase_decrease_files(n, increase_ngrams, ratio=True, increase=True)
+            self.__write_increase_decrease_files(n, decrease_ngrams, ratio=True, increase=False)
 
-    def __write_increase_decrease_files(self, n, ngram_list, test_data, ratio=False, increase=False):
-        if test_data:
-            location = "Test"
-        else:
-            location = "Train"
+    def __write_increase_decrease_files(self, n, ngram_list, ratio=False, increase=False):
+        location = "Train"
 
         paths = [f"{os.getcwd()}/Federal_Reserve/{location}/Increase_Decrease/Increase_Ngrams/",
                  f"{os.getcwd()}/Federal_Reserve/{location}/Increase_Decrease/Decrease_Ngrams/",
@@ -850,8 +841,8 @@ def main():
                               watch_period_in_days=3,
                               difference_percent_change_threshold=0.00,
                               shuffle=True)
-        fed.gather_articles_and_stock_info()
-        # fed.create_training_files()
+        # fed.gather_articles_and_stock_info()
+        fed.create_training_files()
         # fed.train_program()
     except Exception as e:
         print('ERROR:', e)

@@ -6,7 +6,17 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import re
+import requests
+import os
+import csv
+import shutil
+import random
+import glob
 import warnings
+import time
+from multiprocessing import Pool
+from multiprocessing import cpu_count
 warnings.filterwarnings('ignore')
 
 from sklearn.model_selection import KFold
@@ -19,15 +29,6 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.utils import np_utils
 
-import re
-import requests
-import os
-import csv
-import shutil
-import pandas as pd
-import numpy as np
-import glob
-
 from bs4 import BeautifulSoup
 from nltk import ngrams
 from nltk import FreqDist
@@ -37,6 +38,16 @@ from random import randint
 
 # Note: Functions that begin with __ are private functions
 
+"""TODO:
+    MultiProcess:
+        - Article URLs to grab and write articles
+        - files to create training and testing ngrams with
+        - create training and testing inc/dec files
+        - training neural networks per n day articles and create models
+        
+    Other
+        - Create function to calculate inc/dec counts and save to csv file?        
+"""
 
 class Federal_Reserve:
     """
@@ -53,6 +64,14 @@ class Federal_Reserve:
             - How many days to let pass after an article release
         * difference_percent_change_threshold:
             - The threshold for how significant the difference must be to be used for training
+        * shuffle:
+            - True shuffles the list of all articles
+        * cpu_count:
+            - Sets the number of processes to create.
+            - This is set internally to avoid execution problems.
+            - Current count is set to (CPU Count - 1)
+        * testing_path:
+            - The path to the testing files
     """
     # Public Methods
     def __init__(self,
@@ -62,7 +81,9 @@ class Federal_Reserve:
                  neg_pos_ratio=0.2,
                  watch_period_in_days=5,
                  difference_percent_change_threshold=0.02,
-                 shuffle=True):
+                 shuffle=True,
+                 cpu_count=cpu_count() - 1,
+                 testing_path=os.getcwd() + '/Federal_Reserve/Test_Articles_In_Here/'):
         self.train_size = train_size
         self.test_size = test_size
         self.random_state = random_state
@@ -70,11 +91,13 @@ class Federal_Reserve:
         self.watch_period_in_days = watch_period_in_days
         self.difference_percent_change_threshold = difference_percent_change_threshold
         self.shuffle = shuffle
-        self.results = []
+        self.cpu_count = cpu_count
+        self.testing_path = testing_path
 
     def gather_articles_and_stock_info(self):
         """Gathers all article and stock info and writes them to files"""
         print('Gathering Articles')
+        self.__clear_previous_articles()
         links2019 = self.__get_current_beige_links()
         links2011_ = self.__get_2011_to_previous_year_beige_links()
         monthly_links_2011_ = self.__get_2011_monthly_links(links2011_)
@@ -82,43 +105,51 @@ class Federal_Reserve:
         __all_monthly_links = self.__compile_monthly_links(monthly_links_1996_2011,
                                                            monthly_links_2011_,
                                                            links2019)
+        p = Pool(self.cpu_count + 1)
+        p.map(get_article_info, __all_monthly_links)
+        p.close()
+        p.join()
+
         self.__get_stock_information()
+
         print('Finished Gathering Articles')
 
     def create_training_files(self):
         """Creates all the ngram data, computations, and files needed for testing"""
         try:
             self.__clear_previous_training_files()
-            # x_train, x_test = self.__split_files_for_training()
-            # self.__record_train_test_files(x_train, x_test)
-            all_files = self.__get_all_article_file_names()
-            training_ngram_files = self.__create_ngram_files(all_files, test_data=False)
-            training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
-            self.__compute_increase_decrease_counts(training_files_sorted_by_n,
-                                                    test_data=False,
-                                                    watch_period_in_days=self.watch_period_in_days,
-                                                    difference_threshold=self.difference_percent_change_threshold)
-            self.__Create_training_log(all_files)
+            x_train, x_test = self.__split_files_for_training()
+            self.__record_train_test_files(x_train, x_test)
+            # training_ngram_files = self.__create_ngram_files(x_train, test_data=False)
+            # training_files_sorted_by_n = self.__sort_ngram_files(training_ngram_files)
+            # self.__compute_increase_decrease_counts(training_files_sorted_by_n,
+            #                                         test_data=False,
+            #                                         watch_period_in_days=self.watch_period_in_days,
+            #                                         difference_threshold=self.difference_percent_change_threshold)
+            # self.__Create_training_log(x_train)
 
         except Exception as e:
             print('Error handling files. \nRun Function again.', e)
 
     def train_program(self, neg_pos_ratio=0):
         """Takes in Testing files and executes testing"""
-        testing_path = os.getcwd() + '/Federal_Reserve/Test_Articles_In_Here/'
-        if not os.path.exists(testing_path):
-            os.makedirs(testing_path)
-        self.__get_files_to_test(testing_path)
+        if not os.path.exists(self.testing_path):
+            os.makedirs(self.testing_path)
+        self.__get_files_to_test(self.testing_path)
 
     # Private Methods
-    # def __split_files_for_training(self):
-        # all_files = self.__get_all_article_file_names()
-        # x_train, x_test = train_test_split(all_files,
-        #                                    train_size=self.train_size,
-        #                                    test_size=self.test_size,
-        #                                    random_state=self.random_state,
-        #                                    shuffle=self.shuffle)
-        # return sorted(x_train), sorted(x_test)
+    def __split_files_for_training(self):
+        all_files = self.__get_all_article_file_names()
+        x_train, x_test = train_test_split(all_files,
+                                           train_size=self.train_size,
+                                           test_size=self.test_size,
+                                           random_state=self.random_state,
+                                           shuffle=self.shuffle)
+        return sorted(x_train), sorted(x_test)
+
+    def __clear_previous_articles(self):
+        if os.path.exists(os.getcwd() + '/Federal_Reserve/Articles/'):
+            shutil.rmtree(os.getcwd() + '/Federal_Reserve/Articles/')
 
     def __clear_previous_training_files(self):
         if os.path.exists(os.getcwd() + '/Federal_Reserve/Test/'):
@@ -131,25 +162,18 @@ class Federal_Reserve:
             shutil.rmtree(os.getcwd() + '/Federal_Reserve/NGrams/')
 
         if os.path.exists(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv'):
-            os.remove(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
+            os.remove(os.getcwd() + '/Federal_Reserve/Testing_File.csv')
 
         if os.path.exists(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv'):
-            os.remove(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
-
-        if os.path.exists(os.getcwd() + '/Federal_Reserve/Training_File.csv'):
-            os.remove(os.getcwd() + '/Federal_Reserve/Training_File.csv')
+            os.remove(os.getcwd() + '/Federal_Reserve/Training_Files.csv')
 
     def __record_train_test_files(self, training_files, testing_files):
-        training_file_name = str(os.getcwd() + '/Federal_Reserve/Training_Files_List.csv')
-        testing_file_name = str(os.getcwd() + '/Federal_Reserve/Testing_Files_List.csv')
+        training_files = pd.DataFrame(pd.Series(np.array(training_files)), columns=['File'])
+        training_files.to_csv('Federal_Reserve/Training_Files.csv')
 
-        with open(training_file_name, 'w') as txt_file:
-            for file in training_files:
-                txt_file.write(str(file + ','))
+        testing_files = pd.DataFrame(pd.Series(np.array(testing_files)), columns=['File'])
+        testing_files.to_csv('Federal_Reserve/Testing_Files.csv')
 
-        with open(testing_file_name, 'w') as txt_file:
-            for file in testing_files:
-                txt_file.write(str(file + ','))
 
 
     def __create_ngram_files(self, all_files, test_data):
@@ -188,7 +212,7 @@ class Federal_Reserve:
         """Gets links for Articles of the current year"""
         currentLinks = []
         currentURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-default.htm'
-        sleep(3)
+        sleep(1.5)
         page = requests.get(currentURL)
         soup = BeautifulSoup(page.content, 'html.parser')
         links = soup.findAll('td')
@@ -207,7 +231,7 @@ class Federal_Reserve:
         archiveURL = 'https://www.federalreserve.gov/monetarypolicy/beige-book-archive.htm'
         yearlyLinks = []
         try:
-            sleep(3)
+            sleep(1.5)
             page = requests.get(archiveURL)
             soup = BeautifulSoup(page.content, 'html.parser')
             links = soup.findAll(re.compile(r'a'))
@@ -230,7 +254,7 @@ class Federal_Reserve:
         monthly_links = []
         for yearLink in links2011_:
             try:
-                sleep(3)
+                sleep(1.5)
                 page = requests.get(yearLink)
                 soup = BeautifulSoup(page.content, 'html.parser')
                 links = soup.findAll('td')
@@ -264,7 +288,7 @@ class Federal_Reserve:
         for year in range(1996, 2011):
             base_url = f'https://www.federalreserve.gov/monetarypolicy/beigebook{year}.htm'
             try:
-                sleep(3)
+                sleep(1.5) 
                 page = requests.get(base_url)
                 soup = BeautifulSoup(page.content, 'html.parser')
                 links = soup.findAll('td')
@@ -287,89 +311,14 @@ class Federal_Reserve:
 
         for link in monthly_links_2019:
             all_links.append(link)
-            try:
-                self.__get_article_info(link)
-            except Exception as e:
-                print('ERROR EXTRACTING ARTICLE INFO:', e)
 
         for link in monthly_links_2011_:
             all_links.append(link)
-            try:
-                self.__get_article_info(link)
-            except Exception as e:
-                print('ERROR EXTRACTING ARTICLE INFO:', e)
 
         for link in monthly_links_1996_2011:
             all_links.append(link)
-            try:
-                self.__get_article_info(link)
-            except Exception as e:
-                print('ERROR EXTRACTING ARTICLE INFO:', e)
-
 
         return all_links
-
-    def __get_article_info(self, url):
-        print('Gathering Article Text From:', url)
-        page = requests.get(url)
-        soup = BeautifulSoup(page.content, 'html.parser')
-
-        months = {'January': 1,
-                  'February': 2,
-                  'March': 3,
-                  'April': 4,
-                  'May': 5,
-                  'June': 6,
-                  'July': 7,
-                  'August': 8,
-                  'September': 9,
-                  'October': 10,
-                  'November': 11,
-                  'December': 12}
-
-        try:
-            date = soup.find('title')
-            date = date.get_text()
-            date = date.split(' - ')
-            date = str(date[-1])
-            date = date.replace(',', '')
-            newDate = date.split()
-
-            month = self.__add_zero_to_date(months[newDate[0]])
-            day = self.__add_zero_to_date(newDate[1])
-            year = self.__add_zero_to_date(newDate[2])
-
-        except Exception as e:
-            # Will grab date for articles before 2011
-            possibleDates = soup.findAll('strong')
-            for date in possibleDates:
-                date = date.get_text()
-                if 'last update' in date.lower():
-                    newDate = date.split(': ')[1]
-                    newDate = newDate.replace(',', '')
-                    newDate = newDate.split()
-                    month = self.__add_zero_to_date(months[newDate[0]])
-                    day = self.__add_zero_to_date(newDate[1])
-                    year = self.__add_zero_to_date(newDate[2])
-
-        # Check if Article folder exists, if not make it
-        path = f"Federal_Reserve/Articles/{year}/"
-        if not os.path.exists(path):
-            os.makedirs(path)
-
-        # Check if Article is already written if not, webscrape it and save it
-        fileName = f"{path}{year}-{month}-{day}_Report.txt"
-        if not os.path.exists(fileName):
-            articleTag = soup.findAll('p')
-            articleContent = ''
-            for i in articleTag:
-                articleContent += (i.get_text())
-
-            file = open(fileName, "w+")
-            file.write(articleContent)
-            file.close()
-            print("\nCreated", fileName)
-            return fileName
 
     def __add_zero_to_date(self, date):
         if len(str(date)) == 1:
@@ -638,10 +587,12 @@ class Federal_Reserve:
 
     def __get_files_to_test(self, testing_path):
         files_to_test = glob.glob(testing_path + '*.txt')
-        print(files_to_test)
         for file in files_to_test:
             increase, decrease, ratio = self.__get_increase_decrease_from_specific_article(file)
-
+            print('File Name:', file)
+            print('Increase Sum:', increase)
+            print('Decrease Sum:', decrease)
+            print('Dec-Inc Ratio:', ratio)
 
     def __get_increase_decrease_from_specific_article(self, article):
         try:
@@ -684,18 +635,10 @@ class Federal_Reserve:
                             decrease_sum += (decrease_ngrams[ngram]['Decrease_Weight'] * freq)
                     except KeyError:
                         pass
-                print('N:', n)
-                print('Increase Sum:', increase_sum)
-                print('Decrease Sum:', decrease_sum)
-
             try:
                 dec_inc_ratio = (decrease_sum / increase_sum)
             except:
                 dec_inc_ratio = 0
-
-            print('Increase Sum:', increase_sum)
-            print('Decrease Sum:', decrease_sum)
-            print('Ratio', dec_inc_ratio)
             return increase_sum, decrease_sum, dec_inc_ratio
 
 
@@ -814,16 +757,106 @@ class Federal_Reserve:
                                  training_info['Dec_Inc_Ratio'],
                                  training_info['Movement']])
 
+def add_zero_to_date(date):
+    if len(str(date)) == 1:
+        return '0' + str(date)
+    else:
+        return date
 
-fed = Federal_Reserve(train_size=0.8,
-                      test_size=0.2,
-                      random_state=26,
-                      neg_pos_ratio=0.2,
-                      watch_period_in_days=3,
-                      difference_percent_change_threshold=0.00,
-                      shuffle=True)
-# fed.gather_articles_and_stock_info()
-fed.create_training_files()
-fed.train_program()
+def get_article_info(url):
+    print('Gathering Article Text From:', url)
+    try:
+        time.sleep(random.uniform(0.5, 2))
+        page = requests.get(url)
+        soup = BeautifulSoup(page.content, 'html.parser')
+
+        months = {'January': 1,
+                  'February': 2,
+                  'March': 3,
+                  'April': 4,
+                  'May': 5,
+                  'June': 6,
+                  'July': 7,
+                  'August': 8,
+                  'September': 9,
+                  'October': 10,
+                  'November': 11,
+                  'December': 12}
+
+        try:
+            date = soup.find('title')
+            date = date.get_text()
+            date = date.split(' - ')
+            date = str(date[-1])
+            date = date.replace(',', '')
+            newDate = date.split()
+
+            month = add_zero_to_date(months[newDate[0]])
+            day = add_zero_to_date(newDate[1])
+            year = add_zero_to_date(newDate[2])
+
+        except Exception as e:
+            # Will grab date for articles before 2011
+            possibleDates = soup.findAll('strong')
+            for date in possibleDates:
+                date = date.get_text()
+                if 'last update' in date.lower():
+                    newDate = date.split(': ')[1]
+                    newDate = newDate.replace(',', '')
+                    newDate = newDate.split()
+                    month = add_zero_to_date(months[newDate[0]])
+                    day = add_zero_to_date(newDate[1])
+                    year = add_zero_to_date(newDate[2])
+
+        # Check if Article folder exists, if not make it
+        path = f"Federal_Reserve/Articles/{year}/"
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        # Check if Article is already written if not, webscrape it and save it
+        fileName = f"{path}{year}-{month}-{day}_Report.txt"
+        if not os.path.exists(fileName):
+            articleTag = soup.findAll('p')
+            articleContent = ''
+            for i in articleTag:
+                articleContent += (i.get_text())
+
+            file = open(fileName, "w+")
+            file.write(articleContent)
+            file.close()
+            print("\nCreated", fileName)
+
+    except Exception as e1:
+        print('Trouble Webscraping Article:', e1)
+
+def track_execution_time():
+    return time.time()
+
+def stop_execution_time(start_time):
+    end_time = time.time()
+    elapsed_time = (end_time - start_time)
+    min = int(elapsed_time / 60)
+    sec = round((elapsed_time % 60), 2)
+    print(f'Program Elapsed: {min} min {sec} sec')
 
 
+def main():
+    start_time = track_execution_time()
+    try:
+        fed = Federal_Reserve(train_size=0.8,
+                              test_size=0.2,
+                              random_state=26,
+                              neg_pos_ratio=0.2,
+                              watch_period_in_days=3,
+                              difference_percent_change_threshold=0.00,
+                              shuffle=True)
+        fed.gather_articles_and_stock_info()
+        # fed.create_training_files()
+        # fed.train_program()
+    except Exception as e:
+        print('ERROR:', e)
+        stop_execution_time(start_time)
+        exit(1)
+    stop_execution_time(start_time)
+
+main()

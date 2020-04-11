@@ -1,19 +1,14 @@
 # Stock_Market_Analysis_Software
-
 Can you create mathematical and financial intuition based on current event articles, and past movement to predict short term stock movement?
+
+Note: April, 2020, this readme is not updated
 
 ### Vision
 To create software that is capable of automatically gathering and analyzing information about companies to provide the user an opinion on any stock based on facts, data, and predictions.
 
 ### Prerequisites
-    pip install bs4
-    pip install jupyter
-    pip install matplotlib
-    pip install numpy
-    pip install pandas
 Requires API Key from https://www.alphavantage.co
 
-### Current Files
 * Python Files
     * Stock_Visualizations_Menu.py
         * Serves as the main program for the project

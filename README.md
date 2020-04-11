@@ -1,7 +1,9 @@
 # Stock_Market_Analysis_Software
 Can you create mathematical and financial intuition based on current event articles, and past movement to predict short term stock movement?
 
-Note: April, 2020, this readme is not updated
+Note: April, 2020, this readme is not updated.
+The program webscrapes articles from the Federal Reserve Beige Book pages, and goes back to 1997 or 1998. It then builds an ngram model and produces a bunch of files which can be used by a machine learning algorithm to produce models. The code is a bit messy, and I may eventually work on a much cleaner and faster version of this repo on my gitlab account at https://gitlab.com/brian-cobo.
+I have my senior project report linked here https://www.dropbox.com/s/9xvvg2fowwqw4j3/Senior%20Project%20Final%20Report.pdf?dl=0
 
 ### Vision
 To create software that is capable of automatically gathering and analyzing information about companies to provide the user an opinion on any stock based on facts, data, and predictions.
